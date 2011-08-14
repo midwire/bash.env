@@ -1,6 +1,6 @@
 # .env
 
-Is a comprehensive bash environment system that I've been using for over a decade.
+Is a comprehensive bash environment system.
 
 Make sure you customize the individual files to your own taste.
 
@@ -17,3 +17,7 @@ Clone the project into your home directory, then add the following to your $HOME
       fi
     done
     unset i
+
+## Make it better
+
+Please feel free to fork it, branch it, change it and send me a pull request.
