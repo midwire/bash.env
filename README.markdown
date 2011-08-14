@@ -4,7 +4,12 @@ Is a comprehensive bash environment system that I've been using for over a decad
 
 Make sure you customize the individual files to your own taste.
 
-To use it add the following to your $HOME/.bashrc file.
+## Install
+
+To use it:
+
+1. Clone the project into your home directory.
+1. Add the following to your $HOME/.bashrc file:
 
     # Source each *.sh file in the ~/.env folder
     echo "User .bashrc..."
@@ -14,4 +19,3 @@ To use it add the following to your $HOME/.bashrc file.
       fi
     done
     unset i
-
