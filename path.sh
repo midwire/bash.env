@@ -6,8 +6,6 @@ paths="${HOME}/bin"
 paths="${paths} /sbin"
 paths="${paths} /bin"
 paths="${paths} /usr/X11/bin"
-paths="${paths} /usr/local/sbin"
-paths="${paths} /usr/local/mysql/bin"
 paths="${paths} /usr/local/bin"
 paths="${paths} /usr/sbin"
 paths="${paths} /usr/bin"
@@ -27,18 +25,9 @@ for p in $paths; do
 	pathmunge $p
 done
 
-# for i in $paths; do
-#   if `echo $PATH | egrep $i'(\:|$)' >/dev/null 2>&1`; then
-#     continue
-#   fi
-#   if [ -d $i ]; then
-#     PATH=$PATH:$i
-#   fi
-# done
-
-PATH=`echo $PATH | sed -e 's/^\://' -e 's/\:\:/:/g'`
 # Remove Duplicates
 # PATH=`awk -F: '{for(i=1;i<=NF;i++){if(!($i in a)){a[$i];printf s$i;s=":"}}}'<<<$PATH`
+PATH=`echo $PATH | sed -e 's/^\://' -e 's/\:\:/:/g'`
 
 unset paths
 export PATH

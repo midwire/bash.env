@@ -1,11 +1,10 @@
-export EDITOR="/Users/cblackburn/bin/mate -w" 
-export CVSEDITOR="$EDITOR" 
+export EDITOR="$HOME/bin/mate -w"
+export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
-export MANPATH="$MANPATH:/usr/local/man"
+# export MANPATH="/usr/local/man"
 export VISUAL="$EDITOR"
 export HISTIGNORE="&:ls:[bf]g:exit"
-export JEWELER_OPTS="--create-repo --shoulda --user-name 'Chris Blackburn' --user-email 'info@midwiretech.com' --github-username midwire --bundler"
 export RUBY_LIB="$HOME/Source/ruby/lib"
 export LSCOLORS="gxfxcxdxbxegedabagacad"
 export RUBY_GC_STATS=1

@@ -1,9 +1,3 @@
-# function railsapp {
-# 	template=$1
-# 	appname=$2
-# 	shift 2
-# 	rails $appname -m http://github.com/midwire/rails-templates/raw/master/$template.rb $@
-# }
 function rapp {
 	appname=$1
 	shift 1

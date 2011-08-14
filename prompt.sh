@@ -3,7 +3,7 @@
 #       POWER USER PROMPT "pprom2"
 #----------------------------------------------------------------------
 #
-#   Created August 98, Last Modified 20011 July 6 by CBlackburn
+#   Created August 98, Last Modified 08/14/2011 by CBlackburn
 
 function prompt_command {
   #   Create TotalMeg variable: sum of visible file sizes in current directory

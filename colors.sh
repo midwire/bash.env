@@ -1,3 +1,4 @@
+# Colored output and functions for info, warn, error
 BG_BLACK="\033[0;40m"
 BG_RED="\033[0;41m"
 BG_GREEN="\033[0;42m"
@@ -23,9 +24,9 @@ CYAN="\033[0;36m"
 LIGHT_CYAN="\033[1;36m"
 LIGHT_GRAY="\033[0;37m"
 WHITE="\033[1;37m"
-NO_COLOUR="\033[0m"
+NO_COLOR="\033[0m"
 
-NORMAL=$NO_COLOUR
+NORMAL=$NO_COLOR
 INFO=$LIGHT_GREEN
 WARN=$YELLOW
 ERROR=$LIGHT_RED
