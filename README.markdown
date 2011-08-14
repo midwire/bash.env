@@ -8,14 +8,12 @@ Make sure you customize the individual files to your own taste.
 
 To use it:
 
-1. Clone the project into your home directory.
-1. Add the following to your $HOME/.bashrc file:
+Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
 
-`# Source each *.sh file in the ~/.env folder
-echo "User .bashrc..."
-for i in ~/.env/*.sh ; do
-  if [ -r "$i" ]; then
-          . $i
-  fi
-done
-unset i`
+    echo "User .bashrc..."
+    for i in ~/.env/*.sh ; do
+      if [ -r "$i" ]; then
+              . $i
+      fi
+    done
+    unset i
