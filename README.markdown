@@ -1,6 +1,8 @@
 # .env
 
-Is my personal bash environment system
+Is a comprehensive bash environment system that I've been using for over a decade.
+
+Make sure you customize the individual files to your own taste.
 
 To use it add the following to your $HOME/.bashrc file.
 
