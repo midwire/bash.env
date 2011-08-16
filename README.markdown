@@ -10,12 +10,7 @@ To use it:
 
 Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
 
-    for i in ~/.env/*.sh ; do
-      if [ -r "$i" ]; then
-              . $i
-      fi
-    done
-    unset i
+    . $HOME/.env/choose_os.sh
 
 ## Make it better
 
