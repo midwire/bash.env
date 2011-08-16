@@ -1,5 +1,5 @@
 export HISTIGNORE="&:ls:[bf]g:exit"
-export RUBY_LIB="$HOME/source/ruby/lib"
+export RUBY_LIB="$HOME/Source/ruby/lib"
 export LSCOLORS="gxfxcxdxbxegedabagacad"
 export RUBY_GC_STATS=1
 
