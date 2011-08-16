@@ -2,11 +2,8 @@ export EDITOR="$HOME/bin/mate -w"
 export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
-# export MANPATH="/usr/local/man"
 export VISUAL="$EDITOR"
-export HISTIGNORE="&:ls:[bf]g:exit"
 export RUBY_LIB="$HOME/Source/ruby/lib"
-export LSCOLORS="gxfxcxdxbxegedabagacad"
 export RUBY_GC_STATS=1
 export ARCHFLAGS="-arch x86_64"
 

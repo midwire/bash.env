@@ -9,7 +9,6 @@ paths="${paths} /usr/X11/bin"
 paths="${paths} /usr/local/bin"
 paths="${paths} /usr/sbin"
 paths="${paths} /usr/bin"
-paths="${paths} /Developer/usr/bin"
 
 function pathmunge () {
 	if ! echo $PATH | /usr/bin/egrep -q "(^|:)$1($|:)" ; then
