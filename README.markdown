@@ -10,7 +10,6 @@ To use it:
 
 Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
 
-    echo "User .bashrc..."
     for i in ~/.env/*.sh ; do
       if [ -r "$i" ]; then
               . $i
@@ -21,3 +20,7 @@ Clone the project into your home directory, then add the following to your $HOME
 ## Make it better
 
 Please feel free to fork it, branch it, change it and send me a pull request.
+
+Cheers,
+
+-- Midwire
