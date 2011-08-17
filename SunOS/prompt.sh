@@ -54,7 +54,7 @@ function pprompt {
 	esac
 
 PS1="$BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
-$BLUE[$LIGHT_CYAN\u@\H$BLUE]\
+$BLUE[$BG_RED$WHITE\u@\H$BLUE]\
 $BLUE[\
 $WHITE\$($PS | wc -l | sed -e \"s: ::g\")proc\
 $YELLOW (\${branch})\
