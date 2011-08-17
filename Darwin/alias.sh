@@ -26,6 +26,12 @@ alias st='git status'
 
 # Rails aliases
 alias a='autotest -rails'
+alias b="bundle"
+alias bi="b install --path vendor"
+alias bil="bi --local"
+alias bu="b update"
+alias be="b exec"
+alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
 alias rc='rails c'
 alias rd='rails destroy'
 alias rg='rails g'
@@ -39,15 +45,15 @@ alias ss='./script/server'
 
 # Editing and Sourcing aliases
 alias e='mate .'
-alias ea='mate ~/.env/alias.sh'
-alias eas='. ~/.env/alias.sh'
+alias ea='mate ~/.env/Darwin/alias.sh'
+alias eas='. ~/.env/Darwin/alias.sh'
 alias ee='mate ~/.env'
-alias ees='. ~/.bashrc'
-alias ef='mate ~/.env/functions.sh'
-alias efs='. ~/.env/functions.sh'
+alias ees='. ~/.env/choose_os.sh'
+alias ef='mate ~/.env/Darwin/functions.sh'
+alias efs='. ~/.env/Darwin/functions.sh'
 alias egen='mate ~/.rails/generators'
-alias ep='mate ~/.env/path.sh'
-alias eps='. ~/.env/path.sh'
+alias ep='mate ~/.env/Darwin/path.sh'
+alias eps='. ~/.env/Darwin/path.sh'
 alias m='mate'
 
 # Directory Listing aliases
@@ -85,4 +91,4 @@ alias pb_tail='tail -1111f /var/log/pinkbox/development/rapid_decision/core_rind
 alias fit='export RAILS_ENV="fitnesse"; cd $HOME/$RAILS_ENV/apps/fitnesse; rvm use ruby-1.8.7@cdirect; $HOME/$RAILS_ENV/apps/fitnesse/bin/fit'
 
 # CONSUMER DIRECT
-alias cdr='cd $HOME/development/apps/pinkbox/consumer_direct_web_site'
+alias cdr='cd $HOME/development/apps/consumer_direct/consumer_direct_web_site'

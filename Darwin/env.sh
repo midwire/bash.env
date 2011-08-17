@@ -3,9 +3,14 @@ export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
 export VISUAL="$EDITOR"
+export ARCHFLAGS="-arch x86_64"
+
+# Ruby
+export AUTOTEST=true
+export AUTOFEATURE=true
+export RSPEC=true
 export RUBY_LIB="$HOME/Source/ruby/lib"
 export RUBY_GC_STATS=1
-export ARCHFLAGS="-arch x86_64"
 
 # Postgresql
 export POSTGRESQL_ROOT=/usr/local

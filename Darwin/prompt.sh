@@ -1,20 +1,22 @@
 #!/bin/bash
 #----------------------------------------------------------------------
-#       POWER USER PROMPT "pprom2"
+# POWER USER PROMPT "pprom2"
 #----------------------------------------------------------------------
-#
-#   Created August 98, Last Modified 08/14/2011 by CBlackburn
+# Created August 98,
+# Last Modified 08/16/2011 by CBlackburn
 
 function prompt_command {
-  #   Create TotalMeg variable: sum of visible file sizes in current directory
-  local TotalBytes=0
-  for Bytes in $(\ls -l | grep "^-" | awk '{print $5}')
-  do
-      let TotalBytes=$TotalBytes+$Bytes
-  done
-  TotalMeg=$(echo -e "scale=3 \nx=$TotalBytes/1048576\n if (x<1) {print \"0\"} \n print x \nquit" | bc)
+  # Create TotalMeg variable: sum of visible file sizes in current directory
+  # local TotalBytes=0
+  # for Bytes in $(\ls -l | grep "^-" | awk '{print $5}'); do
+  #     let TotalBytes=$TotalBytes+$Bytes
+  # done
+  # TotalMeg=$(echo -e "scale=3 \nx=$TotalBytes/1048576\n if (x<1) {print \"0\"} \n print x \nquit" | bc)
+	# unset TotalBytes
 
+	# Show current git branch
   branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
+
   #   Count visible files:
   # let files=$(\ls -l | grep "^-" | wc -l | tr -d " ")
   # let hiddenfiles=$(\ls -l -d .* | grep "^-" | wc -l | tr -d " ")
@@ -61,12 +63,12 @@ local           WHITE="\[\033[1;37m\]"
 local       NO_COLOUR="\[\033[0m\]"
 
 case $TERM in
-    xterm*)
-        TITLEBAR='\[\033]0;\u@\H:\w\007\]'
-        ;;
-    *)
-        TITLEBAR=""
-        ;;
+	xterm*)
+	  TITLEBAR='\[\033]0;\u@\H:\w\007\]'
+	  ;;
+	*)
+	  TITLEBAR=""
+	  ;;
 esac
 
 # PS1="$TITLEBAR\
@@ -95,7 +97,7 @@ esac
 
 PS1="$TITLEBAR\
 $BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
-$BLUE[$GREEN\u@\H$BLUE]\
+$BLUE[$LIGHT_CYAN\u@\H$BLUE]\
 $BLUE[\
 $WHITE\$(ps ax | wc -l | sed -e \"s: ::g\")proc\
 $YELLOW (\${branch})\

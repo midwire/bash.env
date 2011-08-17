@@ -11,7 +11,7 @@ paths="${paths} /usr/sbin"
 paths="${paths} /usr/bin"
 
 function pathmunge () {
-	if ! echo $PATH | /usr/bin/egrep -q "(^|:)$1($|:)" ; then
+	if ! echo $PATH | /usr/bin/egrep "(^|:)$1($|:)" > /dev/null ; then
 		if [ "$2" = "before" ] ; then
 			PATH=$1:$PATH
 		else
