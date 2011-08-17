@@ -1,9 +1,9 @@
 #!/bin/bash
 # Solaris has a wonky, featureless /bin/ps, so try to use the ucb one
 if [[ -x /usr/ucb/ps ]]; then
-	PS="/usr/ucb/ps -el"
+	PS="/usr/ucb/ps ax"
 else
-	PS="`which ps` ax"
+	PS="`which ps` -el"
 fi
 
 function prompt_command {
@@ -56,7 +56,7 @@ function pprompt {
 PS1="$BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
 $BLUE[$LIGHT_CYAN\u@\H$BLUE]\
 $BLUE[\
-$WHITE\$($PS -el | wc -l | sed -e \"s: ::g\")proc\
+$WHITE\$($PS | wc -l | sed -e \"s: ::g\")proc\
 $YELLOW (\${branch})\
 $BLUE]\
 \n\

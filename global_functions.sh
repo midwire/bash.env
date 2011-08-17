@@ -11,8 +11,11 @@ function propagate_env_to_host {
 	ENVFILE=$HOME/env.tar.gz
 	PWD=`pwd`
 	cd $HOME
+	echo "Compressing local environment..."
 	tar cfvz $ENVFILE .env/ &> /dev/null
+	echo "Copying environment to $host..."
 	scp $ENVFILE $host:
+	echo "Installing environment on $host..."
 	ssh $host "gunzip < env.tar.gz |tar xfv -" &> /dev/null
 	echo "Don't forget to add this line to your .bashrc file:"
 	echo '[[ -r $HOME/.env/choose_os.sh ]] && . $HOME/.env/choose_os.sh'

@@ -38,17 +38,7 @@ alias sp='./script/plugin'
 alias ss='./script/server'
 
 # Editing and Sourcing aliases
-alias e='mate .'
-alias ea='mate ~/.env/Linux/alias.sh'
-alias eas='. ~/.env/Linux/alias.sh'
-alias ee='mate ~/.env'
-alias ees='. ~/.bashrc'
-alias ef='mate ~/.env/Linux/functions.sh'
-alias efs='. ~/.env/Linux/functions.sh'
-alias egen='mate ~/.rails/generators'
-alias ep='mate ~/.env/Linux/path.sh'
-alias eps='. ~/.env/Linux/path.sh'
-alias m='mate'
+alias ees='. ~/.env/choose_os.sh'
 
 # Directory Listing aliases
 alias dir='ls -GhFx'

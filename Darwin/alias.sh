@@ -86,8 +86,8 @@ alias pb_development='export RAILS_ENV="development"; cd $HOME/$RAILS_ENV/apps/p
 alias pb_integration='export RAILS_ENV="integration"; cd $HOME/$RAILS_ENV/apps/pinkbox/management'
 alias pb_logs='cd /var/log/pinkbox/development && ls -latF'
 alias pb_logsi='cd /var/log/pinkbox/integration && ls -latF'
-alias pb_t='tail -f /var/log/pinkbox/development/rapid_decision/core_rindlets_* /var/log/pinkbox/development/underwriting_system/underwriting_rindlets_*'
-alias pb_tail='tail -1111f /var/log/pinkbox/development/rapid_decision/core_rindlets_* /var/log/pinkbox/development/underwriting_system/underwriting_rindlets_* /var/log/pinkbox/development/rinda_server/rinda_development.log'
+alias pb_t='tail -f /var/log/pinkbox/$RAILS_ENV/rapid_decision/core_rindlets_* /var/log/pinkbox/$RAILS_ENV/underwriting_system/underwriting_rindlets_*'
+alias pb_tail='tail -1111f /var/log/pinkbox/$RAILS_ENV/rapid_decision/core_rindlets_* /var/log/pinkbox/$RAILS_ENV/underwriting_system/underwriting_rindlets_* /var/log/pinkbox/$RAILS_ENV/rinda_server/rinda_development.log'
 alias fit='export RAILS_ENV="fitnesse"; cd $HOME/$RAILS_ENV/apps/fitnesse; rvm use ruby-1.8.7@cdirect; $HOME/$RAILS_ENV/apps/fitnesse/bin/fit'
 
 # CONSUMER DIRECT

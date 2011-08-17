@@ -21,6 +21,9 @@ alias pull='git pull'
 alias push='git push'
 alias st='git status'
 
+# Editing and Sourcing aliases
+alias ees='. ~/.env/choose_os.sh'
+
 # Rails aliases
 alias a='autotest -rails'
 alias rc='rails c'
