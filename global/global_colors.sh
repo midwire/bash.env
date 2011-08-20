@@ -34,17 +34,16 @@ WARN=$YELLOW
 ERROR=$LIGHT_RED
 
 echo_info() {
-  #echo -ne " $INFO*$NORMAL $*"
-  echo -e " $INFO$*$NORMAL"
+  echo -e "${INFO}> $@${NORMAL}"
   return 0
 }
 
 echo_warn() {
-  echo -e " $WARN$*$NORMAL"
+  echo -e "${WARN}>> $@${NORMAL}"
   return 0
 }
 
 echo_error() {
-  echo -e " $ERROR$*$NORMAL"
+  echo -e "${ERROR}>>> $*${NORMAL}"
   return 0
 }

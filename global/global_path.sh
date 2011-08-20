@@ -1,8 +1,12 @@
 # Add some useful directories to our PATH if necessary. Add all the paths
 # you want to the $paths variable
 
+# This currently resets your path to zero and adds from there.  Be sure to add ALL of the paths
+# you want in your environment, either here or in more specific path.sh files
+
 PATH=' '
-paths="${HOME}/bin"
+paths="${DOT_ENV_PATH}/bin"
+paths="${paths} ${HOME}/bin"
 paths="${paths} /sbin"
 paths="${paths} /bin"
 paths="${paths} /usr/X11/bin"
