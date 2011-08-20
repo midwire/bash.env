@@ -22,7 +22,7 @@ alias push='git push'
 alias st='git status'
 
 # Editing and Sourcing aliases
-alias ees='. ~/.env/choose_os.sh'
+alias ees='. ~/.env/source.sh'
 
 # Rails aliases
 alias a='autotest -rails'

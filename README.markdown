@@ -10,7 +10,11 @@ To use it:
 
 Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
 
-    . $HOME/.env/choose_os.sh
+    . $HOME/.env/source.sh
+
+You will then want to create a specific set of .env files for your local machine:
+
+    config.env
 
 ## Make it better
 

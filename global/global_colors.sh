@@ -1,4 +1,6 @@
 # Colored output and functions for info, warn, error
+# Include this file to use it
+
 BG_BLACK="\033[0;40m"
 BG_RED="\033[0;41m"
 BG_GREEN="\033[0;42m"

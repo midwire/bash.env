@@ -1,9 +1,5 @@
 #!/bin/bash
-#----------------------------------------------------------------------
-# POWER USER PROMPT "pprom2"
-#----------------------------------------------------------------------
-# Created August 98,
-# Last Modified 08/16/2011 by CBlackburn
+# Last Modified 08/16/2011 by Midwire
 
 function prompt_command {
   # Create TotalMeg variable: sum of visible file sizes in current directory
@@ -31,10 +27,9 @@ function prompt_command {
   # fi
   # unset linktemp
 }
-
 PROMPT_COMMAND=prompt_command
 
-function pprom2 {
+function power_prompt {
 local        BG_BLACK="\[\033[0;40m\]"
 local          BG_RED="\[\033[0;41m\]"
 local        BG_GREEN="\[\033[0;42m\]"
@@ -111,4 +106,4 @@ PS2='> '
 PS4='+ '
 }
 
-pprom2
+power_prompt
