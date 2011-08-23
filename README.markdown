@@ -10,11 +10,19 @@ To use it:
 
 Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
 
-    . $HOME/.env/source.sh
+    if [[ -n "$PS1" ]]; then
+      [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
+    fi
 
 You will then want to create a specific set of .env files for your local machine:
 
     config.env
+
+## Add your SSH key to another host ##
+
+    add_ssh_key_to_host [user@]HOSTNAME
+
+... which will append your public `~/.ssh/id_dsa.pub` key to the host's authorized_keys file and allow you to login without a password.
 
 ## Propagating to other hosts ##
 
