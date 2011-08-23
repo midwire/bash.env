@@ -6,7 +6,7 @@ function prompt_command {
   branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
   # ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -e 'print RUBY_VERSION')"; else echo "no-ruby"; fi)"
   ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -v)"; else echo "no-ruby"; fi)"
-	proc_count=$(ps ax | wc -l | sed -e "s: ::g")
+	# proc_count=$(ps ax | wc -l | sed -e "s: ::g")
 }
 
 PROMPT_COMMAND=prompt_command
