@@ -2,7 +2,7 @@ export DOT_ENV_PATH="$HOME/.env"
 
 if [[ "$SHLVL" == "1" ]]; then
 	DOT_ENV_VERSION=`cat $DOT_ENV_PATH/VERSION`
-	echo ".env v$DOT_ENV_VERSION - Portable Bash Environment System http://github.com/midwire/.env"
+	echo ".env v$DOT_ENV_VERSION - http://github.com/midwire/.env"
 fi
 
 # Determine OS
