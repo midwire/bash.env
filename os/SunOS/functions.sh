@@ -9,5 +9,5 @@ function rgrep {
 	else
 		path="$2"
 	fi
-	find "$path"|xargs grep "$pattern"
+	find -L "$path"|xargs grep "$pattern"
 }

@@ -6,6 +6,7 @@
 function prompt_command {
 	# Show current git branch
   branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
+	rvm_ruby=$(rvm-prompt &>/dev/null; if [ $? -eq 0 ]; then echo "$(rvm-prompt)"; fi)
 
   # Optional:
 
@@ -47,7 +48,7 @@ PS1="$TITLEBAR\
 $BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
 $BLUE[$LIGHT_CYAN\u@\H$BLUE]\
 $BLUE[\
-$WHITE\$(ps ax | wc -l | sed -e \"s: ::g\")proc\
+$WHITE\${rvm_ruby}\
 $YELLOW (\${branch})\
 $BLUE]\
 \n\

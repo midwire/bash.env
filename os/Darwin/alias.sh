@@ -29,6 +29,7 @@ alias be="b exec"
 alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
 alias rc='rails c'
 alias rd='rails destroy'
+alias re='echo $RAILS_ENV'
 alias rg='rails g'
 alias rp='rails plugin'
 alias rs='rails s'

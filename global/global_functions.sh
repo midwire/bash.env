@@ -23,9 +23,11 @@ function propagate_env_to_host {
 	echo_info "Copying environment to $host..."
 	scp $ENVFILE $host:
 	echo_info "Installing environment on $host..."
-	ssh $host "gunzip < env.tar.gz |tar xfv -" &> /dev/null
-	echo_warn "Don't forget to add this line to your .bashrc file:"
-	echo_warn '[[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh'
+	ssh $host "rm -rf $HOME/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
+	echo_warn "Don't forget to add this your .bashrc file:"
+	echo_warn 'if [[ -n "$PS1" ]]; then'
+	echo_warn '  [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh'
+	echo_warn 'fi'
 	cd $PWD
 }
 

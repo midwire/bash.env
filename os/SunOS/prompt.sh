@@ -1,20 +1,11 @@
 #!/bin/bash
 . "${DOT_ENV_PATH}/global/global_colors.sh"
 
-# Solaris has a wonky, featureless /bin/ps, so try to use the ucb one
-if [[ -x /usr/ucb/ps ]]; then
-	PS="/usr/ucb/ps ax"
-else
-	PS="`which ps` -el"
-fi
-
 function prompt_command {
 	# Show current git branch
-	if [[ -x `which git` ]]; then
-	  branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
-	else
-	  branch="nogit"
-	fi
+  branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; else echo "no-git"; fi)
+  # ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -v)"; else echo "no-ruby"; fi)"
+  ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -e 'print RUBY_VERSION')"; else echo "no-ruby"; fi)"
 }
 PROMPT_COMMAND=prompt_command
 
@@ -32,7 +23,7 @@ function pprompt {
 PS1="$BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
 $BLUE[$BG_RED$WHITE\u@\H$BLUE]\
 $BLUE[\
-$WHITE\$($PS | wc -l | sed -e \"s: ::g\")proc\
+$WHITE(ruby v$ruby_ver)\
 $YELLOW (\${branch})\
 $BLUE]\
 \n\
