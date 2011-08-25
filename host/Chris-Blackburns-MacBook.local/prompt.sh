@@ -6,7 +6,7 @@
 function prompt_command {
 	# Show current git branch
   branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
-	rvm_ruby=$(rvm-prompt &>/dev/null; if [ $? -eq 0 ]; then echo "$(rvm-prompt)"; fi)
+	rvm_ruby=$(rvm-prompt &>/dev/null; if [ $? -eq 0 ]; then echo "$(rvm-prompt i v p g s)"; fi)
 
   # Optional:
 

@@ -18,7 +18,7 @@ alias pb_logs='cd /var/log/pinkbox/development && ls -latF'
 alias pb_logsi='cd /var/log/pinkbox/integration && ls -latF'
 alias pb_t='tail -f /var/log/pinkbox/$RAILS_ENV/rapid_decision/core_rindlets_* /var/log/pinkbox/$RAILS_ENV/underwriting_system/underwriting_rindlets_*'
 alias pb_tail='tail -1111f /var/log/pinkbox/$RAILS_ENV/rapid_decision/core_rindlets_* /var/log/pinkbox/$RAILS_ENV/underwriting_system/underwriting_rindlets_* /var/log/pinkbox/$RAILS_ENV/rinda_server/rinda_development.log'
-alias fit='RAILS_ENV="fitnesse"; cd $HOME/$RAILS_ENV/apps/fitnesse; rvm use ruby-1.8.7@cdirect; $HOME/$RAILS_ENV/apps/fitnesse/bin/fit'
+alias fit='RAILS_ENV="fitnesse"; rvm use ruby-1.8.7@cdirect; $HOME/$RAILS_ENV/apps/fitnesse/bin/fit'
 
 alias prod='$HOME/development/apps/pinkbox/dev_util/script/production'
 alias rl='prod tail_rinda_logs'

@@ -39,23 +39,23 @@ alias sp='./script/plugin'
 alias ss='./script/server'
 
 # Vi Editing and Sourcing aliases
-alias ea='vi ~/.env/Linux/alias.sh'
-alias eas='. ~/.env/Linux/alias.sh'
+alias ea='vi ~/.env/os/Linux/alias.sh'
+alias eas='. ~/.env/os/Linux/alias.sh'
 alias ees='. ~/.env/source.sh'
-alias ef='vi ~/.env/Linux/functions.sh'
-alias efs='. ~/.env/Linux/functions.sh'
-alias ep='vi ~/.env/Linux/path.sh'
-alias eps='. ~/.env/Linux/path.sh'
+alias ef='vi ~/.env/os/Linux/functions.sh'
+alias efs='. ~/.env/os/Linux/functions.sh'
+alias ep='vi ~/.env/os/Linux/path.sh'
+alias eps='. ~/.env/os/Linux/path.sh'
 alias eh="vi ~/.env/host/$HOSTNAME/*.sh"
 alias ehs=". ~/.env/host/$HOSTNAME/*.sh"
 
 # Directory Listing aliases
-alias dir='ls -GhFx'
-alias l.='ls -Gd .* --color=tty'
-alias l='ls -GlathF'
-alias L='ls -GlatrhF'
-alias ll='ls -lGFh'
-alias lo='ls -laGSFh'
+alias dir='ls -hFx'
+alias l.='ls -d .* --color=tty'
+alias l='ls -lathF'
+alias L='ls -latrhF'
+alias ll='ls -lFh'
+alias lo='ls -laSFh'
 alias vdir='ls --color=auto --format=long'
 
 # Miscellaneous aliases
