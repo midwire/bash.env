@@ -1,5 +1,5 @@
 #!/bin/bash
-. "${DOT_ENV_PATH}/global/global_colors.sh"
+. "${DOT_ENV_PATH}/global/global_prompt.sh"
 
 # Last Modified 08/19/2011 by Midwire
 

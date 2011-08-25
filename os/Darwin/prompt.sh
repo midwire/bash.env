@@ -1,5 +1,5 @@
 #!/bin/bash
-. "${DOT_ENV_PATH}/global/global_colors.sh"
+. "${DOT_ENV_PATH}/global/global_prompt.sh"
 
 function prompt_command {
 	# Show current git branch
