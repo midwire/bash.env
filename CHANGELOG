@@ -2,7 +2,9 @@
 
 * Added Rakefile and several Rake tasks to help in releasing new versions
 * Added readline support for 'rake changes'
+* Renamed global function from 'config.env' to 'configthis.env'
 
 *0.1.2* (August 25, 2011)
 
-* Began keeping CHANGELOG changes
+* Began keeping CHANGELOG entries
+* Fixed color support for prompts with horizontal scrolling problem

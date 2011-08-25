@@ -32,12 +32,16 @@ function propagate_env_to_host {
 }
 
 # Configure environment settings for your local machine.
-function config.env {
+function configthis.env {
 	DIR="$DOT_ENV_PATH/host/$HOSTNAME"
 	mkdir -p "$DIR"
 	touch "$DIR/alias.sh"
 	touch "$DIR/env.sh"
 	touch "$DIR/functions.sh"
+	touch "$DIR/prompt.sh"
+	if [[ ! -f "$DIR/path.sh" ]]; then
+		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
+	fi
 	cd "$DIR"
 	echo_info "Edit these files to customize your local environment."
 	ls -1AtF

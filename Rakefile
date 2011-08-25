@@ -41,6 +41,11 @@ task :bump_major do
   Rake::Task["changes"].invoke
 end
 
+desc "Open the github site in your browser"
+task :github do
+  system("open https://github.com/midwire/.env")
+end
+
 ##################################################
 private
 

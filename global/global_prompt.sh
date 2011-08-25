@@ -2,6 +2,7 @@
 # This prevents horizontal scrolling problems for prompts
 # Don't use these colors for terminal output.
 # Instead use 'global_colors.sh'
+# See 'os' or 'host' prompt.sh files for the actual prompt settings
 
 if [[ -x `which tput` ]]; then
 	tput init

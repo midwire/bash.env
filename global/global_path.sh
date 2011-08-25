@@ -1,9 +1,6 @@
 # Add some useful directories to our PATH if necessary. Add all the paths
 # you want to the $paths variable
 
-# This currently resets your path to zero and adds from there.  Be sure to add ALL of the paths
-# you want in your environment, either here or in more specific path.sh files
-
 paths="${DOT_ENV_PATH}/bin"
 paths="${paths} ${HOME}/bin"
 paths="${paths} /sbin"
@@ -29,6 +26,7 @@ for p in $paths; do
 done
 
 # Remove Duplicates
+# TODO: find a solution to remove duplicate path entries on Solaris
 if [[ $OS != 'SunOS' ]]; then
 	PATH=`awk -F: '{for(i=1;i<=NF;i++){if(!($i in a)){a[$i];printf s$i;s=":"}}}'<<<$PATH`
 fi

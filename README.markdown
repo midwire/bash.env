@@ -1,6 +1,6 @@
 # .env
 
-Is a comprehensive bash environment system.
+Is a comprehensive bash environment system, under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
 Make sure you customize the individual files to your own taste.
 
@@ -16,7 +16,7 @@ Clone the project into your home directory, then add the following to your $HOME
 
 You will then want to create a specific set of .env files for your local machine:
 
-    config.env
+    configthis.env
 
 ## Add your SSH key to another host ##
 
