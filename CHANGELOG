@@ -1,0 +1,8 @@
+*0.1.3* (August 25, 2011)
+
+* Added Rakefile and several Rake tasks to help in releasing new versions
+* Added readline support for 'rake changes'
+
+*0.1.2* (August 25, 2011)
+
+* Began keeping CHANGELOG changes
