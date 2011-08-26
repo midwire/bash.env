@@ -2,8 +2,6 @@
 
 Is a comprehensive bash environment system, under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
-Make sure you customize the individual files to your own taste.
-
 ## Install
 
 To use it:
@@ -14,23 +12,52 @@ Clone the project into your home directory, then add the following to your $HOME
       [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
     fi
 
-You will then want to create a specific set of .env files for your local machine:
+## Customize your local environment ##
 
-    configthis.env
+The convention is, `$HOME/.env/host/[your-hostname]` directory contains these files:
 
-## Add your SSH key to another host ##
+* alias.sh
+* env.sh
+* functions.sh
+* prompt.sh
+
+... and anything else you wish to customize your own local environment.
+
+You can put any `*.sh` files in your host directory that you want, and they will only get sourced when you start a Bash shell on the machine with the specified hostname.
+
+The easiest way to customize is to run `configthis.env`, which will create a folder in the `host` directory specifically for your machine and stub out some empty files that you can, and should, customize.
+
+You are not required to follow this file-naming convention.  But the files must have a `.sh` extension.
+
+## Other Functions ##
+
+### Add your SSH key to a remote host ###
 
     add_ssh_key_to_host [user@]HOSTNAME
 
 ... which will append your public `~/.ssh/id_dsa.pub` key to the host's authorized_keys file and allow you to login without a password.
 
-## Propagating to other hosts ##
+### Propagate .env to other hosts ###
 
-If you want to copy .env to another host, simply type:
+If you want to copy your .env to another host, simply type:
 
     propagate_env_to_host [user@]HOSTNAME
 
 ... which will compress your local .env, copy it to the specified host and decompress it.
+
+If the remote machine is used by other people beside yourself, you can add this to the .bashrc file:
+
+    alias .env='. $HOME/.env/source.sh'
+
+Then whenever you login, to get your .env sourced, just type `.env`
+
+If the remote machine is only used by you, you can add this to the .bashrc file:
+
+    if [[ -n "$PS1" ]]; then
+      [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
+    fi
+
+Then your own `.env` will automatically be sourced when you login.
 
 ## Make it better
 
