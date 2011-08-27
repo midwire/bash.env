@@ -1,3 +1,7 @@
+*0.1.5* (August 26, 2011)
+
+* Added the `confighost.env` function for easy config of remote hosts
+
 *0.1.4* (August 26, 2011)
 
 * Got rid of the tput stuff because it doesn't work on certain versions of Solaris
