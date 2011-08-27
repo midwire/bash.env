@@ -46,3 +46,30 @@ function configthis.env {
 	echo_info "Edit these files to customize your local environment."
 	ls -1AtF
 }
+
+# Configure environment settings for a specified HOSTNAME
+function confighost.env {
+	if [[ $# -lt 1 ]]; then
+		echo_warn "Usage: confighost.env HOSTNAME"
+		return
+	fi
+	host=$1
+	shift 1
+	DIR="$DOT_ENV_PATH/host/$host"
+	mkdir -p "$DIR"
+	touch "$DIR/env.sh"
+	touch "$DIR/functions.sh"
+	if [[ ! -f "$DIR/alias.sh" ]]; then
+		echo "# Add your host specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
+	fi
+	if [[ ! -f "$DIR/prompt.sh" ]]; then
+		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
+	fi
+	if [[ ! -f "$DIR/path.sh" ]]; then
+		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
+	fi
+	cd "$DIR"
+	echo_info "Edit these files to customize your [$host] environment."
+	echo_info "When you are finished run 'propagate_env_to_host $host'."
+	ls -1AtF
+}

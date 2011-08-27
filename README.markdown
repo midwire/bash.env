@@ -57,7 +57,15 @@ If the remote machine is only used by you, you can add this to the .bashrc file:
       [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
     fi
 
-Then your own `.env` will automatically be sourced when you login.
+Then your own OS specific `.env` will automatically be sourced when you login.
+
+If you want to customize the remote host environment even further:
+
+* Run `confighost.env HOSTNAME`
+* Edit the newly created environment files
+* Then `propagate_env_to_host HOSTNAME`
+
+To determine the correct `HOSTNAME` to use for your remote environment make sure you first login to that environment and type `echo $HOSTNAME`.
 
 ## Make it better
 
