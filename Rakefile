@@ -3,15 +3,16 @@ require 'rake'
 require 'readline'
 PROJECT_ROOT = File.expand_path(File.dirname(__FILE__))
 
-desc "Commit and write changes to the CHANGELOG"
+desc "Write changes to the CHANGELOG"
 task :changes do
   text = ask("CHANGELOG Entry:")
   text.insert(0, "*#{read_version.join('.')}* (#{Time.now.strftime("%B %d, %Y")})\n\n")
   text << "\n"
   prepend_changelog(text)
+  system("open CHANGELOG")
 end
 
-desc "Increment the patch version"
+desc "Increment the patch version and write changes to the changelog"
 task :bump_patch do
   major, minor, patch = read_version
   patch = patch.to_i + 1
@@ -22,7 +23,7 @@ desc "Alias for :bump_patch"
 task :bump => :bump_patch do
 end
 
-desc "Increment the minor version"
+desc "Increment the minor version and write changes to the changelog"
 task :bump_minor do
   major, minor, patch = read_version
   minor = minor.to_i + 1
@@ -31,7 +32,7 @@ task :bump_minor do
   Rake::Task["changes"].invoke
 end
 
-desc "Increment the major version"
+desc "Increment the major version and write changes to the changelog"
 task :bump_major do
   major, minor, patch = read_version
   major = major.to_i + 1

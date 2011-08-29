@@ -23,7 +23,7 @@ function pprompt {
 PS1="$BLUE[$LIGHT_RED\!#|\jbg$BLUE]\
 $BLUE[$BG_RED$WHITE\u@\H$BLUE]\
 $BLUE[\
-$WHITE(ruby v$ruby_ver)\
+$WHITE(ruby v\${ruby_ver})\
 $YELLOW (\${branch})\
 $BLUE]\
 \n\

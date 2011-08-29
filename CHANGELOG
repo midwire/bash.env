@@ -1,3 +1,8 @@
+*0.1.6* (August 29, 2011)
+
+* Reworked aliases by moving most of them to globals in a new hierarchy and tweaked the SunOS prompt
+* Updated the Rakefile to open the CHANGELOG after raking 'changes'
+
 *0.1.5* (August 26, 2011)
 
 * Added the `confighost.env` function for easy config of remote hosts
