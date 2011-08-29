@@ -2,6 +2,7 @@
 
 * Reworked aliases by moving most of them to globals in a new hierarchy and tweaked the SunOS prompt
 * Updated the Rakefile to open the CHANGELOG after raking 'changes'
+* Changed the accidental commit message
 
 *0.1.5* (August 26, 2011)
 
