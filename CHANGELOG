@@ -1,3 +1,9 @@
+*0.1.7* (August 30, 2011)
+
+* Added the load_on_login and load_on_alias functions
+* Updated README
+* Removed double-nested alias inside the rails.sh file
+
 *0.1.6* (August 29, 2011)
 
 * Reworked aliases by moving most of them to globals in a new hierarchy and tweaked the SunOS prompt

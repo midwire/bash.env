@@ -2,7 +2,7 @@
 
 Is a comprehensive bash environment system, under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
-## Install
+## Install ##
 
 To use it:
 
@@ -11,6 +11,18 @@ Clone the project into your home directory, then add the following to your $HOME
     if [[ -n "$PS1" ]]; then
       [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
     fi
+
+Or you can source it manually once and then run the `.env load_on_login` command like this:
+
+    . $HOME/.env/source.sh
+    load_on_login
+
+Or you can source it manually and then run the `.env load_on_alias` command like this:
+
+    . $HOME/.env/source.sh
+    load_on_alias
+
+This will setup the `ees` alias which will load .env whenever you enter `ees` after logging in.
 
 ## Customize your local environment ##
 

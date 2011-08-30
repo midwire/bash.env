@@ -1,11 +1,11 @@
 # Rails aliases
 alias a='autotest -rails'
 alias b="bundle"
-alias bi="b install --path vendor"
+alias bi="bundle install --path vendor"
 alias bil="bi --local"
-alias bu="b update"
-alias be="b exec"
-alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
+alias bu="bundle update"
+alias be="bundle exec"
+alias binit="bi && bundle package && echo 'vendor/ruby' >> .gitignore"
 alias rc='rails c'
 alias rd='rails destroy'
 alias re='echo $RAILS_ENV'
