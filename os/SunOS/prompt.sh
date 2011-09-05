@@ -3,8 +3,7 @@
 
 function prompt_command {
 	# Show current git branch
-  branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; else echo "no-git"; fi)
-  # ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -v)"; else echo "no-ruby"; fi)"
+  branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; else echo "no-repo"; fi)
   ruby_ver="$(ruby -v &>/dev/null; if [ $? -eq 0 ]; then echo "$(ruby -e 'print RUBY_VERSION')"; else echo "no-ruby"; fi)"
 }
 PROMPT_COMMAND=prompt_command

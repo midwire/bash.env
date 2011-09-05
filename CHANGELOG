@@ -1,3 +1,10 @@
+*0.1.8* (September 05, 2011)
+
+* Added alias for ruby pry
+* Added some prompt functions from Wayne's RVM project
+* Cleaned up some code
+* Added .rvmrc
+
 *0.1.7* (August 30, 2011)
 
 * Added the load_on_login and load_on_alias functions

@@ -6,6 +6,7 @@ alias bil="bi --local"
 alias bu="bundle update"
 alias be="bundle exec"
 alias binit="bi && bundle package && echo 'vendor/ruby' >> .gitignore"
+alias p='pry'
 alias rc='rails c'
 alias rd='rails destroy'
 alias re='echo $RAILS_ENV'
@@ -17,4 +18,3 @@ alias sd='./script/destroy'
 alias sg='./script/generate'
 alias sp='./script/plugin'
 alias ss='./script/server'
-
