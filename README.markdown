@@ -50,6 +50,24 @@ The easiest way to customize is to run `configthis.env`, which will create a fol
 
 You are not required to follow this file-naming convention.  But the files must have a `.sh` extension.
 
+### Example: ###
+
+Let's say your hostname is `Harry-Potters-Macbook.local`, and you want to add `/usr/local/bogus` to your path.  Here's how you do it:
+
+    configthis.env
+
+This command will stub out a few files as examples and `cd` to the directory where they are `$HOME/.env/host/Harry-Potters-Macbook.local`.  Now you edit each of those files, and delete the ones you don't need.  So, since we are only going to add to the path let's remove the other files, then edit the path.sh file.
+
+    rm alias.sh env.sh functions.sh prompt.sh
+
+Inside `path.sh` add this line:
+
+    pathmunge "/usr/local/bogus"
+
+Done!
+
+Now you can source those changes `. $HOME/.env/source.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
+
 ## Other Functions ##
 
 ### Add your SSH key to a remote host ###
