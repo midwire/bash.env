@@ -1,5 +1,7 @@
 # .env
 
+**Version: 0.1.9**
+
 Is a comprehensive bash environment system, under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
 ## Install ##

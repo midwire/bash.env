@@ -9,7 +9,7 @@ task :changes do
   text.insert(0, "*#{read_version.join('.')}* (#{Time.now.strftime("%B %d, %Y")})\n\n")
   text << "\n"
   prepend_changelog(text)
-  system("open CHANGELOG")
+  system("mate CHANGELOG")
 end
 
 desc "Increment the patch version and write changes to the changelog"
@@ -17,6 +17,9 @@ task :bump_patch do
   major, minor, patch = read_version
   patch = patch.to_i + 1
   write_version([major, minor, patch])
+  version = open('VERSION').read.chomp
+  readme = open('README.markdown').read
+  File.open('README.markdown', 'w') {|f| f.write(readme.gsub(/^\*\*Version: [0-9\.]+\*\*$/, "**Version: #{version}**")) }
   Rake::Task["changes"].invoke
 end
 desc "Alias for :bump_patch"
