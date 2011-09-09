@@ -21,10 +21,14 @@ Clone the project into your home directory,
       [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
     fi
 
+### Load on Login ###
+
 Or you can source it manually once and then run the `.env load_on_login` command like this:
 
     . $HOME/.env/source.sh
     load_on_login
+
+### Load on Alias ###
 
 Or you can source it manually and then run the `.env load_on_alias` command like this:
 
