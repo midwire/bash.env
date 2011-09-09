@@ -35,10 +35,14 @@ function propagate_env_to_host {
 function configthis.env {
 	DIR="$DOT_ENV_PATH/host/$HOSTNAME"
 	mkdir -p "$DIR"
-	touch "$DIR/alias.sh"
 	touch "$DIR/env.sh"
 	touch "$DIR/functions.sh"
-	touch "$DIR/prompt.sh"
+	if [[ ! -f "$DIR/alias.sh" ]]; then
+		echo "# Add your specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
+	fi
+	if [[ ! -f "$DIR/prompt.sh" ]]; then
+		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
+	fi
 	if [[ ! -f "$DIR/path.sh" ]]; then
 		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
 	fi

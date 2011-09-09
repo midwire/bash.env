@@ -1,3 +1,7 @@
+*0.1.10* (September 08, 2011)
+
+* Modified the configthis.env function to use documented examples for customization
+
 *0.1.9* (September 08, 2011)
 
 * Updated bump task to emit version into README
