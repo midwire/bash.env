@@ -20,8 +20,7 @@ task :bump_patch do
   Rake::Task["changes"].invoke
 end
 desc "Alias for :bump_patch"
-task :bump => :bump_patch do
-end
+task :bump => :bump_patch do; end
 
 desc "Increment the minor version and write changes to the changelog"
 task :bump_minor do
@@ -46,6 +45,8 @@ desc "Open the github site in your browser"
 task :github do
   system("open https://github.com/midwire/.env")
 end
+desc "Alias for :github task"
+task :home => [:github] do; end
 
 ##################################################
 private

@@ -6,7 +6,14 @@ Is a comprehensive bash environment system, under heavy development.  It is not 
 
 To use it:
 
-Clone the project into your home directory, then add the following to your $HOME/.bashrc file:
+I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.
+
+Clone the project into your home directory,
+
+    cd $HOME
+    git clone git://github.com/<your github username>/.env.git
+
+...then add the following to your $HOME/.bashrc file:
 
     if [[ -n "$PS1" ]]; then
       [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
@@ -22,7 +29,7 @@ Or you can source it manually and then run the `.env load_on_alias` command like
     . $HOME/.env/source.sh
     load_on_alias
 
-This will setup the `ees` alias which will load .env whenever you enter `ees` after logging in.
+This will setup the `ees` alias which will source .env whenever you enter `ees` after logging in.  I use this method on all of my remote hosts that are used by other people.  That way they don't notice any difference when they login unless they run `ees`.
 
 ## Customize your local environment ##
 
