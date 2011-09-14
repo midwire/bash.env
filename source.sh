@@ -1,3 +1,4 @@
+[[ -z "$PS1" ]] && return
 export DOT_ENV_PATH="$HOME/.env"
 
 if [[ "$SHLVL" == "1" ]]; then
@@ -43,7 +44,7 @@ done
 if [[ ! -z "$HOSTNAME" ]]; then
 	HOST_DIR=$DOT_ENV_PATH/host/$HOSTNAME
 	if [[ "$SHLVL" == "1" ]]; then
-		echo "Sourcing '$HOSTNAME' Specific Environment"
+		echo "Sourcing '$HOSTNAME' Environment"
 	fi
 	for i in $HOST_DIR/*.sh ; do
 	  if [ -r "$i" ]; then

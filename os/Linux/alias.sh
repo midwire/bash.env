@@ -8,3 +8,12 @@ alias ep='vi ~/.env/os/Linux/path.sh'
 alias eps='. ~/.env/os/Linux/path.sh'
 alias eh="vi ~/.env/host/$HOSTNAME/*.sh"
 alias ehs=". ~/.env/host/$HOSTNAME/*.sh"
+
+# Directory Listing aliases
+alias dir='ls -hFx'
+alias l.='ls -d .* --color=auto'
+alias l='ls -lathF --color=auto'
+alias L='ls -latrhF'
+alias ll='ls -lFh'
+alias lo='ls -laSFh'
+alias vdir='ls --color=auto --format=long'

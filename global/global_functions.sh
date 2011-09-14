@@ -13,6 +13,7 @@ function propagate_env_to_host {
 		echo_warn "Usage: propagate_env_to_host [user@]HOSTNAME"
 		return
 	fi
+
 	host=$1
 	shift 1
 	ENVFILE=$HOME/env.tar.gz
@@ -22,6 +23,7 @@ function propagate_env_to_host {
 	tar cfvz $ENVFILE .env/ &> /dev/null
 	echo_info "Copying environment to $host..."
 	scp $ENVFILE $host:
+	if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
 	echo_info "Installing environment on $host..."
 	ssh $host "rm -rf $HOME/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
 	echo_warn "Don't forget to add this your .bashrc file:"

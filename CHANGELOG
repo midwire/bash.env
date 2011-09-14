@@ -1,3 +1,9 @@
+*0.2.0* (September 14, 2011)
+
+* Added theme support
+* Moved bash-completion to the extra folder
+* Updated some documentation
+
 *0.1.10* (September 08, 2011)
 
 * Modified the configthis.env function to use documented examples for customization

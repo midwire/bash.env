@@ -108,3 +108,11 @@ ps1_rvm() {
 # it now uses the PROMPT_COMMAND callback to re-set the PS1 with a known width of chracters
 # each time a new command is entered. see PROMPT_COMMAND for more details.
 #
+
+# Source the chosen theme:
+themefile="${DOT_ENV_PATH}/global/theme/${bash_prompt}.sh"
+if [[ -f ${themefile} ]]; then
+	. "${DOT_ENV_PATH}/global/theme/${bash_prompt}.sh"
+else
+	. "${DOT_ENV_PATH}/global/theme/default.sh"
+fi

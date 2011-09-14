@@ -1,8 +1,8 @@
 # .env
 
-**Version: 0.1.10**
+**Version: 0.2.0**
 
-Is a comprehensive bash environment system, under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
+Is a comprehensive, cascading bash environment system under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
 ## Install ##
 
@@ -15,11 +15,9 @@ Clone the project into your home directory,
     cd $HOME
     git clone git://github.com/<your github username>/.env.git
 
-...then add the following to your $HOME/.bashrc file:
+...then add the following to your `$HOME/.bashrc` file:
 
-    if [[ -n "$PS1" ]]; then
-      [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
-    fi
+    [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
 
 ### Load on Login ###
 
@@ -28,6 +26,8 @@ Or you can source it manually once and then run the `.env load_on_login` command
     . $HOME/.env/source.sh
     load_on_login
 
+... which will add the above source command to your `.bashrc` file.
+
 ### Load on Alias ###
 
 Or you can source it manually and then run the `.env load_on_alias` command like this:
@@ -35,7 +35,7 @@ Or you can source it manually and then run the `.env load_on_alias` command like
     . $HOME/.env/source.sh
     load_on_alias
 
-This will setup the `ees` alias which will source .env whenever you enter `ees` after logging in.  I use this method on all of my remote hosts that are used by other people.  That way they don't notice any difference when they login unless they run `ees`.
+...which will setup the `ees` alias which will source .env whenever you enter `ees` after logging in.  I use this method on all of my remote hosts that are used by other people.  That way they don't notice any difference when they login unless they run `ees`.
 
 ## Customize your local environment ##
 
@@ -72,6 +72,14 @@ Done!
 
 Now you can source those changes `. $HOME/.env/source.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
 
+## Themes ##
+
+.env themes are located in `$DOT_ENV_PATH/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
+
+    bash_prompt='spark'
+
+A variant of the `spark` theme is default and will be loaded if no theme is specified.  Please send me a pull request if you create your own themes.
+
 ## Other Functions ##
 
 ### Add your SSH key to a remote host ###
@@ -80,7 +88,7 @@ Now you can source those changes `. $HOME/.env/source.sh` and your path will inc
 
 ... which will append your public `~/.ssh/id_dsa.pub` key to the host's authorized_keys file and allow you to login without a password.
 
-### Propagate .env to other hosts ###
+### Propagate your copy of .env to other hosts ###
 
 If you want to copy your .env to another host, simply type:
 
@@ -96,9 +104,7 @@ Then whenever you login, to get your .env sourced, just type `.env`
 
 If the remote machine is only used by you, you can add this to the .bashrc file:
 
-    if [[ -n "$PS1" ]]; then
-      [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
-    fi
+    [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh
 
 Then your own OS specific `.env` will automatically be sourced when you login.
 
