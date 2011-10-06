@@ -110,9 +110,9 @@ ps1_rvm() {
 #
 
 # Source the chosen theme:
-themefile="${DOT_ENV_PATH}/global/theme/${bash_prompt}.sh"
+themefile="${DOT_ENV_PATH}/global/theme/${bash_prompt}/${bash_prompt}.sh"
 if [[ -f ${themefile} ]]; then
-	. "${DOT_ENV_PATH}/global/theme/${bash_prompt}.sh"
+	. "${themefile}"
 else
-	. "${DOT_ENV_PATH}/global/theme/default.sh"
+	. "${DOT_ENV_PATH}/global/theme/default/default.sh"
 fi

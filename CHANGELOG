@@ -1,3 +1,9 @@
+*0.2.1* (October 06, 2011)
+
+* Changed default theme to sparkr
+* Added git-flow Bash completion
+* Update some globals and aliases
+
 *0.2.0* (September 14, 2011)
 
 * Added theme support

@@ -1,4 +1,5 @@
 #!/bin/bash
+THISDIR=$(dirname $BASH_SOURCE)
 
 function prompt_command {
   branch=$(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "$(git branch | grep '^*' |sed s/\*\ //)"; fi)
@@ -16,20 +17,10 @@ function power_prompt {
 		  ;;
 	esac
 
-	if [ $UID -eq 0 ]; then
-PS1="╭─${TITLEBAR}\
-${BG_RED}${LIGHT_WHITE}\u@\h${CYAN} \w\
-${RED} <\${ruby_ver}>\
-${YELLOW} (\${branch})\n\
-${LIGHT_RED}∹\
-$NO_COLOR "
-	else
-PS1="╭─${TITLEBAR}\
-${LIGHT_GREEN}\u@\h${CYAN} \w\
-${RED} <\${ruby_ver}>\
-${YELLOW} (\${branch})\n\
-${WHITE}⊱\
-$NO_COLOR "
+	if [[ "$DOT_ENV_HOME_HOST" == "$HOSTNAME" ]]; then
+		. "${THISDIR}/local.sh"
+	else # We are on foreign soil
+		. "${THISDIR}/remote.sh"
 	fi
 
 PS2='> '

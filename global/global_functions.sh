@@ -25,7 +25,7 @@ function propagate_env_to_host {
 	scp $ENVFILE $host:
 	if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
 	echo_info "Installing environment on $host..."
-	ssh $host "rm -rf $HOME/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
+	ssh $host "rm -rf ~/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
 	echo_warn "Don't forget to add this your .bashrc file:"
 	echo_warn 'if [[ -n "$PS1" ]]; then'
 	echo_warn '  [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh'

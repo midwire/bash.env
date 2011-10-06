@@ -1,5 +1,6 @@
 [[ -z "$PS1" ]] && return
 export DOT_ENV_PATH="$HOME/.env"
+export DOT_ENV_HOME_HOST='spark.local'
 
 if [[ "$SHLVL" == "1" ]]; then
 	DOT_ENV_VERSION=`cat $DOT_ENV_PATH/VERSION`
@@ -42,7 +43,7 @@ done
 
 # Source Host specifics if there are any for the current host
 if [[ ! -z "$HOSTNAME" ]]; then
-	HOST_DIR=$DOT_ENV_PATH/host/$HOSTNAME
+	HOST_DIR=$DOT_ENV_PATH/host/`hostname`
 	if [[ "$SHLVL" == "1" ]]; then
 		echo "Sourcing '$HOSTNAME' Environment"
 	fi
