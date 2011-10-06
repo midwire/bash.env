@@ -1,6 +1,6 @@
 # .env
 
-**Version: 0.2.1**
+**Version: 0.2.2**
 
 Is a comprehensive, cascading bash environment system under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
 
