@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# show_getinfo
+# This script opens the Finder's "Get Info" window
+# for the file or folder specified as a command-line argument.
+# Cameron Hayne (macdev@hayne.net)  March 2003
+
+scriptname=`basename $0`
+if [ $# -lt 1 ]; then
+    echo "Usage: $scriptname file_or_folder"
+    exit
+fi
+
+path=$1
+
+if [ ! -e $path ]; then
+    echo "$scriptname: $path: No such file or directory"
+    exit
+fi
+
+case $path in
+/*)     fullpath=$path ;;
+~*)     fullpath=$path ;;
+*)      fullpath=`pwd`/$path ;;
+esac
+
+if [ -d $fullpath ]; then
+    file_or_folder="folder"
+else
+    file_or_folder="file"
+fi
+
+/usr/bin/osascript > /dev/null <<EOT
+tell application "Finder"
+    set macpath to POSIX file "$fullpath" as text
+    open information window of $file_or_folder macpath
+end tell
+EOT

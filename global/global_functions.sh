@@ -79,3 +79,4 @@ function confighost.env {
 	echo_info "When you are finished run 'propagate_env_to_host $host'."
 	ls -1AtF
 }
+

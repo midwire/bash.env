@@ -1,3 +1,10 @@
+*0.2.3* (October 28, 2011)
+
+* Added some useful scripts for OSX
+* Modified some aliases
+* Added some chmod aliases
+* Added some Darwin and global functions
+
 *0.2.2* (October 06, 2011)
 
 * Fixed soft-link to default theme
