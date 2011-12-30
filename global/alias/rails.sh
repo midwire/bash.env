@@ -1,4 +1,4 @@
-# Rails aliases
+# Rails & Development Aliases
 alias a='autotest -rails'
 alias b="bundle"
 alias bi="bundle install --path vendor"
