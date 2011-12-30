@@ -4,7 +4,11 @@ function add_ssh_key_to_host {
 		echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
 		return
 	fi
-	cat ~/.ssh/id_dsa.pub | ssh $1 "cat >> .ssh/authorized_keys"
+	if [[ -r ~/.ssh/id_dsa.pub ]]; then
+		cat ~/.ssh/id_dsa.pub | ssh $1 "cat >> .ssh/authorized_keys"
+	elif [[ -r ~/.ssh/id_rsa.pub ]]; then
+		cat ~/.ssh/id_rsa.pub | ssh $1 "cat >> .ssh/authorized_keys"
+	fi
 }
 
 # Propagate your entire environment system to a remote host
