@@ -71,7 +71,7 @@ Now you can source those changes `. $HOME/.env/source.sh` and your path will inc
 
 ## Themes ##
 
-.env themes are located in `$DOT_ENV_PATH/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
+.env themes are located in `$dot_env_path/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
 
     bash_prompt='spark'
 

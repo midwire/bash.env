@@ -74,6 +74,6 @@ echo_warn() {
 }
 
 echo_error() {
-  echo -e "${ERROR}$*${NORMAL}"
+  echo -e "${ERROR}$@${NORMAL}"
   return 0
 }

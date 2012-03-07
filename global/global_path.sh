@@ -1,4 +1,4 @@
-paths="${DOT_ENV_PATH}/bin"
+paths="${dot_env_path}/bin"
 paths="${paths} ${HOME}/bin"
 paths="${paths} /sbin"
 paths="${paths} /bin"

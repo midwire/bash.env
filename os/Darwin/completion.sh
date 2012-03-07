@@ -1,4 +1,4 @@
-for i in ${DOT_ENV_PATH}/extra/bash-completion/*.sh ; do
+for i in ${dot_env_path}/extra/bash-completion/*.sh ; do
   if [ -r "$i" ]; then
   	. $i
   fi

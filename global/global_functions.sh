@@ -39,7 +39,7 @@ function propagate_env_to_host {
 
 # Configure environment settings for your local machine.
 function configthis.env {
-	DIR="$DOT_ENV_PATH/host/$HOSTNAME"
+	DIR="$dot_env_path/host/$HOSTNAME"
 	mkdir -p "$DIR"
 	touch "$DIR/env.sh"
 	touch "$DIR/functions.sh"
@@ -65,7 +65,7 @@ function confighost.env {
 	fi
 	host=$1
 	shift 1
-	DIR="$DOT_ENV_PATH/host/$host"
+	DIR="$dot_env_path/host/$host"
 	mkdir -p "$DIR"
 	touch "$DIR/env.sh"
 	touch "$DIR/functions.sh"
