@@ -92,6 +92,6 @@ verbose_warn() {
 
 verbose_error() {
 	if [[ "$dot_env_verbose" == "1" ]]; then
-	  echo_warn $@
+	  echo_error $@
 	fi
 }

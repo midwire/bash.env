@@ -4,11 +4,11 @@ paths="
 /usr/local/sbin
 /usr/bin
 /usr/sbin
-/usr/X11/bin"
+/usr/X11/bin
+$dot_env_path/bin"
 
 EGREP=`which egrep`
 function pathmunge () {
-  echo "PARAM: $1"
   # If it exists then remove it so we can shuffle it to the end or beginning of the PATH
   if echo $PATH | $EGREP "(^|:)$1($|:)" > /dev/null ; then
     safe_param=$(printf "%s\n" "$1" | sed 's/[][\.*^$(){}?+|/]/\\&/g')

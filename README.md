@@ -2,7 +2,7 @@
 
 **Version: 0.2.3**
 
-Is a comprehensive, cascading bash environment system under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
+.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced plugins for extensibility.
 
 ## Install ##
 
