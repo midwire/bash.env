@@ -1,6 +1,6 @@
 # .env
 
-**Version: 0.3.0**
+**Version: ["0.3.1**
 
 .env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced plugins for extensibility.
 
@@ -33,6 +33,21 @@ To have .env load with an alias, execute:
     load_on_alias
 
 ... which will setup the `ees` alias which will source .env whenever you enter `ees` after logging in.  I use this method on all of my remote hosts that are used by other people, besides myself.  That way they don't notice any difference when they login unless they run `ees`.
+
+### Example .bashrc ###
+
+    # Choose your plugins
+    plugins=(completion history)
+    # Choose a .env theme
+    theme=sparkr
+    # Set my home host.
+    # So that when we login to a remote box our theme can change
+    # to the remote version with special colors, etc
+    dot_env_home_host='spark.local'
+    # Turn this off to avoid the noise on starting a new shell instance
+    dot_env_verbose=1
+    # Source the .env environment
+    [[ -r "$HOME/.env/dot-env.sh" ]] && . "$HOME/.env/dot-env.sh"
 
 ## Customize your local environment ##
 
