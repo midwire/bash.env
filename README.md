@@ -37,7 +37,7 @@ To have .env load with an alias, execute:
 ### Example .bashrc ###
 
     # Choose your plugins
-    plugins=(completion history)
+    plugins="completion history"
     # Choose a .env theme
     theme=sparkr
     # Set my home host.
