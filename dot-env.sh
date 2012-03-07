@@ -1,5 +1,6 @@
 [[ -z "$PS1" ]] && return
 dot_env_path="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dot_env_custom="${dot_env_path}/custom"
 
 if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
 	DOT_ENV_VERSION=`cat $dot_env_path/VERSION`
