@@ -1,8 +1,8 @@
 # .env
 
-**Version: 0.2.3**
+**Version: 0.3.0**
 
-Is a comprehensive, cascading bash environment system under heavy development.  It is not recommended for those just beginning to use the Bash shell.  However, veteran Bash users may find it useful.
+.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced plugins for extensibility.
 
 ## Install ##
 
@@ -71,7 +71,7 @@ Now you can source those changes `. $HOME/.env/source.sh` and your path will inc
 
 ## Themes ##
 
-.env themes are located in `$DOT_ENV_PATH/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
+.env themes are located in `$dot_env_path/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
 
     bash_prompt='spark'
 

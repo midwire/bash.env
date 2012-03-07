@@ -1,1 +1,0 @@
-../sparkr/remote.sh

@@ -1,3 +1,9 @@
+*0.3.0* (March 7, 2011)
+
+* Added plugin support
+* More obvious theme integration (thanks to oh-my-zsh)
+* Fixed various bugs
+
 *0.2.3* (October 28, 2011)
 
 * Added some useful scripts for OSX

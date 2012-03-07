@@ -18,8 +18,8 @@ task :bump_patch do
   patch = patch.to_i + 1
   write_version([major, minor, patch])
   version = open('VERSION').read.chomp
-  readme = open('README.markdown').read
-  File.open('README.markdown', 'w') {|f| f.write(readme.gsub(/^\*\*Version: [0-9\.]+\*\*$/, "**Version: #{version}**")) }
+  readme = open('README.md').read
+  File.open('README.md', 'w') {|f| f.write(readme.gsub(/^\*\*Version: [0-9\.]+\*\*$/, "**Version: #{version}**")) }
   Rake::Task["changes"].invoke
 end
 desc "Alias for :bump_patch"
@@ -68,7 +68,7 @@ private
     # read current changelog
     old = File.readlines("#{PROJECT_ROOT}/CHANGELOG").to_s.chomp
     text_array.push(old)
-    File.open("#{PROJECT_ROOT}/CHANGELOG", 'w')  do |f| 
+    File.open("#{PROJECT_ROOT}/CHANGELOG", 'w')  do |f|
       text_array.each do |line|
         f.puts(line)
       end

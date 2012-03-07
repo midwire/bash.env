@@ -74,6 +74,24 @@ echo_warn() {
 }
 
 echo_error() {
-  echo -e "${ERROR}$*${NORMAL}"
+  echo -e "${ERROR}$@${NORMAL}"
   return 0
+}
+
+verbose_info() {
+	if [[ "$dot_env_verbose" == "1" ]]; then
+	  echo_info $@
+	fi
+}
+
+verbose_warn() {
+	if [[ "$dot_env_verbose" == "1" ]]; then
+	  echo_warn $@
+	fi
+}
+
+verbose_error() {
+	if [[ "$dot_env_verbose" == "1" ]]; then
+	  echo_error $@
+	fi
 }
