@@ -17,3 +17,6 @@ for i in $source_dir/files/*.sh ; do
   fi
 done
 unset i
+
+# Various completions
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion

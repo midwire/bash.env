@@ -16,7 +16,7 @@ Clone the project into your home directory:
 
 Source it:
 
-    . $HOME/.env/source.sh
+    . $HOME/.env/dot-env.sh
 
 ### Load on Login ###
 
@@ -82,7 +82,7 @@ Inside `path.sh` add this line:
 
 Done!
 
-Now you can source those changes `. $HOME/.env/source.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
+Now you can source those changes `. $HOME/.env/dot-env.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
 
 ## Themes ##
 

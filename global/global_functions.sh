@@ -32,7 +32,7 @@ function propagate_env_to_host {
 	ssh $host "rm -rf ~/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
 	echo_warn "Don't forget to add this your .bashrc file:"
 	echo_warn 'if [[ -n "$PS1" ]]; then'
-	echo_warn '  [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh'
+	echo_warn '  [[ -r $HOME/.env/dot-env.sh ]] && . $HOME/.env/dot-env.sh'
 	echo_warn 'fi'
 	cd $PWD
 }
@@ -45,9 +45,6 @@ function configthis.env {
 	touch "$DIR/functions.sh"
 	if [[ ! -f "$DIR/alias.sh" ]]; then
 		echo "# Add your specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
-	fi
-	if [[ ! -f "$DIR/prompt.sh" ]]; then
-		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
 	fi
 	if [[ ! -f "$DIR/path.sh" ]]; then
 		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
@@ -72,9 +69,6 @@ function confighost.env {
 	if [[ ! -f "$DIR/alias.sh" ]]; then
 		echo "# Add your host specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
 	fi
-	if [[ ! -f "$DIR/prompt.sh" ]]; then
-		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
-	fi
 	if [[ ! -f "$DIR/path.sh" ]]; then
 		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
 	fi
@@ -84,3 +78,14 @@ function confighost.env {
 	ls -1AtF
 }
 
+function history_stats() {
+  history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+}
+
+function uninstall.env() {
+  /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/uninstall.sh
+}
+
+function upgrade.env() {
+  $dot_env_path/bin/upgrade.env
+}
