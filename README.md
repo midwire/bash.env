@@ -1,6 +1,6 @@
 # .env
 
-**Version: 0.3.1**
+**Version: 0.3.2**
 
 .env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced plugins for extensibility.
 

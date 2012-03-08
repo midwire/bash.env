@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'readline'
+require 'pry'
 PROJECT_ROOT = File.expand_path(File.dirname(__FILE__))
 
 desc "Write changes to the CHANGELOG"
@@ -9,7 +10,7 @@ task :changes do
   text.insert(0, "*#{read_version.join('.')}* (#{Time.now.strftime("%B %d, %Y")})\n\n")
   text << "\n"
   prepend_changelog(text)
-  system("mate CHANGELOG")
+  system("#{ENV['EDITOR']} CHANGELOG")
 end
 
 desc "Increment the patch version and write changes to the changelog"
@@ -55,21 +56,22 @@ task :home => [:github] do; end
 private
 
   def read_version
-    text = File.readlines("#{PROJECT_ROOT}/VERSION").to_s.chomp
+    text = File.read("#{PROJECT_ROOT}/VERSION").to_s.chomp
     major, minor, patch = text.split('.')
   end
 
   def write_version(version_array)
     version = version_array.join('.')
-    File.open("#{PROJECT_ROOT}/VERSION", 'w') {|f| f.write(version) }
+    File.open("#{PROJECT_ROOT}/VERSION", 'w') {|f| f.write(version.to_s) }
   end
 
   def prepend_changelog(text_array)
     # read current changelog
-    old = File.readlines("#{PROJECT_ROOT}/CHANGELOG").to_s.chomp
+    old = File.read("#{PROJECT_ROOT}/CHANGELOG").to_s.chomp
+    binding.pry
     text_array.push(old)
     File.open("#{PROJECT_ROOT}/CHANGELOG", 'w')  do |f|
-      text_array.each do |line|
+      text_array.flatten.each do |line|
         f.puts(line)
       end
     end
