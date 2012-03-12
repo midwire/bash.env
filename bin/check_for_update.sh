@@ -1,22 +1,22 @@
 #!/bin/sh
 
-function _current_epoch() {
+_current_epoch() {
   echo $(($(date +%s) / 60 / 60 / 24))
 }
 
-function _update_env_update() {
+_update_env_update() {
   echo "LAST_EPOCH=$(_current_epoch)" > ~/.env-update
 }
 
-function _upgrade_env() {
+_upgrade_env() {
   $dot_env_path/bin/update.env
   _update_env_update
 }
 
-if [[ -f ~/.env-update ]]; then
+if [ -f ~/.env-update ]; then
   . ~/.env-update
 
-  if [[ -z "$LAST_EPOCH" ]]; then
+  if [ -z "$LAST_EPOCH" ]; then
     _update_env_update && return 0;
   fi
 

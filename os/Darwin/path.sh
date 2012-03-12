@@ -4,3 +4,5 @@ pathmunge "/Developer/usr/bin"
 pathmunge "./bin" before
 # for brew
 pathmunge "/usr/local/bin" before
+# local scripts before anyting else
+pathmunge "$HOME/bin" before

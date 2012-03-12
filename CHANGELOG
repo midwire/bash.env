@@ -1,3 +1,11 @@
+*0.3.3* (March 12, 2012)
+
+* Fixed automatic updates
+* Moved plugins and theme sourcing out of global
+* Added some more useful global functions
+* Added minimalist theme
+* Updated theme color functions
+
 *0.3.2* (March 08, 2012)
 
 * Moved various bits from global into their own plugins

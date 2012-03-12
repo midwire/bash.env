@@ -1,5 +1,17 @@
+history_stats() {
+  history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+}
+
+uninstall.env() {
+  /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/uninstall.sh
+}
+
+upgrade.env() {
+  $dot_env_path/bin/upgrade.env
+}
+
 # Add your public SSH key to a remote host
-function add_ssh_key_to_host {
+add_ssh_key_to_host() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
 		return
@@ -12,7 +24,7 @@ function add_ssh_key_to_host {
 }
 
 # Propagate your entire environment system to a remote host
-function propagate_env_to_host {
+propagate_env_to_host() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: propagate_env_to_host [user@]HOSTNAME"
 		return
@@ -38,7 +50,7 @@ function propagate_env_to_host {
 }
 
 # Configure environment settings for your local machine.
-function configthis.env {
+configthis.env() {
 	DIR="$dot_env_path/host/$HOSTNAME"
 	mkdir -p "$DIR"
 	touch "$DIR/env.sh"
@@ -55,7 +67,7 @@ function configthis.env {
 }
 
 # Configure environment settings for a specified HOSTNAME
-function confighost.env {
+confighost.env() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: confighost.env HOSTNAME"
 		return
@@ -78,14 +90,11 @@ function confighost.env {
 	ls -1AtF
 }
 
-function history_stats() {
-  history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+reset_theme() {
+	. $dot_env_path/global/global_theme.sh
 }
 
-function uninstall.env() {
-  /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/uninstall.sh
-}
-
-function upgrade.env() {
-  $dot_env_path/bin/upgrade.env
+try_theme() {
+	theme="$1"
+	. $dot_env_path/global/global_theme.sh
 }

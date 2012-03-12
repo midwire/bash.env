@@ -8,7 +8,8 @@ if [[ "$DISABLE_AUTO_UPDATE" != "true" ]]; then
   $dot_env_path/bin/check_for_update.sh
 fi
 
-if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
+# Display .env version
+if [[ "$SHLVL" == "1" ]]; then
 	source "$dot_env_path/global/global_colors.sh"
 	DOT_ENV_VERSION=`cat $dot_env_path/VERSION`
 	echo_info ".env v$DOT_ENV_VERSION - http://github.com/midwire/.env"
@@ -52,3 +53,9 @@ if [[ ! -z "$HOSTNAME" ]]; then
 fi
 
 unset i
+
+# Source plugins which may be defined in ~/.bashrc, an OS, or Host specific file
+. $dot_env_path/plugins/plugins.sh
+
+# Source theme which may be defined in ~/.bashrc, an OS, or Host specific file
+. $dot_env_path/themes/theme.sh

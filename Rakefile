@@ -68,7 +68,6 @@ private
   def prepend_changelog(text_array)
     # read current changelog
     old = File.read("#{PROJECT_ROOT}/CHANGELOG").to_s.chomp
-    binding.pry
     text_array.push(old)
     File.open("#{PROJECT_ROOT}/CHANGELOG", 'w')  do |f|
       text_array.flatten.each do |line|
