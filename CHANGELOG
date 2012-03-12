@@ -1,3 +1,8 @@
+*0.3.4* (March 12, 2012)
+
+* Fixed a recursion bug when no theme was defined in .bashrc
+* Fixed single-bracket conditionals
+
 *0.3.3* (March 12, 2012)
 
 * Fixed automatic updates
