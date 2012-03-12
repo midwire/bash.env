@@ -1,6 +1,6 @@
 # .env
 
-**Version: 0.3.1**
+**Version: 0.3.4**
 
 .env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced plugins for extensibility.
 
@@ -16,7 +16,7 @@ Clone the project into your home directory:
 
 Source it:
 
-    . $HOME/.env/source.sh
+    . $HOME/.env/dot-env.sh
 
 ### Load on Login ###
 
@@ -82,7 +82,7 @@ Inside `path.sh` add this line:
 
 Done!
 
-Now you can source those changes `. $HOME/.env/source.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
+Now you can source those changes `. $HOME/.env/dot-env.sh` and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.
 
 ## Themes ##
 

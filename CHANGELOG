@@ -1,3 +1,23 @@
+*0.3.4* (March 12, 2012)
+
+* Fixed a recursion bug when no theme was defined in .bashrc
+* Fixed single-bracket conditionals
+
+*0.3.3* (March 12, 2012)
+
+* Fixed automatic updates
+* Moved plugins and theme sourcing out of global
+* Added some more useful global functions
+* Added minimalist theme
+* Updated theme color functions
+
+*0.3.2* (March 08, 2012)
+
+* Moved various bits from global into their own plugins
+* Added automatic updates (shamelessly stolen from oh-my-zsh)
+* Miscellaneous fixes and updates
+* Fixed Rakefile 'bump' task problem where Ruby 1.9.3 File.readlines changed behavior
+
 *0.3.1* (March 07, 2012)
 
 * Added .bashrc example to README.md

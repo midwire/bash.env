@@ -30,9 +30,14 @@ LIGHT_CYAN="\[\033[1;36m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 WHITE="\[\033[1;37m\]"
 NO_COLOR="\[\033[0m\]"
+NOC=$NO_COLOR
 
 # Get 256 colors
-function ext_color () { echo -ne "\[\033[38;5;$1m\]"; }
+fgc() { echo -ne "\[\033[38;5;$1m\]"; }
+bgc() { echo -ne "\[\033[48;5;$1m\]"; }
+clr() { echo -ne "$(fgc $1)$(bgc $2)"; }
+noc() { echo -ne "\[\033[0m\]"; }
+alias rst='noc'
 
 # The following are from Wayne Sequin's RVM
 # http://beginrescueend.com
@@ -80,8 +85,8 @@ ps1_rvm() {
 
 # Source the chosen theme:
 themefile="${dot_env_path}/themes/${theme}/theme.sh"
-if [[ -f ${themefile} ]]; then
-	source "${themefile}"
+if [[ -f "${themefile}" ]]; then
+  source "${themefile}"
 else
-	source "${dot_env_path}/themes/default/theme.sh"
+  source "${dot_env_path}/themes/default/theme.sh"
 fi

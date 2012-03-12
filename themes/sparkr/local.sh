@@ -1,8 +1,8 @@
 
-local user_host=`ext_color 46`'\u'`ext_color 11`'@'`ext_color 27`'\h'$NO_COLOR
-local current_dir=`ext_color 246`'\w'$NO_COLOR
-local rvm_ruby=`ext_color 160`'‹$(rvm-prompt)›'$NO_COLOR
-local git_prompt=`ext_color 208`'$(ps1_git_status)'`ext_color 191`' $(ps1_git_branch)'$NO_COLOR
+local user_host=`fgc 46`'\u'`fgc 11`'@'`fgc 27`'\h'$NOC
+local current_dir=`fgc 246`'\w'$NOC
+local rvm_ruby=`fgc 160`'‹$(rvm-prompt)›'$NOC
+local git_prompt=`fgc 208`'$(ps1_git_status)'`fgc 191`' $(ps1_git_branch)'$NOC
 
 PS1="╭─${user_host} ${current_dir} ${rvm_ruby} ${git_prompt}
 ╰⊚ "

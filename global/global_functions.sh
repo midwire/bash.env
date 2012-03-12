@@ -1,5 +1,17 @@
+history_stats() {
+  history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+}
+
+uninstall.env() {
+  /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/uninstall.sh
+}
+
+upgrade.env() {
+  $dot_env_path/bin/upgrade.env
+}
+
 # Add your public SSH key to a remote host
-function add_ssh_key_to_host {
+add_ssh_key_to_host() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
 		return
@@ -12,7 +24,7 @@ function add_ssh_key_to_host {
 }
 
 # Propagate your entire environment system to a remote host
-function propagate_env_to_host {
+propagate_env_to_host() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: propagate_env_to_host [user@]HOSTNAME"
 		return
@@ -32,22 +44,19 @@ function propagate_env_to_host {
 	ssh $host "rm -rf ~/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
 	echo_warn "Don't forget to add this your .bashrc file:"
 	echo_warn 'if [[ -n "$PS1" ]]; then'
-	echo_warn '  [[ -r $HOME/.env/source.sh ]] && . $HOME/.env/source.sh'
+	echo_warn '  [[ -r $HOME/.env/dot-env.sh ]] && . $HOME/.env/dot-env.sh'
 	echo_warn 'fi'
 	cd $PWD
 }
 
 # Configure environment settings for your local machine.
-function configthis.env {
+configthis.env() {
 	DIR="$dot_env_path/host/$HOSTNAME"
 	mkdir -p "$DIR"
 	touch "$DIR/env.sh"
 	touch "$DIR/functions.sh"
 	if [[ ! -f "$DIR/alias.sh" ]]; then
 		echo "# Add your specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
-	fi
-	if [[ ! -f "$DIR/prompt.sh" ]]; then
-		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
 	fi
 	if [[ ! -f "$DIR/path.sh" ]]; then
 		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
@@ -58,7 +67,7 @@ function configthis.env {
 }
 
 # Configure environment settings for a specified HOSTNAME
-function confighost.env {
+confighost.env() {
 	if [[ $# -lt 1 ]]; then
 		echo_warn "Usage: confighost.env HOSTNAME"
 		return
@@ -72,9 +81,6 @@ function confighost.env {
 	if [[ ! -f "$DIR/alias.sh" ]]; then
 		echo "# Add your host specific aliases here:\n# Example: alias home='cd \$HOME' " >> "$DIR/alias.sh"
 	fi
-	if [[ ! -f "$DIR/prompt.sh" ]]; then
-		echo "# Define your prompt here:\n# Example: PS1=\$BLUE\u@\H\$NO_COLOR " >> "$DIR/prompt.sh"
-	fi
 	if [[ ! -f "$DIR/path.sh" ]]; then
 		echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
 	fi
@@ -84,3 +90,11 @@ function confighost.env {
 	ls -1AtF
 }
 
+reset_theme() {
+	. $dot_env_path/global/global_theme.sh
+}
+
+try_theme() {
+	theme="$1"
+	. $dot_env_path/global/global_theme.sh
+}

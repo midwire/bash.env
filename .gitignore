@@ -1,2 +1,3 @@
 .DS_Store
 project.tmproj
+.rake_t_cache
