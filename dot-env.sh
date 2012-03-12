@@ -58,4 +58,4 @@ unset i
 . $dot_env_path/plugins/plugins.sh
 
 # Source theme which may be defined in ~/.bashrc, an OS, or Host specific file
-. $dot_env_path/themes/theme.sh
+. $dot_env_path/themes/load_theme.sh

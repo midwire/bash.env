@@ -85,7 +85,7 @@ ps1_rvm() {
 
 # Source the chosen theme:
 themefile="${dot_env_path}/themes/${theme}/theme.sh"
-if [[ -f ${themefile} ]]; then
+if [[ -f "${themefile}" ]]; then
   source "${themefile}"
 else
   source "${dot_env_path}/themes/default/theme.sh"
