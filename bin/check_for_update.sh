@@ -9,7 +9,7 @@ _update_env_update() {
 }
 
 _upgrade_env() {
-  $dot_env_path/bin/update.env
+  $dot_env_path/bin/upgrade.env
   _update_env_update
 }
 

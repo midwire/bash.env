@@ -1,3 +1,7 @@
+*0.3.5* (March 15, 2012)
+
+* Fix incorrect filename call during update
+
 *0.3.4* (March 12, 2012)
 
 * Fixed a recursion bug when no theme was defined in .bashrc
