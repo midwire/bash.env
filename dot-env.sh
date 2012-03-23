@@ -29,6 +29,9 @@ if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
 fi
 . $dot_env_path/global/global.sh
 
+# Source plugins which may be defined in ~/.bashrc, an OS, or Host specific file
+. $dot_env_path/plugins/plugins.sh
+
 # Now source OS specifics
 if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
 	echo "Sourcing $OS Environment"
@@ -53,9 +56,6 @@ if [[ ! -z "$HOSTNAME" ]]; then
 fi
 
 unset i
-
-# Source plugins which may be defined in ~/.bashrc, an OS, or Host specific file
-. $dot_env_path/plugins/plugins.sh
 
 # Source theme which may be defined in ~/.bashrc, an OS, or Host specific file
 . $dot_env_path/themes/load_theme.sh
