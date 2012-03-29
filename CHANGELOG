@@ -1,3 +1,8 @@
+*0.3.6* (March 29, 2012)
+
+* Changed order of auto update to avoid it on Solaris machines
+* Fix the rvm-prompt so it doesn't display an error on machines without RVM
+
 *0.3.5* (March 15, 2012)
 
 * Fix incorrect filename call during update
