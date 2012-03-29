@@ -80,7 +80,7 @@ ps1_git_status() {
 }
 
 ps1_rvm() {
-  command -v rvm-prompt >/dev/null 2>&1 && printf "%s" " $(rvm-prompt) "
+  command -v rvm-prompt >/dev/null 2>&1 && printf "%s" "$(rvm-prompt)"
 }
 
 # Source the chosen theme:
