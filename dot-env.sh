@@ -3,11 +3,6 @@
 export dot_env_path="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export dot_env_custom="${dot_env_path}/custom"
 
-# Check for updates
-if [[ "$DISABLE_AUTO_UPDATE" != "true" ]]; then
-  $dot_env_path/bin/check_for_update.sh
-fi
-
 # Display .env version
 if [[ "$SHLVL" == "1" ]]; then
 	source "$dot_env_path/global/global_colors.sh"
@@ -22,6 +17,11 @@ if [[ "$OS" != "Darwin" && "$OS" != "Linux" && "$OS" != "SunOS" ]]; then
 	return 1
 fi
 OS_DIR=$dot_env_path/os/$OS
+
+# Check for updates
+if [[ "$DISABLE_AUTO_UPDATE" != "true" ]] && [[ "$OS" != "SunOS" ]]; then
+  $dot_env_path/bin/check_for_update.sh
+fi
 
 # Make sure globals are sourced before OS specifics
 if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
