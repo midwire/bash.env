@@ -19,7 +19,7 @@ fi
 OS_DIR=$dot_env_path/os/$OS
 
 # Check for updates
-if [[ "$DISABLE_AUTO_UPDATE" != "true" ]] && [[ "$OS" != "SunOS" ]]; then
+if [[ "$ENABLE_AUTO_UPDATE" == "true" ]]; then
   $dot_env_path/bin/check_for_update.sh
 fi
 
