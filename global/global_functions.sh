@@ -1,3 +1,12 @@
+bigfind() {
+  if [[ $# -lt 1 ]]; then
+    echo_warn "Usage: bigfind DIRECTORY"
+    return
+  fi
+  sudo find ${1} -size +10M | xargs sudo du -h {} \; | sort -nr
+  # du -a ${1} | sort -n -r | head -n 10
+}
+
 history_stats() {
   history | awk '{print $2}' | sort | uniq -c | sort -rn | head
 }
