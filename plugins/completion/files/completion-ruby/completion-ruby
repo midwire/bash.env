@@ -1,0 +1,70 @@
+#! bash
+# bash completion for the `ruby` command.
+#
+# Copyright (c) 2009-2010 Daniel Luz <dev at mernen dot com>.
+# Distributed under the MIT license.
+# http://mernen.com/projects/completion-ruby
+#
+# To use, source this file on bash:
+#   . completion-ruby
+
+__ruby() {
+  local cmd=$1
+  local cur=$2
+  local prev=$3
+  COMPREPLY=()
+
+  local options="
+    -0 -a -c -C -d -e -F -h -i -I -K -l -n -p -r -s -S -T -v -w -W0 -W1 -W2 -x
+    --copyright --version --help"
+
+  local i
+  local script_given script_in_path
+  local switches_accepted=1
+  local complete_dirs
+  for ((i=1; i < $COMP_CWORD; ++i)); do
+    local arg=${COMP_WORDS[$i]}
+
+    case $arg in
+    --)
+      # end of switches
+      switches_accepted=""
+      [[ $COMP_CWORD != $((i + 1)) ]] && script_given=1
+      break;;
+    -S)
+      script_in_path=1;;
+    -e)
+      script_given=1
+      ((i++));;
+    -h | --help)
+      switches_accepted=""
+      script_given=1;;
+    -C | -I)
+      [[ $COMP_CWORD = $((i + 1)) ]] && complete_dirs=1
+      ((i++));;
+    -*) ;;
+    *)
+      # non-switch arg, must be the script name
+      script_given=1
+      switches_accepted=""
+      break;;
+    esac
+  done
+
+  if [[ $complete_dirs ]]; then
+    if type -t _filedir >/dev/null; then
+      _filedir -d
+    fi
+  elif [[ $switches_accepted && $cur = -* ]]; then
+    COMPREPLY=($(compgen -W "$options" -- "$cur"))
+  elif [[ ! $script_given ]]; then
+    if [[ $script_in_path ]]; then
+      COMPREPLY=($(compgen -c -- "$cur"))
+    elif type -t _filedir >/dev/null; then
+      _filedir rb
+    fi
+  fi
+}
+
+complete -F __ruby -o filenames -o default ruby ruby1.8 ruby1.9
+# vim: ai ft=sh sw=2 sts=2 et
