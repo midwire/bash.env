@@ -100,10 +100,10 @@ confighost.env() {
 }
 
 reset_theme() {
-	. $dot_env_path/global/global_theme.sh
+	. $dot_env_path/themes/load_theme.sh
 }
 
 try_theme() {
 	theme="$1"
-	. $dot_env_path/global/global_theme.sh
+	. $dot_env_path/themes/load_theme.sh
 }
