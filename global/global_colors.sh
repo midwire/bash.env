@@ -1,7 +1,7 @@
 # Colored output and functions for info, warn, error
 # Include this file to use it
 
-if [[ -x `which tput` ]]; then
+if [[ -x `which tput` ]] && [[ "$use_tput" ]]; then
 	tput init
 	BG_BLACK="$(tput setab 0)"
 	BG_RED="$(tput setab 1)"

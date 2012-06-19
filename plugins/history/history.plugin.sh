@@ -6,5 +6,5 @@ shopt -s cmdhist
 shopt -s lithist
 
 # Turn on history and history expansion
-set -o history
 set -o histexpand
+set -o history
