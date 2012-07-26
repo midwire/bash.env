@@ -79,8 +79,63 @@ ps1_git_status() {
   [[ "${git_status}" = *modified:* ]]                  && printf "%s" "*"
 }
 
+ps1_system_ruby() {
+  local ruby_id=∫`echo $(ruby -v)|awk '{print $2}'`
+  printf "%s" "${ruby_id}"
+}
+
+ps1_ruby() {
+  local ruby_id="no-ruby"
+  local gemset_id="no-gemset"
+  if [[ -n `which rvm-prompt` ]]; then
+    ruby_id="❥$(rvm-prompt)"
+    if [[ "${ruby_id}" = "❥" ]]; then
+      ps1_system_ruby
+      return
+    fi
+  elif [[ -n `which rbenv` ]]; then
+    gemset_id="$(rbenv gemset active | cut -d' ' -f1)"
+    ruby_id="▸$(rbenv version-name)@${gemset_id}"
+  elif [[ -n `which ruby` ]]; then
+    ruby_id=∫`echo $(ruby -v)|awk '{print $2}'`
+  fi
+  printf "%s" "${ruby_id}"
+}
+
 ps1_rvm() {
   command -v rvm-prompt >/dev/null 2>&1 && printf "%s" "$(rvm-prompt)"
+}
+
+ps1_rbenv() {
+  # set -e
+  # 
+  # version_string=$(rbenv version-name)
+  # case ${version_string%-*} in
+  #   1.8.6) version_string="❻" ;;
+  #   1.8.7) version_string="❼" ;;
+  #   1.9.1) version_string="❶" ;;
+  #   1.9.2) version_string="❷" ;;
+  #   1.9.3) version_string="❸" ;;
+  #   *) version_string="♢" ;;
+  # esac
+  # 
+  # [ -f "$(pwd)/.rbenv-gemsets" ] && gemset_string=" ⟡$(rbenv gemset active | cut -d' ' -f1)"
+  # if [ ! $version_string = '' ]; then
+  #   printf "$version_string$gemset_string"
+  # fi
+  local ver=`ruby -v`
+  local plvl=`echo $ver|awk '{print $2}'`
+  if [ ! $plvl = '' ]; then
+    printf "$plvl"
+  fi
+}
+
+ps1_prompt_char() {
+  if [[ "$UID" = "0" ]]; then
+    printf '\#'
+  else
+    printf '\$'
+  fi
 }
 
 # Source the chosen theme:

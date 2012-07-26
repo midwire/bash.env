@@ -26,9 +26,9 @@ add_ssh_key_to_host() {
 		return
 	fi
 	if [[ -r ~/.ssh/id_dsa.pub ]]; then
-		cat ~/.ssh/id_dsa.pub | ssh $1 "cat >> .ssh/authorized_keys"
+		cat ~/.ssh/id_dsa.pub | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
 	elif [[ -r ~/.ssh/id_rsa.pub ]]; then
-		cat ~/.ssh/id_rsa.pub | ssh $1 "cat >> .ssh/authorized_keys"
+		cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
 	fi
 }
 
@@ -100,10 +100,12 @@ confighost.env() {
 }
 
 reset_theme() {
+	theme="$ORIGINAL_THEME"
 	. $dot_env_path/themes/load_theme.sh
 }
 
 try_theme() {
+	export ORIGINAL_THEME="$theme"
 	theme="$1"
 	. $dot_env_path/themes/load_theme.sh
 }

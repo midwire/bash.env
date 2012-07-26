@@ -86,11 +86,13 @@ Now you can source those changes `. $HOME/.env/dot-env.sh` and your path will in
 
 ## Themes ##
 
-.env themes are located in `$dot_env_path/global/theme/`.  To use a theme set `bash_prompt='THEME_NAME'`. e.g.,
+.env themes are located in `$dot_env_path/themes/`.  To use a theme set `theme='THEME_NAME'`. e.g.,
 
-    bash_prompt='spark'
+    theme='sparkr'
 
-A variant of the `spark` theme is default and will be loaded if no theme is specified.  Please send me a pull request if you create your own themes.
+A variant of the `sparkr` theme is default and will be loaded if no theme is specified.  Note that this theme looks best when using the Menlo font.
+
+Please send me a pull request if you create your own themes.
 
 ## Other Useful Functions ##
 
