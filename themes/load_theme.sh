@@ -102,13 +102,9 @@ ps1_ruby() {
   printf "%s" "${ruby_id}"
 }
 
-ps1_rvm() {
-  command -v rvm-prompt >/dev/null 2>&1 && printf "%s" "$(rvm-prompt)"
-}
-
 ps1_rbenv() {
   # set -e
-  # 
+  #
   # version_string=$(rbenv version-name)
   # case ${version_string%-*} in
   #   1.8.6) version_string="❻" ;;
@@ -118,7 +114,7 @@ ps1_rbenv() {
   #   1.9.3) version_string="❸" ;;
   #   *) version_string="♢" ;;
   # esac
-  # 
+  #
   # [ -f "$(pwd)/.rbenv-gemsets" ] && gemset_string=" ⟡$(rbenv gemset active | cut -d' ' -f1)"
   # if [ ! $version_string = '' ]; then
   #   printf "$version_string$gemset_string"
