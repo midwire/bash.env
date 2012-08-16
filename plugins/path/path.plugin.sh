@@ -26,8 +26,11 @@ function pathmunge () {
   export PATH=`echo $PATH | sed -e 's/^://' -e 's/::/:/g'`
 }
 
-for p in $paths; do
-  pathmunge $p
-done
+# Solaris doesn't like 'sed -E'
+if [ "$OS" != "SunOS" ]; then
+  for p in $paths; do
+    pathmunge $p
+  done
+fi
 
 unset paths
