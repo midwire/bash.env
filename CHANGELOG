@@ -1,3 +1,10 @@
+*0.3.8* (August 17, 2012)
+
+* Added pinkbox plugin for FLA work
+* Fixed some Solaris issues
+* Fixed the try_theme function
+* Added bin/colortest.sh for testing colors
+
 *0.3.7* (April 23, 2012)
 
 * Added ./bin/check_path_dups.rb to check for duplicate paths
