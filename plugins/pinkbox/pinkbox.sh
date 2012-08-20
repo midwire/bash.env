@@ -86,7 +86,7 @@ mgr)  echo "Launching Pinkbox Console"
     shift 1
     cd ~/$RAILS_ENV/apps/pinkbox/management
     # files
-    ./bin/run console
+    ./bin/console
     ;;
 
 *) echo "That command is not in my vocabulary."
