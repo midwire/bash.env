@@ -87,13 +87,18 @@ ps1_system_ruby() {
 ps1_ruby() {
   local ruby_id="no-ruby"
   local gemset_id="no-gemset"
-  if [[ -n `which rvm-prompt` ]]; then
+  type rvm-prompt >& /dev/null
+  local use_rvm=$?
+  type rbenv >& /dev/null
+  local use_rbenv=$?
+
+  if [[ "$use_rvm" == "0" ]]; then
     ruby_id="❥$(rvm-prompt)"
     if [[ "${ruby_id}" = "❥" ]]; then
       ps1_system_ruby
       return
     fi
-  elif [[ -n `which rbenv` ]]; then
+  elif [[ "$use_rbenv" == "0" ]]; then
     gemset_id="$(rbenv gemset active | cut -d' ' -f1)"
     ruby_id="▸$(rbenv version-name)@${gemset_id}"
   elif [[ -n `which ruby` ]]; then
