@@ -1,3 +1,7 @@
+*0.3.9* (August 24, 2012)
+
+* Fixed sparkr theme for Solaris, rvm and rbenv issues fixed
+
 *0.3.8* (August 17, 2012)
 
 * Added pinkbox plugin for FLA work
