@@ -1,3 +1,9 @@
+*0.3.10* (August 24, 2012)
+
+* added colors to output, update_code method adjusted.
+* use env variable instead of 'hostname' command
+* fixed the bigfind function
+
 *0.3.9* (August 24, 2012)
 
 * Fixed sparkr theme for Solaris, rvm and rbenv issues fixed
