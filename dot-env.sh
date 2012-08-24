@@ -44,7 +44,7 @@ done
 
 # Source Host specifics if there are any for the current host
 if [[ ! -z "$HOSTNAME" ]]; then
-  HOST_DIR=$dot_env_path/host/`hostname`
+  HOST_DIR=$dot_env_path/host/$HOSTNAME
   if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
     echo "Sourcing '$HOSTNAME' Environment"
   fi
