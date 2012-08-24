@@ -1,7 +1,10 @@
 #!/bin/bash
+# Usage:
+#   pinkbox <action> <environment> <args>
+source "$dot_env_path/global/global_colors.sh"
 
 if [ $# -lt 1 ]; then
-  echo "Usage : $0 <COMMAND> [ARGS]"
+  echo_warn ">>> Usage : $0 <ACTION> <ENVIRONMENT> [ARGS]"
   exit
 fi
 
@@ -14,21 +17,21 @@ function set_environment {
     export RAILS_ENV="$1"
   fi
   if [ -z "$RAILS_ENV" ]; then
-    echo "RAILS_ENV is not set and was not specified in arguments... exiting."
+    echo_error ">>> RAILS_ENV is not set and was not specified in arguments... exiting."
     exit
   fi
   if [ -f ~/$RAILS_ENV/set_env ]; then
     . ~/$RAILS_ENV/set_env
   else
-    echo "~/$RAILS_ENV/set_env does not exist."
-    echo "Are you sure you are on the right box?"
+    echo_warn ">>> ~/$RAILS_ENV/set_env does not exist."
+    echo_warn ">>> Are you sure you are on the right box?"
     exit
   fi
 }
 
 case "$cmd" in
 
-start)  echo "Starting Pinkbox"
+start)  echo_info ">>> Starting Pinkbox"
     # environment
     set_environment $1
     shift 1
@@ -41,7 +44,7 @@ start)  echo "Starting Pinkbox"
     fi
     ;;
 
-stop)  echo "Stopping Pinkbox"
+stop)  echo_info ">>> Stopping Pinkbox"
     # environment
     set_environment $1
     shift 1
@@ -50,7 +53,7 @@ stop)  echo "Stopping Pinkbox"
     ./bin/run etc/deployment_scripts/$RAILS_ENV/stop_pinkbox.ds
     ;;
 
-check)  echo "Checking Pinkbox"
+check)  echo_info ">>> Checking Pinkbox"
     # environment
     set_environment $1
     shift 1
@@ -59,8 +62,8 @@ check)  echo "Checking Pinkbox"
     ./bin/run etc/deployment_scripts/$RAILS_ENV/check_pinkbox.as
     ;;
 
-tail)  echo "Tailing Pinkbox Logs"
-    # environment
+tail)  echo_info ">>> Tailing Pinkbox Logs"
+    # example: pinkbox tail delivery
     set_environment $1
     shift 1
     cd /var/log/pinkbox/$RAILS_ENV
@@ -68,8 +71,8 @@ tail)  echo "Tailing Pinkbox Logs"
     tail -f ./rapid_decision/core_rindlets_* ./underwriting_system/underwriting_rindlets_* ./rinda_server/rinda_delivery.log
     ;;
 
-update_code)  echo "Updating Pinkbox Code"
-    # environment
+update_code)  echo_info ">>> Updating Pinkbox Code"
+    # example: pinkbox update_code uat
     set_environment $1
     shift 1
     cd ~/$RAILS_ENV/apps/pinkbox
@@ -78,10 +81,14 @@ update_code)  echo "Updating Pinkbox Code"
       git reset --hard; git pull; git submodule update; \
       rake clear_gems gems; rake gems; cd - ; \
     done
+    # Generate deployment scripts
+    cd ~/$RAILS_ENV/apps/pinkbox/management
+    echo_info ">>> Generating deployment scripts"
+    rake generate:deployment
     ;;
 
-mgr)  echo "Launching Pinkbox Console"
-    # environment
+mgr)  echo_info ">>> Launching Pinkbox Console"
+    # example: pinkbox mgr uat
     set_environment $1
     shift 1
     cd ~/$RAILS_ENV/apps/pinkbox/management
@@ -89,6 +96,6 @@ mgr)  echo "Launching Pinkbox Console"
     ./bin/console
     ;;
 
-*) echo "That command is not in my vocabulary."
+*) echo_error ">>> That command is not in my vocabulary."
     ;;
 esac
