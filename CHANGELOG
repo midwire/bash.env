@@ -1,3 +1,18 @@
+*0.3.8* (August 17, 2012)
+
+* Added pinkbox plugin for FLA work
+* Fixed some Solaris issues
+* Fixed the try_theme function
+* Added bin/colortest.sh for testing colors
+
+*0.3.7* (April 23, 2012)
+
+* Added ./bin/check_path_dups.rb to check for duplicate paths
+* Changed auto update to require ENABLE_AUTO_UPDATE to be set
+* Added an alternative bigfind method for finding large files
+* Fixed some bugs in the completion plugin
+* Make pathmunge function more Solaris friendly
+
 *0.3.6* (March 29, 2012)
 
 * Changed order of auto update to avoid it on Solaris machines

@@ -13,7 +13,7 @@ if [[ -x `which brew` ]]; then
 fi
 
 # Source plugin completions
-for i in $source_dir/files/*.sh ; do
+for i in $source_dir/files/**/* ; do
   if [[ -r "$i" ]]; then
     . $i
   fi

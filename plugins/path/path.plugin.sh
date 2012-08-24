@@ -8,11 +8,15 @@ paths="
 $dot_env_path/bin"
 
 EGREP=`which egrep`
+SED=`which sed`
+
 function pathmunge () {
   # If it exists then remove it so we can shuffle it to the end or beginning of the PATH
   if echo $PATH | $EGREP "(^|:)$1($|:)" > /dev/null ; then
-    safe_param=$(printf "%s\n" "$1" | sed 's/[][\.*^$(){}?+|/]/\\&/g')
-    PATH=`echo $PATH | sed -Ee "s/(^|:)$safe_param($|:)/:/"`
+    safe_param=$(printf "%s\n" "$1" | $SED 's/[][\.*^$(){}?+|/]/\\&/g')
+    PATH=`echo $PATH | $SED -e "s/:$safe_param:/:/"`
+    PATH=`echo $PATH | $SED -e "s/^$safe_param://"`
+    PATH=`echo $PATH | $SED -e "s/:$safe_param$//"`
   fi
   # add the path in the apropriate location
   if [ -d "$1" ]; then
@@ -23,7 +27,7 @@ function pathmunge () {
     fi
   fi
   # Remove : at the beginning and duplicate ::
-  export PATH=`echo $PATH | sed -e 's/^://' -e 's/::/:/g'`
+  export PATH=`echo $PATH | $SED -e 's/^://' -e 's/::/:/g'`
 }
 
 # Solaris doesn't like 'sed -E'
