@@ -1,7 +1,9 @@
 #!/bin/bash
 # Usage:
 #   pinkbox <action> <environment> <args>
+THISDIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$dot_env_path/global/global_colors.sh"
+source "$THISDIR/_pinkbox.sh"
 
 if [ $# -lt 1 ]; then
   echo_warn ">>> Usage : $0 <ACTION> <ENVIRONMENT> [ARGS]"
@@ -94,6 +96,23 @@ mgr)  echo_info ">>> Launching Pinkbox Console"
     cd ~/$RAILS_ENV/apps/pinkbox/management
     # files
     ./bin/console
+    ;;
+
+help) echo ""
+    if [ -z "$1" ]; then
+        echo_info ">>> Possible Commands:"
+        echo_info ">>> pinkbox start <ENVIRONMENT> [thread]"
+        echo_info ">>> pinkbox stop <ENVIRONMENT>"
+        echo_info ">>> pinkbox check <ENVIRONMENT>"
+        echo_info ">>> pinkbox tail <ENVIRONMENT>"
+        echo_info ">>> pinkbox update_code <ENVIRONMENT>"
+        echo_info ">>> pinkbox mgr <ENVIRONMENT>"
+        echo ""
+        echo_info ">>> Angle bracketed commands are required <required>"
+        echo_info ">>> Square bracketed commands are optional [optional]"
+    else
+        $THISDIR/pinkbox_help.sh "$*"
+    fi
     ;;
 
 *) echo_error ">>> That command is not in my vocabulary."
