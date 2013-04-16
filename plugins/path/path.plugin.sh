@@ -18,7 +18,7 @@ function pathmunge () {
     PATH=`echo $PATH | $SED -e "s/^$safe_param://"`
     PATH=`echo $PATH | $SED -e "s/:$safe_param$//"`
   fi
-  # add the path in the apropriate location
+  # add the path in the apropriate location, but only if the path exists on disk
   if [ -d "$1" ]; then
     if [ "$2" = "before" ] ; then
       PATH="$1:$PATH"
