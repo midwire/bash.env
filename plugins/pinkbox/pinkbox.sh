@@ -1,7 +1,9 @@
 #!/bin/bash
 # Usage:
 #   pinkbox <action> <environment> <args>
+THISDIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$dot_env_path/global/global_colors.sh"
+source "$THISDIR/_pinkbox.sh"
 
 if [ $# -lt 1 ]; then
   echo_warn ">>> Usage : $0 <ACTION> <ENVIRONMENT> [ARGS]"
@@ -27,6 +29,19 @@ function set_environment {
     echo_warn ">>> Are you sure you are on the right box?"
     exit
   fi
+}
+
+function show_help {
+    echo_info ">>> Possible Commands:"
+    echo_info ">>> pinkbox start <ENVIRONMENT> [thread]"
+    echo_info ">>> pinkbox stop <ENVIRONMENT>"
+    echo_info ">>> pinkbox check <ENVIRONMENT>"
+    echo_info ">>> pinkbox tail <ENVIRONMENT>"
+    echo_info ">>> pinkbox update_code <ENVIRONMENT>"
+    echo_info ">>> pinkbox mgr <ENVIRONMENT>"
+    echo ""
+    echo_info ">>> Angle bracketed commands are required <required>"
+    echo_info ">>> Square bracketed commands are optional [optional]"
 }
 
 case "$cmd" in
@@ -87,13 +102,29 @@ update_code)  echo_info ">>> Updating Pinkbox Code"
     rake generate:deployment
     ;;
 
-mgr)  echo_info ">>> Launching Pinkbox Console"
+mgr)  echo_info ">>> Launching Pinkbox Management Console"
     # example: pinkbox mgr uat
     set_environment $1
     shift 1
     cd ~/$RAILS_ENV/apps/pinkbox/management
     # files
     ./bin/console
+    ;;
+
+console) echo_info ">>> Launching Rapid App Console"
+    # example: pinkbox console uat
+    set_environment $1
+    shift 1
+    cd ~/$RAILS_ENV/apps/pinkbox/rapid_decision/rapid_app
+    ./script/console
+    ;;
+
+help) echo ""
+    if [ -z "$1" ]; then
+        show_help
+    else
+        $THISDIR/pinkbox_help.sh "$*"
+    fi
     ;;
 
 *) echo_error ">>> That command is not in my vocabulary."
