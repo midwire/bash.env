@@ -1,3 +1,10 @@
+*0.3.11* (April 16, 2013)
+
+* Added help for pinkbox plugin
+* Added nesta and ag plugins
+* Fixed a few bugs
+* Added bigfind as Linux alias
+
 *0.3.10* (August 24, 2012)
 
 * added colors to output, update_code method adjusted.

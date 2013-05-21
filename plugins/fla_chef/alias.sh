@@ -1,5 +1,2 @@
-alias vs='vagrant ssh'
-alias vstat='vagrant status'
-alias vb='vagrant box'
-alias vd='vagrant destroy'
-alias vu='vagrant up'
+alias sshef="$THISDIR/fla_chef"
+alias clt="cd $HOME/development/apps/support/chef/chef_local_tools"
