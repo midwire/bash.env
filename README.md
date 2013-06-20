@@ -19,6 +19,8 @@ After installing .env locally whenever you start a new command prompt, using wha
 
 ![Overview](https://raw.github.com/midwire/.env/develop/dot-env-overview.png)
 
+Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session.
+
 ## Install ##
 
 I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.
