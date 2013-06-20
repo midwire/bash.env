@@ -4,6 +4,23 @@
 
 .env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced for extensibility.
 
+I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.
+
+** Features **
+
+* Built for the command-line guru from the ground up with your remote SSH shell environment in mind.
+* Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)
+* Themeable - comes with several themes to beautify your shell prompt
+* Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local
+
+## Overview ##
+
+After installing .env locally whenever you start a new command prompt, using whatever terminal program you desire, .env gets loaded like this:
+
+![Overview](https://raw.github.com/midwire/.env/develop/dot-env-overview.png)
+
+Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session.
+
 ## Install ##
 
 I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.
