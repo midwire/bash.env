@@ -17,7 +17,7 @@ I work on many different machines remotely using SSH. Though I love Z-shell, it 
 
 After installing .env locally whenever you start a new command prompt, using whatever terminal program you desire, .env gets loaded like this:
 
-![Overview](https://github.com/midwire/.env/master/dot-env-overview.png)
+![Overview](https://raw.github.com/midwire/.env/develop/dot-env-overview.png)
 
 ## Install ##
 
