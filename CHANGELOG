@@ -1,3 +1,13 @@
+*0.3.12* (June 20, 2013)
+
+* Default LANG and LC_ALL to use utf-8
+* Updated Transwarp theme
+* Added some aliases for tmux plugin
+* Fix a path issue in the rbenv plugin
+* Added Autojump plugin
+* Added nodejs plugin
+* Add /usr/local/sbin to the Solaris path by default
+
 *0.3.11* (April 16, 2013)
 
 * Added help for pinkbox plugin
