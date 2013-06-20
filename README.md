@@ -6,12 +6,12 @@
 
 I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.
 
-** Features **
+## Features ##
 
 * Built for the command-line guru from the ground up with your remote SSH shell environment in mind.
 * Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)
-* Themeable - comes with several themes to beautify your shell prompt
-* Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local
+* Themeable - comes with several themes to beautify your shell prompt, and you can write your own!
+* Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and you can write your own!
 
 ## Overview ##
 
