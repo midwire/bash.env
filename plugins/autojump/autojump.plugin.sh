@@ -4,3 +4,4 @@ THISDIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 alias jp="j ${PWD}"
 alias jl='j --stat'
+alias je="$EDITOR $HOME/.local/share/autojump/autojump.txt"
