@@ -1,3 +1,10 @@
+*0.3.14* (August 27, 2013)
+
+* Added elocate plugin for braindead Solaris machines et. al.
+* Added Bash 'ask' function
+* Updated the pinkbox plugin - Only FLA devs care.
+* Moved some aliases around
+
 *0.3.13* (July 31, 2013)
 
 * Moved 2 more functions into global_functions.sh
