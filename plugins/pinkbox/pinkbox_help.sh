@@ -21,7 +21,6 @@ amd-215)  echo_info ">>> Hudson Integration Tests"
 
 amd-230)  echo_info ">>> Pinkbox DELIVERY / UAT / RELEASE_CANDIDATE servers"
     echo_info ">>>               UAT: 3229"
-    echo_info ">>>          DELIVERY: 7229"
     echo_info ">>> RELEASE_CANDIDATE: 6229"
     echo_info "    Rapid Decision System UAT (3220, 3229, etc) Rapid Decision System Delivery (7220, 7229, etc) Rapid Decision System Release Candidate (6220, 6229, etc) multiple environments for multiple projects. "
     ;;
