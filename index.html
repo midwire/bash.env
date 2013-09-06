@@ -34,17 +34,17 @@
         <h1>
 <a name="env" class="anchor" href="#env"><span class="octicon octicon-link"></span></a>.env</h1>
 
-<p><strong>Version: 0.3.13</strong></p>
+<p><strong>Version: 0.3.14</strong></p>
 
-<p>.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced for extensibility.</p>
+<p>.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.</p>
 
-<p>I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.</p>
+<p>I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines or any environment where you don't have rights to install new software.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.</p>
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Built for the command-line guru from the ground up with your remote SSH shell environment in mind.</li>
+<li>Built for the command-line operator from the ground up with remote SSH shell environments in mind.</li>
 <li>Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)</li>
 <li>Themeable - comes with several themes to beautify your shell prompt, and you can write your own!</li>
 <li>Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and you can write your own!</li>
@@ -62,11 +62,27 @@
 
 <p>I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.</p>
 
+<h3>
+<a name="forked-installation" class="anchor" href="#forked-installation"><span class="octicon octicon-link"></span></a>Forked Installation</h3>
+
+<p>First, click on the "Fork" button on the github homepage: <a href="https://github.com/midwire/.env">https://github.com/midwire/.env</a>.</p>
+
 <p>Clone the project into your home directory:</p>
 
 <pre><code>cd $HOME
-git clone git://github.com/&lt;your github username&gt;/.env.git  # if you forked it
-git clone git://github.com/midwire/.env.git                 # if you use my repository
+git clone git://github.com/&lt;your github username&gt;/.env.git
+</code></pre>
+
+<p>Source it:</p>
+
+<pre><code>. $HOME/.env/dot-env.sh
+</code></pre>
+
+<h3>
+<a name="standard-installation" class="anchor" href="#standard-installation"><span class="octicon octicon-link"></span></a>Standard Installation</h3>
+
+<pre><code>cd $HOME
+git clone git://github.com/midwire/.env.git
 </code></pre>
 
 <p>Source it:</p>
@@ -99,14 +115,18 @@ git clone git://github.com/midwire/.env.git                 # if you use my repo
 
 <pre><code># Choose your plugins
 plugins="completion history"
+
 # Choose a .env theme
 theme=sparkr
+
 # Set my home host.
 # So that when we login to a remote box our theme can change
 # to the remote version with special colors, etc
 dot_env_home_host='spark.local'
-# Turn this off to avoid the noise on starting a new shell instance
+
+# Set this to zero to avoid the verbosity on starting a new shell instance
 dot_env_verbose=1
+
 # Source the .env environment
 [[ -r "$HOME/.env/dot-env.sh" ]] &amp;&amp; . "$HOME/.env/dot-env.sh"
 </code></pre>
