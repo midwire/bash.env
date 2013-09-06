@@ -95,7 +95,7 @@ propagate_env_to_host() {
   PWD=`pwd`
   cd $HOME
   echo_info "Compressing local environment..."
-  tar cfvz $ENVFILE --exclude='.git' .env/ &> /dev/null
+  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.git' --exclude='.DS_Store' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
   scp $ENVFILE $host:
   if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
