@@ -1,5 +1,5 @@
 #!/bin/bash
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} echo -ne \"\033]0;${USER}@${HOSTNAME}\007\""
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND} echo -ne \"\033]0;${USER}@${HOSTNAME}\007\""
 
 function the_theme {
   local thisdir=$(dirname $BASH_SOURCE)
