@@ -1,18 +1,47 @@
 # .env
 
-**Version: 0.3.10**
+**Version: 0.3.14**
 
-.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.  Plugins have recently been introduced for extensibility.
+.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.
+
+I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines or any environment where you don't have rights to install new software.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.
+
+## Features ##
+
+* Built for the command-line operator from the ground up with remote SSH shell environments in mind.
+* Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)
+* Themeable - comes with several themes to beautify your shell prompt, and you can write your own!
+* Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and you can write your own!
+
+## Overview ##
+
+After installing .env locally whenever you start a new command prompt, using whatever terminal program you desire, .env gets loaded like this:
+
+![Overview](https://raw.github.com/midwire/.env/develop/dot-env-overview.png)
+
+Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session.
 
 ## Install ##
 
 I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.
 
+### Forked Installation ###
+
+First, click on the "Fork" button on the github homepage: https://github.com/midwire/.env.
+
 Clone the project into your home directory:
 
     cd $HOME
-    git clone git://github.com/<your github username>/.env.git  # if you forked it
-    git clone git://github.com/midwire/.env.git                 # if you use my repository
+    git clone git://github.com/<your github username>/.env.git
+
+Source it:
+
+    . $HOME/.env/dot-env.sh
+
+### Standard Installation ###
+
+    cd $HOME
+    git clone git://github.com/midwire/.env.git
 
 Source it:
 
@@ -38,14 +67,18 @@ To have .env load with an alias, execute:
 
     # Choose your plugins
     plugins="completion history"
+
     # Choose a .env theme
     theme=sparkr
+
     # Set my home host.
     # So that when we login to a remote box our theme can change
     # to the remote version with special colors, etc
     dot_env_home_host='spark.local'
-    # Turn this off to avoid the noise on starting a new shell instance
+
+    # Set this to zero to avoid the verbosity on starting a new shell instance
     dot_env_verbose=1
+
     # Source the .env environment
     [[ -r "$HOME/.env/dot-env.sh" ]] && . "$HOME/.env/dot-env.sh"
 

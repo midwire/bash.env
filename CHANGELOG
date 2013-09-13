@@ -1,3 +1,33 @@
+*0.3.14* (August 27, 2013)
+
+* Added elocate plugin for braindead Solaris machines et. al.
+* Added Bash 'ask' function
+* Updated the pinkbox plugin - Only FLA devs care.
+* Moved some aliases around
+
+*0.3.13* (July 31, 2013)
+
+* Moved 2 more functions into global_functions.sh
+* A few plugin updates
+* Fixed locale problems
+
+*0.3.12* (June 20, 2013)
+
+* Default LANG and LC_ALL to use utf-8
+* Updated Transwarp theme
+* Added some aliases for tmux plugin
+* Fix a path issue in the rbenv plugin
+* Added Autojump plugin
+* Added nodejs plugin
+* Add /usr/local/sbin to the Solaris path by default
+
+*0.3.11* (April 16, 2013)
+
+* Added help for pinkbox plugin
+* Added nesta and ag plugins
+* Fixed a few bugs
+* Added bigfind as Linux alias
+
 *0.3.10* (August 24, 2012)
 
 * added colors to output, update_code method adjusted.

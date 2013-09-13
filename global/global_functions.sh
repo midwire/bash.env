@@ -1,3 +1,57 @@
+function ask {
+  while true; do
+    if [ "${2:-}" = "Y" ]; then
+      prompt="Y/n"
+      default=Y
+    elif [ "${2:-}" = "N" ]; then
+      prompt="y/N"
+      default=N
+    else
+      prompt="y/n"
+      default=
+    fi
+
+    # Ask the question
+    read -p "$1 [$prompt] " REPLY
+
+    # Default?
+    if [ -z "$REPLY" ]; then
+      REPLY=$default
+    fi
+    # Check if the reply is valid
+    case "$REPLY" in
+      Y*|y*) return 0 ;;
+      N*|n*) return 1 ;;
+    esac
+  done
+}
+
+function load_on_login {
+  profile_file="$HOME/.bashrc"
+  if [[ -f "${profile_file}" ]] &&
+    ! grep '$HOME/.env/dot-env.sh' "$profile_file" >/dev/null 2>&1
+  then
+    echo '[[ -r $HOME/.env/dot-env.sh ]] && . $HOME/.env/dot-env.sh' >> "$profile_file"
+    echo ".env will now load on login."
+  else
+    echo ".env is already setup to load on login."
+  fi
+  return 0
+}
+
+function load_on_alias {
+  profile_file="$HOME/.bashrc"
+  if [[ -f "${profile_file}" ]] &&
+    ! grep 'alias ees=". $HOME/.env/dot-env.sh"' "$profile_file" >/dev/null 2>&1
+  then
+    echo 'alias ees=". $HOME/.env/dot-env.sh"' >> "$profile_file"
+    echo ".env will now load when you execute 'ees'."
+  else
+    echo ".env is already setup to load on using the 'ees' alias."
+  fi
+  return 0
+}
+
 bigfind() {
   if [[ $# -lt 1 ]]; then
     echo_warn "Usage: bigfind DIRECTORY"
@@ -41,7 +95,7 @@ propagate_env_to_host() {
   PWD=`pwd`
   cd $HOME
   echo_info "Compressing local environment..."
-  tar cfvz $ENVFILE .env/ &> /dev/null
+  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.git' --exclude='.DS_Store' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
   scp $ENVFILE $host:
   if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi

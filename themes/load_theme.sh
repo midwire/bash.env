@@ -99,8 +99,7 @@ ps1_ruby() {
       return
     fi
   elif [[ "$use_rbenv" == "0" ]]; then
-    gemset_id="$(rbenv gemset active | cut -d' ' -f1)"
-    ruby_id="▸$(rbenv version-name)@${gemset_id}"
+    ruby_id="▸$(rbenv version-name)"
   elif [[ -n `which ruby` ]]; then
     ruby_id=∫`echo $(ruby -v)|awk '{print $2}'`
   fi
