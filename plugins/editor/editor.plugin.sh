@@ -38,3 +38,6 @@ alias eh="$EDITOR $HOME/.ssh/config"
 # Edit/Source path customizations
 alias ep="$EDITOR $dot_env_path/host/$HOSTNAME/path.sh"
 alias eps="source $dot_env_path/host/$HOSTNAME/path.sh"
+# Edit/Source current host customizations
+alias ehost="$EDITOR $dot_env_path/host/$HOSTNAME"
+alias ehosts="source $dot_env_path/host/$HOSTNAME"

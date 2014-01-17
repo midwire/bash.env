@@ -22,3 +22,7 @@ alias devlog='tail -f log/development.log'
 alias rdm='rake db:migrate'
 alias rdr='rake db:rollback'
 alias pryc='pry -r `test -f config/environment.rb && echo "./config/environment" || echo "./config/boot"`'
+
+# Set RAILS_ENV
+alias red='export RAILS_ENV=development; echo "set RAILS_ENV=$RAILS_ENV"'
+alias ret='export RAILS_ENV=test; echo "set RAILS_ENV=$RAILS_ENV"'

@@ -65,6 +65,11 @@ history_stats() {
   history | awk '{print $2}' | sort | uniq -c | sort -rn | head
 }
 
+gdir() {
+  mkdir ${1}
+  cd ${1}
+}
+
 upgrade.env() {
   $dot_env_path/bin/upgrade.env
 }

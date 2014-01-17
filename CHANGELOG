@@ -1,8 +1,3 @@
-*0.3.15* (September 12, 2013)
-
-* fix bug in transwarp theme PROMPT_COMMAND
-* remove 'pry' requirement in Rakefile
-
 *0.3.14* (August 27, 2013)
 
 * Added elocate plugin for braindead Solaris machines et. al.
