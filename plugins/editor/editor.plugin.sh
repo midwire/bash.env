@@ -12,7 +12,6 @@ fi
 
 # Common editor environment vars
 export CVSEDITOR="$EDITOR"
-export GIT_EDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 
@@ -29,7 +28,7 @@ alias eas="source $dot_env_path/host/$HOSTNAME/alias.sh"
 alias eb="$EDITOR $HOME/bin"
 # Edit/Source all of .env
 alias ee="$EDITOR $dot_env_path $HOME/.bashrc"
-alias ees="source $dot_env_path/dot-env.sh"
+alias ees="source $dot_env_path/bash.env.sh"
 # Edit/Source local host functions
 alias ef="$EDITOR $dot_env_path/host/$HOSTNAME/functions.sh"
 alias efs="source $dot_env_path/host/$HOSTNAME/functions.sh"

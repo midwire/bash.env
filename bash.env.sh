@@ -13,7 +13,7 @@ fi
 # Determine OS
 OS=`uname`
 if [[ "$OS" != "Darwin" && "$OS" != "Linux" && "$OS" != "SunOS" ]]; then
-  echo_error "Sorry, dot-env does not support your platform: '$OS'"
+  echo_error "Sorry, bash.env does not support your platform: '$OS'"
   return 1
 fi
 OS_DIR=$dot_env_path/os/$OS

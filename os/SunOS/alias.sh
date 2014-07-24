@@ -1,4 +1,4 @@
 # Solaris Environment Aliases
 
 # Editing and Sourcing aliases
-alias ees='. $HOME/.env/dot-env.sh'
+alias ees='. $HOME/.env/bash.env.sh'

@@ -7,7 +7,7 @@ fi
 
 # Turn on brew completion if it exists
 if [[ -x `which brew` ]]; then
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
+  if [[ -f `brew --prefix`/etc/bash_completion ]]; then
     . `brew --prefix`/etc/bash_completion
   fi
 fi

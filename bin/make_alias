@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# NOTE: OSX ONLY!
 # make_alias
 # This script takes two command-line arguments:
 # 1) The name (relative or full path) of a source file or folder (directory)

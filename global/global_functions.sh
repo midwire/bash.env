@@ -29,9 +29,9 @@ function ask {
 function load_on_login {
   profile_file="$HOME/.bashrc"
   if [[ -f "${profile_file}" ]] &&
-    ! grep '$HOME/.env/dot-env.sh' "$profile_file" >/dev/null 2>&1
+    ! grep '$HOME/.env/bash.env.sh' "$profile_file" >/dev/null 2>&1
   then
-    echo '[[ -r $HOME/.env/dot-env.sh ]] && . $HOME/.env/dot-env.sh' >> "$profile_file"
+    echo '[[ -r $HOME/.env/bash.env.sh ]] && . $HOME/.env/bash.env.sh' >> "$profile_file"
     echo ".env will now load on login."
   else
     echo ".env is already setup to load on login."
@@ -40,14 +40,19 @@ function load_on_login {
 }
 
 function load_on_alias {
+  if [[ -z $1 ]]; then
+    als="ees"
+  else
+    als="$1"
+  fi
   profile_file="$HOME/.bashrc"
   if [[ -f "${profile_file}" ]] &&
-    ! grep 'alias ees=". $HOME/.env/dot-env.sh"' "$profile_file" >/dev/null 2>&1
+    ! grep "alias $als=\". $HOME/.env/bash.env.sh\"" "$profile_file" >/dev/null 2>&1
   then
-    echo 'alias ees=". $HOME/.env/dot-env.sh"' >> "$profile_file"
-    echo ".env will now load when you execute 'ees'."
+    echo "alias $als=\". $HOME/.env/bash.env.sh\"" >> "$profile_file"
+    echo ".env will now load when you execute '$als'."
   else
-    echo ".env is already setup to load on using the 'ees' alias."
+    echo ".env is already setup to load on using the '$als' alias."
   fi
   return 0
 }
@@ -80,6 +85,7 @@ add_ssh_key_to_host() {
     echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
     return
   fi
+  # Use DSA by default, it is stronger
   if [[ -r ~/.ssh/id_dsa.pub ]]; then
     cat ~/.ssh/id_dsa.pub | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
   elif [[ -r ~/.ssh/id_rsa.pub ]]; then
@@ -108,7 +114,7 @@ propagate_env_to_host() {
   ssh $host "rm -rf ~/.env/ && gunzip < env.tar.gz |tar xfv -" &> /dev/null
   echo_warn "Don't forget to add this your .bashrc file:"
   echo_warn 'if [[ -n "$PS1" ]]; then'
-  echo_warn '  [[ -r $HOME/.env/dot-env.sh ]] && . $HOME/.env/dot-env.sh'
+  echo_warn '  [[ -r $HOME/.env/bash.env.sh ]] && . $HOME/.env/bash.env.sh'
   echo_warn 'fi'
   cd $PWD
 }
@@ -125,9 +131,8 @@ configthis.env() {
   if [[ ! -f "$DIR/path.sh" ]]; then
     echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
   fi
-  cd "$DIR"
-  echo_info "Edit these files to customize your local environment."
-  ls -1AtF
+  echo_info "Edit files in [$DIR] to customize your local environment."
+  ls -1AtF "$DIR"
 }
 
 # Configure environment settings for a specified HOSTNAME
@@ -148,19 +153,23 @@ confighost.env() {
   if [[ ! -f "$DIR/path.sh" ]]; then
     echo "# Add paths like this:\n# pathmunge \"/Developer/usr/bin\"" >> "$DIR/path.sh"
   fi
-  cd "$DIR"
   echo_info "Edit these files to customize your [$host] environment."
   echo_info "When you are finished run 'propagate_env_to_host $host'."
-  ls -1AtF
+  ls -1AtF "$DIR"
 }
 
 reset_theme() {
-  theme="$ORIGINAL_THEME"
+  export theme="$ORIGINAL_THEME"
   . $dot_env_path/themes/load_theme.sh
 }
 
 try_theme() {
+  if [[ $# -lt 1 ]]; then
+    echo_warn "Usage: try_theme THEME_NAME"
+    return
+  fi
+  echo_info "Loading theme [$1]"
   export ORIGINAL_THEME="$theme"
-  theme="$1"
+  export theme="$1"
   . $dot_env_path/themes/load_theme.sh
 }
