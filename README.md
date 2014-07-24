@@ -1,6 +1,6 @@
 # .env
 
-**Version: 0.3.15**
+**Version: 0.4.0**
 
 **Bash.env** is a cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.
 
