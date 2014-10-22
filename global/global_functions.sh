@@ -85,12 +85,15 @@ add_ssh_key_to_host() {
     echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
     return
   fi
-  # Use DSA by default, it is stronger
-  if [[ -r ~/.ssh/id_dsa.pub ]]; then
-    cat ~/.ssh/id_dsa.pub | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
-  elif [[ -r ~/.ssh/id_rsa.pub ]]; then
-    cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
+  if [[ -r "$HOME/.ssh/id_rsa.pub" ]]; then
+    keytype='rsa'
+  elif [[ -r "$HOME/.ssh/id_dsa.pub" ]]; then
+    keytype='dsa'
+  else
+    echo "You need to generate a key first: 'ssh-keygen -b 4048 -t rsa'"
+    exit 1
   fi
+  cat "$HOME/.ssh/id_${keytype}.pub" | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
 }
 
 # Propagate your entire environment system to a remote host
@@ -106,7 +109,7 @@ propagate_env_to_host() {
   PWD=`pwd`
   cd $HOME
   echo_info "Compressing local environment..."
-  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.git' --exclude='.DS_Store' .env/ &> /dev/null
+  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.git' --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
   scp $ENVFILE $host:
   if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
