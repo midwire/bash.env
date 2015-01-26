@@ -35,7 +35,7 @@ First, click on the "Fork" button on the github homepage: [https://github.com/mi
 Clone the project into your home directory:
 
     cd $HOME
-    git clone git://github.com/<your github username>/bash.env.git
+    git clone git://github.com/<your github username>/bash.env.git .env
 
 Source it:
 
