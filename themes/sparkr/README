@@ -1,5 +1,3 @@
-Be aware that this prompt will not look right unless you use a font that doesn't mangle the box drawing characters.
-
-I use Menlo and it works perfectly.
+A colorful 2-line prompt, with Ruby version and Git details.
 
 -- Midwire

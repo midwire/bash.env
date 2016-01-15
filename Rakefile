@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rake'
 require 'readline'
-require 'pry'
+require 'pry' if ENV['TEST']
 PROJECT_ROOT = File.expand_path(File.dirname(__FILE__))
 
 desc "Write changes to the CHANGELOG"

@@ -1,3 +1,4 @@
+# Exit unless we are a login shell
 [[ -z "$PS1" ]] && return
 
 export dot_env_path="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -7,7 +8,7 @@ export dot_env_custom="${dot_env_path}/custom"
 if [[ "$SHLVL" == "1" ]]; then
   source "$dot_env_path/global/global_colors.sh"
   DOT_ENV_VERSION=`cat $dot_env_path/VERSION`
-  echo_info ".env v$DOT_ENV_VERSION - http://github.com/midwire/.env"
+  echo_info ".env v$DOT_ENV_VERSION - https://github.com/midwire/bash.env"
 fi
 
 # Determine OS

@@ -7,7 +7,11 @@ paths="
 /usr/X11/bin
 $dot_env_path/bin"
 
+alias egrep=`which egrep`
+unalias egrep 2>&1 > /dev/null
 EGREP=`which egrep`
+alias sed=`which sed`
+unalias sed 2>&1 > /dev/null
 SED=`which sed`
 
 # pathmunge function

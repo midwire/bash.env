@@ -41,7 +41,7 @@ function load_on_login {
 
 function load_on_alias {
   if [[ -z $1 ]]; then
-    als="ees"
+    als="bashenv"
   else
     als="$1"
   fi
@@ -66,8 +66,14 @@ bigfind() {
   # du -a ${1} | sort -n -r | head -n 10
 }
 
+# show the n most used commands. defaults to 10
 history_stats() {
-  history | awk '{print $2}' | sort | uniq -c | sort -rn | head
+  if [[ $# -lt 1 ]]; then
+    NUM=10
+  else
+    NUM=$1
+  fi
+  history | awk '{print $2}' | sort | uniq -c | sort -rn | head -$NUM
 }
 
 gdir() {
@@ -75,7 +81,7 @@ gdir() {
   cd ${1}
 }
 
-upgrade.env() {
+upgrade.bash.env() {
   $dot_env_path/bin/upgrade.env
 }
 
@@ -96,7 +102,7 @@ add_ssh_key_to_host() {
   cat "$HOME/.ssh/id_${keytype}.pub" | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
 }
 
-# Propagate your entire environment system to a remote host
+# Propagate your bash.env configurations to a remote host
 propagate_env_to_host() {
   if [[ $# -lt 1 ]]; then
     echo_warn "Usage: propagate_env_to_host [user@]HOSTNAME"

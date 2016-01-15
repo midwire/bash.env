@@ -9,7 +9,7 @@ if [ "$id" -eq 0 ]; then
   user_host=`fgc 196`'\u'`fgc 11`'@'`fgc 46`'\h'$NOC
   pc=`fgc 196`➤$NOC
 else
-  user_host=`fgc 46`'\u'`fgc 11`'@'`fgc 46`'\h'$NOC
+  user_host=`fgc 46`'\u'`fgc 11`'@'`fgc 27`'\h'$NOC
   pc=➤$NOC
 fi
 

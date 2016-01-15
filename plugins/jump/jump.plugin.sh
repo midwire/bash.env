@@ -27,7 +27,7 @@ function marks {
 # Autocompletion
 _completemarks() {
   local curw=${COMP_WORDS[COMP_CWORD]}
-  local wordlist=$(find $MARKPATH -type l -printf "%f\n")
+  local wordlist=$(find "$MARKPATH" -type l -exec basename {} \;)
   COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
   return 0
 }
