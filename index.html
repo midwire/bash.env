@@ -29,85 +29,136 @@
     <div class="container">
       <section id="main_content">
         <h1>
-<a id="env" class="anchor" href="#env" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>.env</h1>
+<a id="bashenv" class="anchor" href="#bashenv" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bash.env</h1>
 
-<p><strong>Version: 0.3.14</strong></p>
+<p><strong>Version: 1.0.0</strong></p>
 
-<p>.env (Dot-Env) is a comprehensive, cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.</p>
+<p><strong>Bash.env</strong> is a cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.</p>
 
-<p>I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines or any environment where you don't have rights to install new software.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.</p>
+<p>Z-shell is great, but it does not come standard on most operating systems.  This can be problematic in an environment where you don't have administrative rights.</p>
+
+<p>Not all development environments are the same. <strong>Bash.env</strong> lets you customize your Bash environment at 3 levels. Globals load first, then operating system customizations and lastly specifics for the particular host you are working on.</p>
+
+
+
+<ul>
+<li>
+<a href="#bashenv">Bash.env</a>
+
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#overview">Overview</a></li>
+<li>
+<a href="#install">Install</a>
+
+<ul>
+<li><a href="#forked-installation-recommended">Forked Installation (recommended)</a></li>
+<li><a href="#standard-installation">Standard Installation</a></li>
+<li><a href="#load-on-login">Load on Login</a></li>
+<li><a href="#load-on-alias">Load on Alias</a></li>
+<li><a href="#example-bashrc">Example .bashrc</a></li>
+</ul>
+</li>
+<li>
+<a href="#customize-your-local-environment">Customize your local environment</a>
+
+<ul>
+<li><a href="#example">Example:</a></li>
+</ul>
+</li>
+<li><a href="#themes">Themes</a></li>
+<li>
+<a href="#other-useful-functions">Other Useful Functions</a>
+
+<ul>
+<li><a href="#add-your-ssh-key-to-a-remote-host">Add your SSH key to a remote host</a></li>
+<li><a href="#propagate-your-copy-of-bashenv-to-other-hosts">Propagate your copy of Bash.env to other hosts</a></li>
+</ul>
+</li>
+<li><a href="#make-it-better">Make it better</a></li>
+</ul>
+</li>
+</ul>
+
+
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Built for the command-line operator from the ground up with remote SSH shell environments in mind.</li>
-<li>Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)</li>
-<li>Themeable - comes with several themes to beautify your shell prompt, and you can write your own!</li>
-<li>Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and you can write your own!</li>
+<li>Built for the Bash command-line operator from the ground up, with remote SSH environments in mind.</li>
+<li>Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin). <em>Win-bash or Cygwin may work also but they are untested.</em>
+</li>
+<li>Themeable - comes with several themes to beautify your shell prompt, and you can write your own.</li>
+<li>Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and it is easy to write your own!</li>
+<li>Cascades 3-levels of shell customization in order [Global, OS, Host]. Configure specifics for all environments at the Global level. Configure all Linux, OSX and Solaris environments at the OS level. Set specific and detailed customizations at the Host level.</li>
 </ul>
 
 <h2>
 <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
 
-<p>After installing .env locally whenever you start a new command prompt, using whatever terminal program you desire, .env gets loaded like this:</p>
+<p>After installing <strong>Bash.env</strong>, whenever you start a new command prompt <strong>Bash.env</strong> gets loaded like this:</p>
 
-<p><img src="https://raw.github.com/midwire/.env/develop/dot-env-overview.png" alt="Overview"></p>
+<p><img src="https://raw.github.com/midwire/.env/develop/overview.png" alt="Overview"></p>
 
-<p>Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session.</p>
+<p>Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session!</p>
 
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
 
-<p>I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.</p>
+<p>If you fork the project in GitHub your customizations can be easily incorporated back into the master branch here.</p>
 
 <h3>
-<a id="forked-installation" class="anchor" href="#forked-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Forked Installation</h3>
+<a id="forked-installation-recommended" class="anchor" href="#forked-installation-recommended" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Forked Installation (recommended)</h3>
 
-<p>First, click on the "Fork" button on the github homepage: <a href="https://github.com/midwire/.env">https://github.com/midwire/.env</a>.</p>
+<p>First, click on the "Fork" button on the github homepage: <a href="https://github.com/midwire/bash.env">https://github.com/midwire/bash.env</a>.</p>
 
-<p>Clone the project into your home directory:</p>
+<p>Clone your forked copy into your home directory:</p>
 
 <pre><code>cd $HOME
-git clone git://github.com/&lt;your github username&gt;/.env.git
+git clone git://github.com/&lt;your_github_username&gt;/bash.env.git .env
 </code></pre>
 
 <p>Source it:</p>
 
-<pre><code>. $HOME/.env/dot-env.sh
+<pre><code>. $HOME/.env/bash.env.sh
 </code></pre>
 
 <h3>
 <a id="standard-installation" class="anchor" href="#standard-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standard Installation</h3>
 
 <pre><code>cd $HOME
-git clone git://github.com/midwire/.env.git
+git clone git://github.com/midwire/bash.env.git .env
 </code></pre>
 
 <p>Source it:</p>
 
-<pre><code>. $HOME/.env/dot-env.sh
+<pre><code>. $HOME/.env/bash.env.sh
 </code></pre>
 
 <h3>
 <a id="load-on-login" class="anchor" href="#load-on-login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Load on Login</h3>
 
-<p>To have .env load automatically, execute:</p>
+<p>To have <strong>Bash.env</strong> load automatically, execute:</p>
 
-<pre><code>load_on_login
+<pre><code>bash.env load_bash_env_on_login
+# or simply...
+load_on_login
 </code></pre>
 
-<p>... which will add the above source command to your <code>.bashrc</code> file.</p>
+<p>... which will add the above "Source" command to your <code>.bashrc</code> file.</p>
 
 <h3>
 <a id="load-on-alias" class="anchor" href="#load-on-alias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Load on Alias</h3>
 
-<p>To have .env load with an alias, execute:</p>
+<p>To have <strong>Bash.env</strong> load with an alias, execute:</p>
 
-<pre><code>load_on_alias
+<pre><code>bash.env load_bash_env_on_alias bashenv
+# or simply...
+load_on_alias bashenv
 </code></pre>
 
-<p>... which will setup the <code>ees</code> alias which will source .env whenever you enter <code>ees</code> after logging in.  I use this method on all of my remote hosts that are used by other people, besides myself.  That way they don't notice any difference when they login unless they run <code>ees</code>.</p>
+<p>... which will setup the <code>bashenv</code> alias which will source <strong>Bash.env</strong> whenever you enter <code>bashenv</code> after logging in.  Use this method for shared remote accounts that are used by other people. Use any alias name you want in place of <code>bashenv</code>.</p>
 
 <h3>
 <a id="example-bashrc" class="anchor" href="#example-bashrc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example .bashrc</h3>
@@ -115,28 +166,27 @@ git clone git://github.com/midwire/.env.git
 <pre><code># Choose your plugins
 plugins="completion history"
 
-# Choose a .env theme
-theme=sparkr
+# Choose a Bash.env theme
+theme=transwarp
 
-# Set my home host.
-# So that when we login to a remote box our theme can change
+# Set home host, so that when we login to a remote box our theme can change
 # to the remote version with special colors, etc
 dot_env_home_host='spark.local'
 
 # Set this to zero to avoid the verbosity on starting a new shell instance
 dot_env_verbose=1
 
-# Source the .env environment
-[[ -r "$HOME/.env/dot-env.sh" ]] &amp;&amp; . "$HOME/.env/dot-env.sh"
+# Source the Bash.env environment
+[[ -r "$HOME/.env/bash.env.sh" ]] &amp;&amp; . "$HOME/.env/bash.env.sh"
 </code></pre>
 
 <h2>
 <a id="customize-your-local-environment" class="anchor" href="#customize-your-local-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customize your local environment</h2>
 
-<pre><code>configthis.env
+<pre><code>bash.env config
 </code></pre>
 
-<p>... which will create a folder in the <code>host</code> directory specifically for your local environment and stub out some empty files that you should customize.</p>
+<p>... which will create a folder in the <code>host</code> directory specifically for your local environment and stub out some empty files which you can customize.</p>
 
 <p>The convention is, <code>$HOME/.env/host/[your-hostname]</code> directory contains files like these:</p>
 
@@ -147,21 +197,24 @@ dot_env_verbose=1
 <li>prompt.sh</li>
 </ul>
 
-<p>... and anything else you wish to customize your own local environment.</p>
+<p>... and anything else you need to customize your own local environment.</p>
 
 <p>You can put any <code>*.sh</code> files in your host directory that you want, and they will only get sourced when you start a Bash shell on the machine matching the specified hostname directory.</p>
+
+<p>This command, <code>bash.env config</code> is idempotent, so it will not overwrite or otherwise modify any existing files in your host directory.</p>
 
 <h3>
 <a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example:</h3>
 
-<p>Let's say your hostname is <code>Harry-Potters-Macbook.local</code>, and you want to add <code>/usr/local/bogus</code> to your path.  Here's how you do it:</p>
+<p>Let's say your hostname is <code>Harry-Potters-Macbook.local</code>, and you want to add <code>/usr/local/bogus</code> to your path every time you startup a Bash session.  Here's how you do it:</p>
 
-<pre><code>configthis.env
+<pre><code>bash.env config
 </code></pre>
 
-<p>This command will stub out a few files as examples and <code>cd</code> to the directory where they are <code>$HOME/.env/host/Harry-Potters-Macbook.local</code>.  Now you edit each of those files, and delete the ones you don't need.  So, since we are only going to add to the path let's remove the other files, then edit the path.sh file.</p>
+<p>This command will stub out a few files as examples in the directory <code>$HOME/.env/host/Harry-Potters-Macbook.local</code>.  Now you can edit each of those files,  delete the ones you don't need and add others if you wish.  So, since we are only going to add to the path let's remove the other files, then edit the path.sh file.</p>
 
-<pre><code>rm alias.sh env.sh functions.sh prompt.sh
+<pre><code># Optionally, remove these empty files if you don't need them
+rm alias.sh env.sh functions.sh prompt.sh
 </code></pre>
 
 <p>Inside <code>path.sh</code> add this line:</p>
@@ -171,17 +224,18 @@ dot_env_verbose=1
 
 <p>Done!</p>
 
-<p>Now you can source those changes <code>. $HOME/.env/dot-env.sh</code> and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.</p>
+<p>Now you can source those changes <code>. $HOME/.env/bash.env.sh</code>.  Next time you start a shell it will maintain your path and you'll never have duplicates.</p>
 
 <h2>
 <a id="themes" class="anchor" href="#themes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Themes</h2>
 
-<p>.env themes are located in <code>$dot_env_path/themes/</code>.  To use a theme set <code>theme='THEME_NAME'</code>. e.g.,</p>
+<p><strong>Bash.env</strong> themes are located in <code>$dot_env_path/themes/</code>.  To use a theme set <code>theme='THEME_NAME'</code>. e.g.,</p>
 
-<pre><code>theme='sparkr'
+<pre><code># In $HOME/.bashrc
+theme='transwarp'
 </code></pre>
 
-<p>A variant of the <code>sparkr</code> theme is default and will be loaded if no theme is specified.  Note that this theme looks best when using the Menlo font.</p>
+<p>A variant of the <code>transwarp</code> theme is default and will be loaded if no theme is specified.</p>
 
 <p>Please send me a pull request if you create your own themes.</p>
 
@@ -191,28 +245,28 @@ dot_env_verbose=1
 <h3>
 <a id="add-your-ssh-key-to-a-remote-host" class="anchor" href="#add-your-ssh-key-to-a-remote-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add your SSH key to a remote host</h3>
 
-<pre><code>add_ssh_key_to_host [user@]HOSTNAME
+<pre><code>bash.env add_ssh_key_to [user@]HOSTNAME
 </code></pre>
 
 <p>... which will append your public <code>~/.ssh/id_dsa.pub</code> key to the host's authorized_keys file and allow you to login without a password.</p>
 
 <h3>
-<a id="propagate-your-copy-of-env-to-other-hosts" class="anchor" href="#propagate-your-copy-of-env-to-other-hosts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Propagate your copy of .env to other hosts</h3>
+<a id="propagate-your-copy-of-bashenv-to-other-hosts" class="anchor" href="#propagate-your-copy-of-bashenv-to-other-hosts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Propagate your copy of Bash.env to other hosts</h3>
 
 <p>If you want to copy your .env to another host, simply type:</p>
 
-<pre><code>propagate_env_to_host [user@]HOSTNAME
+<pre><code>bash.env add_bash_env_to [user@]HOSTNAME
 </code></pre>
 
-<p>... which will compress your local .env, copy it to the specified host and decompress it. Then follow the instructions above under "Load on Login", or "Load on Alias"</p>
+<p>... which will compress your local <strong>Bash.env</strong>, copy it to the specified host and decompress it. Then follow the instructions above under "Load on Login", or "Load on Alias"</p>
 
 <p>If you want to customize the remote host environment even further:</p>
 
 <ul>
-<li>Run <code>confighost.env HOSTNAME</code>
+<li>Run <code>bash.env config_host HOSTNAME</code>
 </li>
 <li>Edit the newly created environment files</li>
-<li>Then <code>propagate_env_to_host HOSTNAME</code>
+<li>Then <code>bash.env add_bash_env_to HOSTNAME</code>
 </li>
 </ul>
 
