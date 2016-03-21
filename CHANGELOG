@@ -1,3 +1,14 @@
+*1.0.0* (March 21, 2016)
+
+* Rename the project from .env to bash.env.
+* Add global `reloadenv` alias
+* Rename alias for loading the bash.env environment from `ees` to `bashenv`
+* Add `awscli` plugin
+* Add `docker` plugin
+* Various fixes to plugins
+* Change `sparkr` theme to work better on all environments
+* README updates
+
 *0.4.3* (October 22, 2014)
 
 * Exclude the large elocatedb file when propagating Bash.env to a remote host.
