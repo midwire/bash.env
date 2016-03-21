@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Dot-Env (for Bash) : Don't leave home without your tools!" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>Dot-Env (for Bash)</title>
+    <title>Dot-Env (for Bash) by midwire</title>
   </head>
 
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/midwire/.env">View on GitHub</a>
+    <header>
+      <div class="container">
+        <h1>Dot-Env (for Bash)</h1>
+        <h2>Don&#39;t leave home without your tools!</h2>
 
-          <h1 id="project_title">Dot-Env (for Bash)</h1>
-          <h2 id="project_tagline">Don't leave home without your tools!</h2>
+        <section id="downloads">
+          <a href="https://github.com/midwire/bash.env/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/midwire/bash.env/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/midwire/bash.env" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/midwire/.env/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/midwire/.env/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+    <div class="container">
+      <section id="main_content">
         <h1>
-<a name="env" class="anchor" href="#env"><span class="octicon octicon-link"></span></a>.env</h1>
+<a id="env" class="anchor" href="#env" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>.env</h1>
 
 <p><strong>Version: 0.3.14</strong></p>
 
@@ -41,15 +38,17 @@
 <p>I work on many different machines remotely using SSH. Though I love Z-shell, it does not come standard on most operating systems and has to be installed manually.  This can be problematic on Solaris machines or any environment where you don't have rights to install new software.  After using Z-shell for a few months I decided to go back to Bash because it comes standard on all operating systems and is usually the default shell.</p>
 
 <h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li>Built for the command-line operator from the ground up with remote SSH shell environments in mind.</li>
 <li>Supports 3 operating systems (Linux, Solaris/SunOS, OSX/Darwin)</li>
 <li>Themeable - comes with several themes to beautify your shell prompt, and you can write your own!</li>
 <li>Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and you can write your own!</li>
-</ul><h2>
-<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+</ul>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
 
 <p>After installing .env locally whenever you start a new command prompt, using whatever terminal program you desire, .env gets loaded like this:</p>
 
@@ -58,12 +57,12 @@
 <p>Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session.</p>
 
 <h2>
-<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
 
 <p>I recommend you fork the project in GitHub, so that your changes can be easily incorporated back into the tree.</p>
 
 <h3>
-<a name="forked-installation" class="anchor" href="#forked-installation"><span class="octicon octicon-link"></span></a>Forked Installation</h3>
+<a id="forked-installation" class="anchor" href="#forked-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Forked Installation</h3>
 
 <p>First, click on the "Fork" button on the github homepage: <a href="https://github.com/midwire/.env">https://github.com/midwire/.env</a>.</p>
 
@@ -79,7 +78,7 @@ git clone git://github.com/&lt;your github username&gt;/.env.git
 </code></pre>
 
 <h3>
-<a name="standard-installation" class="anchor" href="#standard-installation"><span class="octicon octicon-link"></span></a>Standard Installation</h3>
+<a id="standard-installation" class="anchor" href="#standard-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standard Installation</h3>
 
 <pre><code>cd $HOME
 git clone git://github.com/midwire/.env.git
@@ -91,7 +90,7 @@ git clone git://github.com/midwire/.env.git
 </code></pre>
 
 <h3>
-<a name="load-on-login" class="anchor" href="#load-on-login"><span class="octicon octicon-link"></span></a>Load on Login</h3>
+<a id="load-on-login" class="anchor" href="#load-on-login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Load on Login</h3>
 
 <p>To have .env load automatically, execute:</p>
 
@@ -101,7 +100,7 @@ git clone git://github.com/midwire/.env.git
 <p>... which will add the above source command to your <code>.bashrc</code> file.</p>
 
 <h3>
-<a name="load-on-alias" class="anchor" href="#load-on-alias"><span class="octicon octicon-link"></span></a>Load on Alias</h3>
+<a id="load-on-alias" class="anchor" href="#load-on-alias" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Load on Alias</h3>
 
 <p>To have .env load with an alias, execute:</p>
 
@@ -111,7 +110,7 @@ git clone git://github.com/midwire/.env.git
 <p>... which will setup the <code>ees</code> alias which will source .env whenever you enter <code>ees</code> after logging in.  I use this method on all of my remote hosts that are used by other people, besides myself.  That way they don't notice any difference when they login unless they run <code>ees</code>.</p>
 
 <h3>
-<a name="example-bashrc" class="anchor" href="#example-bashrc"><span class="octicon octicon-link"></span></a>Example .bashrc</h3>
+<a id="example-bashrc" class="anchor" href="#example-bashrc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example .bashrc</h3>
 
 <pre><code># Choose your plugins
 plugins="completion history"
@@ -132,7 +131,7 @@ dot_env_verbose=1
 </code></pre>
 
 <h2>
-<a name="customize-your-local-environment" class="anchor" href="#customize-your-local-environment"><span class="octicon octicon-link"></span></a>Customize your local environment</h2>
+<a id="customize-your-local-environment" class="anchor" href="#customize-your-local-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customize your local environment</h2>
 
 <pre><code>configthis.env
 </code></pre>
@@ -146,12 +145,14 @@ dot_env_verbose=1
 <li>env.sh</li>
 <li>functions.sh</li>
 <li>prompt.sh</li>
-</ul><p>... and anything else you wish to customize your own local environment.</p>
+</ul>
+
+<p>... and anything else you wish to customize your own local environment.</p>
 
 <p>You can put any <code>*.sh</code> files in your host directory that you want, and they will only get sourced when you start a Bash shell on the machine matching the specified hostname directory.</p>
 
 <h3>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example:</h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example:</h3>
 
 <p>Let's say your hostname is <code>Harry-Potters-Macbook.local</code>, and you want to add <code>/usr/local/bogus</code> to your path.  Here's how you do it:</p>
 
@@ -173,7 +174,7 @@ dot_env_verbose=1
 <p>Now you can source those changes <code>. $HOME/.env/dot-env.sh</code> and your path will include the new entry.  Next time you start a shell it will maintain your path and you'll never have duplicates.</p>
 
 <h2>
-<a name="themes" class="anchor" href="#themes"><span class="octicon octicon-link"></span></a>Themes</h2>
+<a id="themes" class="anchor" href="#themes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Themes</h2>
 
 <p>.env themes are located in <code>$dot_env_path/themes/</code>.  To use a theme set <code>theme='THEME_NAME'</code>. e.g.,</p>
 
@@ -185,10 +186,10 @@ dot_env_verbose=1
 <p>Please send me a pull request if you create your own themes.</p>
 
 <h2>
-<a name="other-useful-functions" class="anchor" href="#other-useful-functions"><span class="octicon octicon-link"></span></a>Other Useful Functions</h2>
+<a id="other-useful-functions" class="anchor" href="#other-useful-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Useful Functions</h2>
 
 <h3>
-<a name="add-your-ssh-key-to-a-remote-host" class="anchor" href="#add-your-ssh-key-to-a-remote-host"><span class="octicon octicon-link"></span></a>Add your SSH key to a remote host</h3>
+<a id="add-your-ssh-key-to-a-remote-host" class="anchor" href="#add-your-ssh-key-to-a-remote-host" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add your SSH key to a remote host</h3>
 
 <pre><code>add_ssh_key_to_host [user@]HOSTNAME
 </code></pre>
@@ -196,7 +197,7 @@ dot_env_verbose=1
 <p>... which will append your public <code>~/.ssh/id_dsa.pub</code> key to the host's authorized_keys file and allow you to login without a password.</p>
 
 <h3>
-<a name="propagate-your-copy-of-env-to-other-hosts" class="anchor" href="#propagate-your-copy-of-env-to-other-hosts"><span class="octicon octicon-link"></span></a>Propagate your copy of .env to other hosts</h3>
+<a id="propagate-your-copy-of-env-to-other-hosts" class="anchor" href="#propagate-your-copy-of-env-to-other-hosts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Propagate your copy of .env to other hosts</h3>
 
 <p>If you want to copy your .env to another host, simply type:</p>
 
@@ -213,10 +214,12 @@ dot_env_verbose=1
 <li>Edit the newly created environment files</li>
 <li>Then <code>propagate_env_to_host HOSTNAME</code>
 </li>
-</ul><p>To determine the correct <code>HOSTNAME</code> to use for your remote environment make sure you first login to that environment and type <code>echo $HOSTNAME</code>.</p>
+</ul>
+
+<p>To determine the correct <code>HOSTNAME</code> to use for your remote environment make sure you first login to that environment and type <code>echo $HOSTNAME</code>.</p>
 
 <h2>
-<a name="make-it-better" class="anchor" href="#make-it-better"><span class="octicon octicon-link"></span></a>Make it better</h2>
+<a id="make-it-better" class="anchor" href="#make-it-better" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Make it better</h2>
 
 <p>Please feel free to fork it, branch it, change it and send me a pull request.</p>
 
@@ -226,15 +229,6 @@ dot_env_verbose=1
       </section>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Dot-Env (for Bash) maintained by <a href="https://github.com/midwire">midwire</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
     
-
   </body>
 </html>
