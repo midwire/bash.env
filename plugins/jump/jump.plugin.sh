@@ -3,26 +3,38 @@
 export MARKPATH=$HOME/.marks
 
 function jump {
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+  cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
 
 function mark {
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+  mkdir -p "$MARKPATH"; ln -is "$(pwd)" "$MARKPATH/$1"
 }
 
 function unmark {
-    rm -i "$MARKPATH/$1"
+  rm -i "$MARKPATH/$1"
 }
 
-# function marks {
-#     ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-# }
-
-# OSX VERSION
-function marks {
+OS=`uname`
+if [[ "$OS" == "Darwin" ]]; then
+  # OSX VERSION
+  function marks {
     \ls -l "$MARKPATH" | tail -n +2 | sed 's/  / /g' | cut -d' ' -f9- | awk -F ' -> ' '{printf "%-10s -> %s\n", $1, $2}'
-}
+  }
+else
+  function marks {
+      ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+  }
+fi
 
+function cleanmarks {
+  marks=`\ls -1 "$MARKPATH"`
+  for m in $marks; do
+    if [ ! -e "$MARKPATH/$m" ]; then
+      echo "$MARKPATH/$m does not exist, removing..."
+      rm "$MARKPATH/$m"
+    fi
+  done
+}
 
 # Autocompletion
 _completemarks() {
