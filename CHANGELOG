@@ -1,3 +1,9 @@
+*1.0.1* (March 22, 2016)
+
+* Add Atom editor to the list of editors to automatcially search for when one is not specified.
+* Add `cleanmarks` function to the `jump` plugin to remove jump links that point to missing subdirectories. Switch `marks` function definition based on the current OS (Darwin vs others).
+* Clarify how to propagate a local Bash.env to a remote system.
+
 *1.0.0* (March 21, 2016)
 
 * Rename the project from .env to bash.env.
