@@ -253,9 +253,14 @@ theme='transwarp'
 <h3>
 <a id="propagate-your-copy-of-bashenv-to-other-hosts" class="anchor" href="#propagate-your-copy-of-bashenv-to-other-hosts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Propagate your copy of Bash.env to other hosts</h3>
 
-<p>If you want to copy your .env to another host, simply type:</p>
+<p>If you want to copy your local Bash.env to another host, simply type:</p>
 
 <pre><code>bash.env add_bash_env_to [user@]HOSTNAME
+</code></pre>
+
+<p>or</p>
+
+<pre><code>propagate_env_to_host [user@]HOSTNAME
 </code></pre>
 
 <p>... which will compress your local <strong>Bash.env</strong>, copy it to the specified host and decompress it. Then follow the instructions above under "Load on Login", or "Load on Alias"</p>
@@ -266,7 +271,7 @@ theme='transwarp'
 <li>Run <code>bash.env config_host HOSTNAME</code>
 </li>
 <li>Edit the newly created environment files</li>
-<li>Then <code>bash.env add_bash_env_to HOSTNAME</code>
+<li>Then <code>bash.env add_bash_env_to [user@]HOSTNAME</code>
 </li>
 </ul>
 
@@ -283,6 +288,6 @@ theme='transwarp'
       </section>
     </div>
 
-    
+
   </body>
 </html>
