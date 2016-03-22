@@ -168,9 +168,13 @@ Please send me a pull request if you create your own themes.
 
 ### Propagate your copy of Bash.env to other hosts
 
-If you want to copy your .env to another host, simply type:
+If you want to copy your local Bash.env to another host, simply type:
 
     bash.env add_bash_env_to [user@]HOSTNAME
+
+or
+
+    propagate_env_to_host [user@]HOSTNAME
 
 ... which will compress your local **Bash.env**, copy it to the specified host and decompress it. Then follow the instructions above under "Load on Login", or "Load on Alias"
 
