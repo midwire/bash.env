@@ -1,5 +1,5 @@
 # Try to find an editor if one has not be defined.
-editors="subl vim vi mate jedit redcar emacs nano pico jed"
+editors="subl vim vi atom mate jedit redcar emacs nano pico jed"
 for e in $editors; do
   [[ -z "$EDITOR" ]] && [[ -x `which $e` ]] && export EDITOR=`which $e`
   [[ -n "$EDITOR" ]] && break
