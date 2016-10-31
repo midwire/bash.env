@@ -10,6 +10,28 @@ if [[ -z "$EDITOR" ]]; then
   return 1
 fi
 
+function using_sublime() {
+  if [[ "$EDITOR" =~ "subl" ]]; then
+    # true
+    return 0
+  else
+    # false
+    return 1
+  fi
+}
+
+function edit_project() {
+  if [[ using_sublime ]]; then
+    local project_file=$(ls -1 *.sublime-project)
+    if [[ -f "$project_file" ]]; then
+      `$EDITOR --project ./$project_file`
+    else
+      echo "Cannot find a project file for `pwd`. Editing directory instead."
+      `$EDITOR .`
+    fi
+  fi
+}
+
 # Common editor environment vars
 export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
@@ -20,6 +42,9 @@ alias edit="$EDITOR"
 
 # Load the current directory into your editor
 alias e="$EDITOR ."
+
+# Edit a project
+alias epr="edit_project"
 
 # Edit/Source local host aliases.
 alias ea="$EDITOR $dot_env_path/host/$HOSTNAME/alias.sh"
