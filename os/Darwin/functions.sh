@@ -45,7 +45,7 @@ findPid () { sudo /usr/sbin/lsof -t -c "$@" ; }
 
 
 # debug_http: download a web page and show info on what took time
-debug_http () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+debug_http () { /usr/bin/curl $@ -o /dev/null -s -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
 # http_headers: get just the HTTP headers from a web page (and its redirects)
 http_headers () { /usr/bin/curl -I -L $@ ; }
@@ -115,4 +115,3 @@ osacompile_rsrc () { osacompile -x -r scpt:128 -o $1 $1; }
 
 # numerical user id: 'id -u'
 # e.g.: ls -l /private/var/tmp/mds/$(id -u)
-
