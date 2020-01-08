@@ -1,5 +1,7 @@
 # A plaguerized version of the ZSH plugin: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/brew/brew.plugin.zsh
 
+# NOTE: This is for MacOs only
+
 alias brewp='brew pin'
 alias brews='brew list -1'
 alias brewsp='brew list --pinned'
