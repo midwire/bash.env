@@ -45,5 +45,6 @@ _completemarks() {
 }
 
 alias j='jump'
+alias marks_here='marks|grep `pwd`'
 
 complete -F _completemarks jump unmark j
