@@ -2,12 +2,24 @@
 
 export MARKPATH=$HOME/.marks
 
+function marks_here {
+  marks | grep "`pwd`"
+}
+
 function jump {
   cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
 
 function mark {
-  mkdir -p "$MARKPATH"; ln -is "$(pwd)" "$MARKPATH/$1"
+  mkdir -p "$MARKPATH"
+  if [[ -h "$MARKPATH/$1" ]]; then
+    echo "Remove existing mark:"
+    marks_here
+    if ask "?" Y; then
+      rm "$MARKPATH/$1"
+    fi
+  fi
+  ln -ifs "$(pwd)" "$MARKPATH/$1"
 }
 
 function unmark {
@@ -22,7 +34,7 @@ if [[ "$OS" == "Darwin" ]]; then
   }
 else
   function marks {
-      ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+    \ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
   }
 fi
 
@@ -45,6 +57,5 @@ _completemarks() {
 }
 
 alias j='jump'
-alias marks_here='marks|grep `pwd`'
 
 complete -F _completemarks jump unmark j
