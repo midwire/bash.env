@@ -1,0 +1,1 @@
+export BYOBU_CHARMAP=UTF-8
