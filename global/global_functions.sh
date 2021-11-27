@@ -29,7 +29,7 @@ function ask {
 function load_on_login {
   profile_file="$HOME/.bashrc"
   if [[ -f "${profile_file}" ]] &&
-    ! grep '$HOME/.env/bash.env.sh' "$profile_file" >/dev/null 2>&1
+    ! grep '. $HOME/.env/bash.env.sh' "$profile_file" >/dev/null 2>&1
   then
     echo '[[ -r $HOME/.env/bash.env.sh ]] && . $HOME/.env/bash.env.sh' >> "$profile_file"
     echo ".env will now load on login."
@@ -115,7 +115,7 @@ propagate_env_to_host() {
   PWD=`pwd`
   cd $HOME
   echo_info "Compressing local environment..."
-  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.git' --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
+  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
   scp $ENVFILE $host:
   if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
