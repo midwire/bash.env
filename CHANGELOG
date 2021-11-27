@@ -1,3 +1,8 @@
+*1.0.3* (November 27, 2021)
+
+* Include .git directory on propagate_env_to_host 
+* Fix the `load_on_login` function to more accurately check if the .bashrc file is configured to load bash.env on login.
+
 *1.0.1* (March 22, 2016)
 
 * Add Atom editor to the list of editors to automatcially search for when one is not specified.
