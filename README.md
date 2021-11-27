@@ -41,7 +41,7 @@ Not all development environments are the same. **Bash.env** lets you customize y
 
 After installing **Bash.env**, whenever you start a new command prompt **Bash.env** gets loaded like this:
 
-![Overview](https://raw.github.com/midwire/.env/develop/overview.png)
+![Overview](https://raw.githubusercontent.com/midwire/bash.env/master/overview.png)
 
 Lastly, your chosen theme gets loaded and you are ready for an awesome Bash session!
 
