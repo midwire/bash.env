@@ -164,7 +164,7 @@ Please send me a pull request if you create your own themes.
 
     bash.env add_ssh_key_to [user@]HOSTNAME
 
-... which will append your public `~/.ssh/id_dsa.pub` key to the host's authorized_keys file and allow you to login without a password.
+... which will append your public `~/.ssh/id_rsa.pub` key to the host's authorized_keys file and allow you to login without a password.
 
 ### Propagate your copy of Bash.env to other hosts
 
