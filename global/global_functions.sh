@@ -87,19 +87,31 @@ upgrade.bash.env() {
 
 # Add your public SSH key to a remote host
 add_ssh_key_to_host() {
+  local keypath
   if [[ $# -lt 1 ]]; then
     echo_warn "Usage: add_ssh_key_to_host [user@]HOSTNAME"
     return
   fi
-  if [[ -r "$HOME/.ssh/id_rsa.pub" ]]; then
-    keytype='rsa'
+  if [[ $# -eq 2 ]] && [[ ! -r "${2}" ]]; then
+      echo "Key cannot be read: ${2}"
+      exit 1
+  elif [[ -r "${2}" ]]; then
+    keypath="${2}"
+  elif [[ -r "$HOME/.ssh/id_rsa.pub" ]]; then
+    keypath="$HOME/.ssh/id_rsa.pub"
   elif [[ -r "$HOME/.ssh/id_dsa.pub" ]]; then
-    keytype='dsa'
+    keypath="$HOME/.ssh/id_dsa.pub"
   else
     echo "You need to generate a key first: 'ssh-keygen -b 4048 -t rsa'"
     exit 1
   fi
-  cat "$HOME/.ssh/id_${keytype}.pub" | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
+  if ! command ssh-keygen -l -f "${keypath}" 1> /dev/null
+  then
+      # use error message from command
+      exit 1
+  fi
+
+  cat "${keypath}" | ssh $1 "mkdir -p ~/.ssh; cat >> .ssh/authorized_keys"
 }
 
 # Propagate your bash.env configurations to a remote host
