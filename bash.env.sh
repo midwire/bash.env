@@ -2,7 +2,9 @@
 [[ -z "$PS1" ]] && return
 
 export dot_env_path="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export dot_env_custom="${dot_env_path}/custom"
+
+# Allow custom directory to exist outside of project root.
+export dot_env_custom="${dot_env_custom:=${dot_env_path}/custom}"
 
 # Display .env version
 if [[ "$SHLVL" == "1" ]]; then
