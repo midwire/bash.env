@@ -127,7 +127,7 @@ propagate_env_to_host() {
   PWD=`pwd`
   cd $HOME
   echo_info "Compressing local environment..."
-  COPYFILE_DISABLE=1 tar cfvz $ENVFILE --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
+  COPYFILE_DISABLE=1 tar chfvz $ENVFILE --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
   scp $ENVFILE $host:
   if [[ $? != 0 ]]; then echo "Copy failed!"; return; fi
