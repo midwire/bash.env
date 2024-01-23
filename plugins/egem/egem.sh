@@ -13,4 +13,4 @@ usage() {
 GEM="$1"
 
 [ -z "$GEM" ] && usage
-$EDITOR "$(gem environment gemdir)/gems/$GEM"
+bundle open "$GEM"
