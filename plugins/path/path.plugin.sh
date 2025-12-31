@@ -7,12 +7,11 @@ paths="
 /usr/X11/bin
 $dot_env_path/bin"
 
-alias egrep=`which egrep`
-unalias egrep 2>&1 > /dev/null
-EGREP=`which egrep`
-alias sed=`which sed`
-unalias sed 2>&1 > /dev/null
-SED=`which sed`
+# Use command -v for POSIX compliance
+unalias egrep 2>/dev/null
+unalias sed 2>/dev/null
+EGREP=$(command -v egrep)
+SED=$(command -v sed)
 
 # pathmunge function
 # Adds, or modifies, a path in your Bash session
@@ -28,27 +27,27 @@ SED=`which sed`
 #  pathmunge ./maynotexist before force
 function pathmunge () {
   # If it exists then remove it so we can shuffle it to the end or beginning of the PATH
-  if echo $PATH | $EGREP "(^|:)$1($|:)" > /dev/null ; then
+  if echo "$PATH" | $EGREP "(^|:)$1($|:)" > /dev/null ; then
     safe_param=$(printf "%s\n" "$1" | $SED 's/[][\.*^$(){}?+|/]/\\&/g')
-    PATH=`echo $PATH | $SED -e "s/:$safe_param:/:/"`
-    PATH=`echo $PATH | $SED -e "s/^$safe_param://"`
-    PATH=`echo $PATH | $SED -e "s/:$safe_param$//"`
+    PATH=$(echo "$PATH" | $SED -e "s/:$safe_param:/:/")
+    PATH=$(echo "$PATH" | $SED -e "s/^$safe_param://")
+    PATH=$(echo "$PATH" | $SED -e "s/:$safe_param$//")
   fi
 
-  # add the path in the apropriate location,
+  # add the path in the appropriate location,
   # but only if the path exists on disk, unless we are forcing it ($3)
   local addit=0
   if [[ -d "$1" ]]; then
     addit=1
   else
     # $1 does not exist, so check if we are forcing it
-    if [[ ! -z "$3" ]]; then
+    if [[ -n "$3" ]]; then
       addit=1
     fi
   fi
 
   if [[ $addit -eq 1 ]]; then
-    if [ "$2" = "before" ] ; then
+    if [[ "$2" = "before" ]]; then
       PATH="$1:$PATH"
     else
       PATH="$PATH:$1"
@@ -56,7 +55,7 @@ function pathmunge () {
   fi
 
   # Remove : at the beginning and duplicate :: colons
-  export PATH=`echo $PATH | $SED -e 's/^://' -e 's/::/:/g'`
+  export PATH=$(echo "$PATH" | $SED -e 's/^://' -e 's/::/:/g')
 }
 
 # Solaris doesn't like 'sed -E'

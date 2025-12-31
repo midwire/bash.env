@@ -14,10 +14,12 @@ done
 unset i
 
 # Turn on brew completion if it exists
-if [[ -x `which brew` ]]; then
-  if [[ -f `brew --prefix`/etc/bash_completion ]]; then
-    . `brew --prefix`/etc/bash_completion
+if command -v brew &>/dev/null; then
+  brew_prefix="$(brew --prefix)"
+  if [[ -f "$brew_prefix/etc/bash_completion" ]]; then
+    . "$brew_prefix/etc/bash_completion"
   fi
+  unset brew_prefix
 fi
 
 # RVM completions

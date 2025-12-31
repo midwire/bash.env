@@ -9,12 +9,12 @@ export dot_env_custom="${dot_env_custom:=${dot_env_path}/custom}"
 # Display .env version
 if [[ "$SHLVL" == "1" ]]; then
   source "$dot_env_path/global/global_colors.sh"
-  DOT_ENV_VERSION=`cat $dot_env_path/VERSION`
+  DOT_ENV_VERSION=$(cat "$dot_env_path/VERSION")
   echo_info ".env v$DOT_ENV_VERSION - https://github.com/midwire/bash.env"
 fi
 
 # Determine OS
-OS=`uname`
+OS=$(uname)
 if [[ "$OS" != "Darwin" && "$OS" != "Linux" && "$OS" != "SunOS" ]]; then
   echo_error "Sorry, bash.env does not support your platform: '$OS'"
   return 1

@@ -124,8 +124,9 @@ propagate_env_to_host() {
   host=$1
   shift 1
   ENVFILE=$HOME/env.tar.gz
-  PWD=`pwd`
-  cd $HOME
+  local saved_pwd
+  saved_pwd=$(pwd)
+  cd "$HOME" || return
   echo_info "Compressing local environment..."
   COPYFILE_DISABLE=1 tar chfvz $ENVFILE --exclude='.DS_Store' --exclude='.env/plugins/elocate/elocatedb' .env/ &> /dev/null
   echo_info "Copying environment to $host..."
@@ -137,7 +138,7 @@ propagate_env_to_host() {
   echo_warn 'if [[ -n "$PS1" ]]; then'
   echo_warn '  [[ -r $HOME/.env/bash.env.sh ]] && . $HOME/.env/bash.env.sh'
   echo_warn 'fi'
-  cd $PWD
+  cd "$saved_pwd" || return
 }
 
 # Configure environment settings for your local machine.

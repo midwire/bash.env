@@ -1,7 +1,9 @@
-# Try to find an editor if one has not be defined.
+# Try to find an editor if one has not been defined.
 editors="subl vim vi atom mate jedit redcar emacs nano pico jed"
 for e in $editors; do
-  [[ -z "$EDITOR" ]] && [[ -x `which $e` ]] && export EDITOR=`which $e`
+  if [[ -z "$EDITOR" ]] && command -v "$e" &>/dev/null; then
+    export EDITOR=$(command -v "$e")
+  fi
   [[ -n "$EDITOR" ]] && break
 done
 
@@ -21,13 +23,14 @@ function using_sublime() {
 }
 
 function edit_project() {
-  if [[ using_sublime ]]; then
-    local project_file=$(ls -1 *.sublime-project)
+  if using_sublime; then
+    local project_file
+    project_file=$(ls -1 *.sublime-project 2>/dev/null | head -1)
     if [[ -f "$project_file" ]]; then
-      `$EDITOR --project ./$project_file`
+      $EDITOR --project "./$project_file"
     else
-      echo "Cannot find a project file for `pwd`. Editing directory instead."
-      `$EDITOR .`
+      echo "Cannot find a project file for $(pwd). Editing directory instead."
+      $EDITOR .
     fi
   fi
 }

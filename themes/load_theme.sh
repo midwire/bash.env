@@ -80,7 +80,7 @@ ps1_git_status() {
 }
 
 ps1_system_ruby() {
-  local ruby_id=∫`echo $(ruby -v)|awk '{print $2}'`
+  local ruby_id="∫$(ruby -v | awk '{print $2}')"
   printf "%s" "${ruby_id}"
 }
 
@@ -100,8 +100,8 @@ ps1_ruby() {
     fi
   elif [[ "$use_rbenv" == "0" ]]; then
     ruby_id="▸$(rbenv version-name)"
-  elif [[ -n `which ruby` ]]; then
-    ruby_id=∫`echo $(ruby -v)|awk '{print $2}'`
+  elif command -v ruby &>/dev/null; then
+    ruby_id="∫$(ruby -v | awk '{print $2}')"
   fi
   printf "%s" "${ruby_id}"
 }
