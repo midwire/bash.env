@@ -1,3 +1,83 @@
+*1.1.1* (December 31, 2025)
+
+*   os/Darwin/alias.sh - Complete rewrite:
+
+  | Removed (Deprecated)               | Reason                               |
+  |------------------------------------|--------------------------------------|
+  | repairpermissions                  | Removed in macOS 10.11 El Capitan    |
+  | lookupd -d                         | Replaced by dscacheutil in 10.5      |
+  | disableDashboard/enableDashboard   | Dashboard removed in Catalina        |
+  | startFileSharing (AppleFileServer) | AFP deprecated, SMB is default       |
+  | herr (Apache logs)                 | Apache not enabled by default        |
+  | vsdbutil                           | Deprecated disk utility              |
+  | airportMtu (hardcoded en1)         | Interface names vary                 |
+  | cleanup_favicons                   | Safari path changed                  |
+  | Hardcoded en1 references           | Modern Macs use different interfaces |
+
+  | Added/Modernized                  | Description                                                      |
+  |-----------------------------------|------------------------------------------------------------------|
+  | pstree                            | Auto-detects Intel (/usr/local) or Apple Silicon (/opt/homebrew) |
+  | diskwho                           | Falls back to fs_usage if iotop not installed                    |
+  | airport                           | Checks multiple framework paths                                  |
+  | ip_info                           | Auto-detects primary network interface                           |
+  | localip/publicip                  | Show IP addresses                                                |
+  | flushdns                          | Modern DNS cache flush command                                   |
+  | pkt_trace                         | Uses $(...) syntax, auto-detects interface                       |
+  | consoleapp                        | Uses open -a instead of hardcoded path                           |
+  | syspreferences                    | Supports both "System Preferences" and "System Settings"         |
+  | software_update/software_check    | Simplified software update                                       |
+  | finderShowHidden/finderHideHidden | Uses -bool true/false + auto-restart                             |
+  | dsstore_network_off/on            | Control .DS_Store on network volumes                             |
+  | pbp/pbc                           | Clipboard shortcuts                                              |
+  | displaysleep/nosleep/battery      | Power management                                                 |
+
+  plugins/homebrew/homebrew.plugin.sh:
+  - Removed obsolete HOMEBREW_CASK_OPTS
+  - Added Apple Silicon and Intel path detection
+  - Added brewup, brewinfo, brewsearch, brewdeps aliases
+
+  plugins/brew/brew.plugin.sh:
+  - Removed deprecated brew cask commands
+  - Added modern cask aliases (brewc, brewco, brewcu)
+  - Added cleanup aliases
+
+  plugins/pyenv/pyenv.plugin.sh:
+  - Fixed GitHub URL (yyuu/pyenv → pyenv/pyenv)
+  - Added Homebrew installation detection
+  - Added pyenv-virtualenv support
+
+  plugins/golang/_golang.sh:
+  - Uses $HOME/go as default GOPATH (Go modules standard)
+  - Auto-detects Homebrew paths for Intel and Apple Silicon
+  - Falls back to standard /usr/local/go installation
+* 
+*   Version Manager Plugins Updated
+
+  | Plugin | Lazy-loaded Commands                                        | Disable Variable |
+  |--------|-------------------------------------------------------------|------------------|
+  | nvm    | nvm, node, npm, npx, yarn, pnpm, corepack                   | NVM_LAZY=0       |
+  | rbenv  | rbenv, ruby, gem, bundle, bundler, irb, rake, rails, rspec  | RBENV_LAZY=0     |
+  | pyenv  | pyenv, python, python3, pip, pip3, python2, pip2, pydoc     | PYENV_LAZY=0     |
+  | chruby | chruby, ruby, gem, bundle, bundler, irb, rake, rails, rspec | CHRUBY_LAZY=0    |
+
+  How It Works
+
+  - On shell startup, lightweight wrapper functions are created for each command
+  - When you first run any of these commands, the wrapper:
+    a. Removes all wrapper functions
+    b. Loads the real version manager
+    c. Executes your command
+  - Subsequent calls go directly to the real commands
+
+  Other Plugin Fixes
+
+  | Plugin     | Changes                                                      |
+  |------------|--------------------------------------------------------------|
+  | autojump   | Fixed backticks, added Linux path support, fixed jp alias    |
+  | nodejs     | Added dynamic npm prefix detection, added npmg/npmup aliases |
+  | nvm README | Updated documentation with lazy loading instructions         |
+  | CLAUDE.md  | Added lazy loading docs and code style guide                 |
+
 *1.0.3* (November 27, 2021)
 
 * Include .git directory on propagate_env_to_host 

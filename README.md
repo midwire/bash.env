@@ -1,6 +1,6 @@
 # Bash.env
 
-**Version: 1.0.3**
+**Version: 1.1.1**
 
 **Bash.env** is a cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.
 
@@ -22,6 +22,8 @@ Not all development environments are the same. **Bash.env** lets you customize y
 	- [Customize your local environment](#customize-your-local-environment)
 		- [Example:](#example)
 	- [Themes](#themes)
+	- [Plugins](#plugins)
+		- [Lazy Loading](#lazy-loading)
 	- [Other Useful Functions](#other-useful-functions)
 		- [Add your SSH key to a remote host](#add-your-ssh-key-to-a-remote-host)
 		- [Propagate your copy of Bash.env to other hosts](#propagate-your-copy-of-bashenv-to-other-hosts)
@@ -94,7 +96,7 @@ To have **Bash.env** load with an alias, execute:
 ### Example .bashrc
 
     # Choose your plugins
-    plugins="completion history"
+    plugins="completion history git nvm rbenv"
 
     # Choose a Bash.env theme
     theme=transwarp
@@ -105,6 +107,12 @@ To have **Bash.env** load with an alias, execute:
 
     # Set this to zero to avoid the verbosity on starting a new shell instance
     dot_env_verbose=1
+
+    # Optional: Disable lazy loading for version managers (they load immediately)
+    # NVM_LAZY=0
+    # RBENV_LAZY=0
+    # PYENV_LAZY=0
+    # CHRUBY_LAZY=0
 
     # Source the Bash.env environment
     [[ -r "$HOME/.env/bash.env.sh" ]] && . "$HOME/.env/bash.env.sh"
@@ -157,6 +165,64 @@ Now you can source those changes `. $HOME/.env/bash.env.sh`.  Next time you star
 A variant of the `transwarp` theme is default and will be loaded if no theme is specified.
 
 Please send me a pull request if you create your own themes.
+
+## Plugins
+
+**Bash.env** comes with many plugins to enhance your shell experience. Enable plugins by adding them to the `plugins` variable in your `.bashrc` before sourcing **Bash.env**:
+
+    plugins="completion history git nvm rbenv pyenv fzf"
+
+Available plugins include:
+
+| Plugin | Description |
+|--------|-------------|
+| `completion` | Bash completion support |
+| `history` | Enhanced history settings |
+| `git` | Git aliases and completions |
+| `nvm` | Node Version Manager |
+| `rbenv` | Ruby version manager |
+| `pyenv` | Python version manager |
+| `chruby` | Lightweight Ruby version manager |
+| `fzf` | Fuzzy finder integration |
+| `docker` | Docker aliases |
+| `homebrew` | Homebrew setup (macOS) |
+| `ssh` | SSH agent management |
+
+See the `plugins/` directory for all available plugins.
+
+### Lazy Loading
+
+Version manager plugins (`nvm`, `rbenv`, `pyenv`, `chruby`) use **lazy loading** by default to speed up shell startup time. Instead of initializing immediately, they wait until you first use a related command.
+
+For example, with the `nvm` plugin, the actual nvm initialization is deferred until you run `nvm`, `node`, `npm`, `npx`, `yarn`, or similar commands.
+
+**Lazy-loaded commands by plugin:**
+
+| Plugin | Commands |
+|--------|----------|
+| `nvm` | `nvm`, `node`, `npm`, `npx`, `yarn`, `pnpm`, `corepack` |
+| `rbenv` | `rbenv`, `ruby`, `gem`, `bundle`, `irb`, `rake`, `rails`, `rspec` |
+| `pyenv` | `pyenv`, `python`, `python3`, `pip`, `pip3`, `pydoc` |
+| `chruby` | `chruby`, `ruby`, `gem`, `bundle`, `irb`, `rake`, `rails`, `rspec` |
+
+**Disabling lazy loading:**
+
+If you need the version manager to initialize immediately (e.g., for scripts that check versions at startup), disable lazy loading by setting the appropriate variable before sourcing **Bash.env**:
+
+    # Disable lazy loading for nvm
+    NVM_LAZY=0
+
+    # Disable lazy loading for rbenv
+    RBENV_LAZY=0
+
+    # Disable lazy loading for pyenv
+    PYENV_LAZY=0
+
+    # Disable lazy loading for chruby
+    CHRUBY_LAZY=0
+
+    plugins="nvm rbenv"
+    [[ -r "$HOME/.env/bash.env.sh" ]] && . "$HOME/.env/bash.env.sh"
 
 ## Other Useful Functions
 
