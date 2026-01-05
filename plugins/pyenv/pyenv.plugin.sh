@@ -21,41 +21,85 @@ if [[ -z "$PYENV_ROOT" ]] || ! command -v pyenv &>/dev/null; then
   return 0
 fi
 
+# Store the path to pyenv binary for use in lazy loading
+_PYENV_BIN="$(command -v pyenv)"
+
 # Lazy loading (default) or immediate loading
 if [[ "${PYENV_LAZY:-1}" == "1" ]]; then
-  # Commands that should trigger pyenv loading
-  _pyenv_lazy_cmds=(pyenv python python3 pip pip3 python2 pip2 pydoc)
 
   _pyenv_load() {
-    # Remove lazy loading functions
-    for cmd in "${_pyenv_lazy_cmds[@]}"; do
-      unset -f "$cmd" 2>/dev/null
-    done
-    unset -f _pyenv_load
-    unset _pyenv_lazy_cmds
-
-    # Initialize pyenv
-    eval "$(pyenv init -)"
+    # Initialize pyenv using the binary path (not function)
+    eval "$("$_PYENV_BIN" init -)"
 
     # Load pyenv-virtualenv if installed
     if command -v pyenv-virtualenv-init &>/dev/null; then
-      eval "$(pyenv virtualenv-init -)"
+      eval "$("$_PYENV_BIN" virtualenv-init -)"
     fi
+    unset _PYENV_BIN
   }
 
-  # Create lazy loading wrapper for each command
-  for cmd in "${_pyenv_lazy_cmds[@]}"; do
-    eval "
-      $cmd() {
-        _pyenv_load
-        $cmd \"\$@\"
-      }
-    "
-  done
+  # Wrapper functions - each unsets itself FIRST to prevent recursion
+  pyenv() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    pyenv "$@"
+  }
+
+  python() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    python "$@"
+  }
+
+  python3() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    python3 "$@"
+  }
+
+  pip() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    pip "$@"
+  }
+
+  pip3() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    pip3 "$@"
+  }
+
+  python2() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    python2 "$@"
+  }
+
+  pip2() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    pip2 "$@"
+  }
+
+  pydoc() {
+    unset -f pyenv python python3 pip pip3 python2 pip2 pydoc 2>/dev/null
+    _pyenv_load
+    unset -f _pyenv_load
+    pydoc "$@"
+  }
+
 else
   # Immediate loading
-  eval "$(pyenv init -)"
+  eval "$("$_PYENV_BIN" init -)"
   if command -v pyenv-virtualenv-init &>/dev/null; then
-    eval "$(pyenv virtualenv-init -)"
+    eval "$("$_PYENV_BIN" virtualenv-init -)"
   fi
+  unset _PYENV_BIN
 fi

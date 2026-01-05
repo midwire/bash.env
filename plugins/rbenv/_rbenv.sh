@@ -4,17 +4,20 @@
 # Add rbenv to path
 pathmunge ~/.rbenv/bin before
 
-# Check if rbenv is available
+# Check if rbenv binary is available (not function)
 if ! command -v rbenv &>/dev/null; then
   return 0
 fi
+
+# Store the path to rbenv binary for use in lazy loading
+_RBENV_BIN="$(command -v rbenv)"
 
 # This function is useful if you have installed ruby-build as a rbenv plugin using Git
 rbenv-update-versions() {
   # Update the ruby-build plugin repo
   local gitdir worktree
-  gitdir="$(rbenv root)/plugins/ruby-build/.git"
-  worktree="$(rbenv root)/plugins/ruby-build"
+  gitdir="$("$_RBENV_BIN" root)/plugins/ruby-build/.git"
+  worktree="$("$_RBENV_BIN" root)/plugins/ruby-build"
   if [[ -d "$gitdir" ]]; then
     git --git-dir="$gitdir" --work-tree="$worktree" pull
   else
@@ -24,32 +27,80 @@ rbenv-update-versions() {
 
 # Lazy loading (default) or immediate loading
 if [[ "${RBENV_LAZY:-1}" == "1" ]]; then
-  # Commands that should trigger rbenv loading
-  _rbenv_lazy_cmds=(rbenv ruby gem bundle bundler irb rake rails rspec)
 
   _rbenv_load() {
-    # Remove lazy loading functions
-    for cmd in "${_rbenv_lazy_cmds[@]}"; do
-      unset -f "$cmd" 2>/dev/null
-    done
-    unset -f _rbenv_load
-    unset _rbenv_lazy_cmds
-
-    # Initialize rbenv and add shims to path
-    eval "$(rbenv init -)"
+    # Initialize rbenv using the binary path (not function)
+    eval "$("$_RBENV_BIN" init -)"
+    unset _RBENV_BIN
   }
 
-  # Create lazy loading wrapper for each command
-  for cmd in "${_rbenv_lazy_cmds[@]}"; do
-    eval "
-      $cmd() {
-        _rbenv_load
-        $cmd \"\$@\"
-      }
-    "
-  done
+  # Wrapper functions - each unsets itself FIRST to prevent recursion
+  rbenv() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    rbenv "$@"
+  }
+
+  ruby() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    ruby "$@"
+  }
+
+  gem() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    gem "$@"
+  }
+
+  bundle() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    bundle "$@"
+  }
+
+  bundler() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    bundler "$@"
+  }
+
+  irb() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    irb "$@"
+  }
+
+  rake() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    rake "$@"
+  }
+
+  rails() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    rails "$@"
+  }
+
+  rspec() {
+    unset -f rbenv ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _rbenv_load
+    unset -f _rbenv_load
+    rspec "$@"
+  }
+
 else
   # Immediate loading
   pathmunge ~/.rbenv/shims before
-  eval "$(rbenv init -)"
+  eval "$("$_RBENV_BIN" init -)"
+  unset _RBENV_BIN
 fi

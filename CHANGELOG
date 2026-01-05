@@ -1,3 +1,10 @@
+*1.1.2* (January 05, 2026)
+
+*   1. Store paths before function definitions - Binary/script paths are stored in variables (_PYENV_BIN, _NVM_SCRIPT, etc.) before any wrapper functions are defined
+  2. Explicit function definitions - Replaced eval loops with explicit function definitions for each command
+  3. Unset ALL wrappers first - Each wrapper function unsets ALL related wrapper functions as its first action, before calling the load function
+  4. Use stored paths - The load function uses stored paths instead of command lookups to avoid function resolution issues
+
 *1.1.1* (December 31, 2025)
 
 *   os/Darwin/alias.sh - Complete rewrite:
@@ -50,7 +57,7 @@
   - Uses $HOME/go as default GOPATH (Go modules standard)
   - Auto-detects Homebrew paths for Intel and Apple Silicon
   - Falls back to standard /usr/local/go installation
-* 
+*
 *   Version Manager Plugins Updated
 
   | Plugin | Lazy-loaded Commands                                        | Disable Variable |
@@ -80,7 +87,7 @@
 
 *1.0.3* (November 27, 2021)
 
-* Include .git directory on propagate_env_to_host 
+* Include .git directory on propagate_env_to_host
 * Fix the `load_on_login` function to more accurately check if the .bashrc file is configured to load bash.env on login.
 
 *1.0.1* (March 22, 2016)

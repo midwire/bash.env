@@ -34,33 +34,79 @@ fi
 
 # Lazy loading (default) or immediate loading
 if [[ "${CHRUBY_LAZY:-1}" == "1" ]]; then
-  # Commands that should trigger chruby loading
-  _chruby_lazy_cmds=(chruby ruby gem bundle bundler irb rake rails rspec)
 
   _chruby_load() {
-    # Remove lazy loading functions
-    for cmd in "${_chruby_lazy_cmds[@]}"; do
-      unset -f "$cmd" 2>/dev/null
-    done
-    unset -f _chruby_load
-    unset _chruby_lazy_cmds
-
-    # Source chruby scripts
+    # Source chruby scripts using stored paths
     for script in "${_chruby_scripts[@]}"; do
       [[ -r "$script" ]] && . "$script"
     done
     unset _chruby_scripts
   }
 
-  # Create lazy loading wrapper for each command
-  for cmd in "${_chruby_lazy_cmds[@]}"; do
-    eval "
-      $cmd() {
-        _chruby_load
-        $cmd \"\$@\"
-      }
-    "
-  done
+  # Wrapper functions - each unsets itself FIRST to prevent recursion
+  chruby() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    chruby "$@"
+  }
+
+  ruby() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    ruby "$@"
+  }
+
+  gem() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    gem "$@"
+  }
+
+  bundle() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    bundle "$@"
+  }
+
+  bundler() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    bundler "$@"
+  }
+
+  irb() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    irb "$@"
+  }
+
+  rake() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    rake "$@"
+  }
+
+  rails() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    rails "$@"
+  }
+
+  rspec() {
+    unset -f chruby ruby gem bundle bundler irb rake rails rspec 2>/dev/null
+    _chruby_load
+    unset -f _chruby_load
+    rspec "$@"
+  }
+
 else
   # Immediate loading
   for script in "${_chruby_scripts[@]}"; do

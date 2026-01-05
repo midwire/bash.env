@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash -c 'source ~/.bashrc 2>&1; declare -f node 2>/dev/null | head -10 || echo \"\"node is not a function\"\"')"
+    ]
+  }
+}
