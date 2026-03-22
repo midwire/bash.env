@@ -497,7 +497,7 @@ __git_complete_strategy ()
 __git_list_all_commands ()
 {
   local i IFS=" "$'\n'
-  for i in $(git help -a|egrep '^  [a-zA-Z0-9]')
+  for i in $(git help -a|grep -E '^  [a-zA-Z0-9]')
   do
     case $i in
     *--*)             : helper pattern;;

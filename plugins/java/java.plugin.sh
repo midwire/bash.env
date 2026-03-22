@@ -2,7 +2,7 @@ paths="
 .
 "
 
-EGREP=$(command -v egrep)
+EGREP="grep -E"
 function classpath_munge () {
   # If it exists then remove it so we can shuffle it to the end or beginning of the CLASSPATH
   if echo "$CLASSPATH" | $EGREP "(^|:)$1($|:)" > /dev/null ; then

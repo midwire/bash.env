@@ -8,9 +8,8 @@ paths="
 $dot_env_path/bin"
 
 # Use command -v for POSIX compliance
-unalias egrep 2>/dev/null
 unalias sed 2>/dev/null
-EGREP=$(command -v egrep)
+EGREP="grep -E"
 SED=$(command -v sed)
 
 # pathmunge function
