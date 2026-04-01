@@ -3,3 +3,4 @@ project.tmproj
 .rake_t_cache
 plugins/elocate/elocatedb
 .bundle/config
+docs/superpowers/

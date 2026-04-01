@@ -73,6 +73,9 @@ CHRUBY_LAZY=0   # Disable lazy loading for chruby
 ### Creating Themes
 A theme directory at `themes/<name>/` should contain `theme.sh` which sets PS1. Use colors from `themes/load_theme.sh` (wrapped for prompt display). Themes can use `ps1_git_branch`, `ps1_git_status`, `ps1_ruby` helper functions.
 
+## Git Conventions
+- Never include a `Co-Authored-By` signature or any Claude/AI attribution in commits or PRs
+
 ## Code Style
 - Use `$(command)` instead of backticks
 - Use `command -v` instead of `which`
