@@ -4,6 +4,46 @@
 # Instead use 'global_colors.sh'
 # See 'os' or 'host' prompt.sh files for the actual prompt settings
 
+# Respect NO_COLOR environment variable (https://no-color.org/)
+# When NO_COLOR is set (to any value), suppress all color output
+if printenv NO_COLOR &>/dev/null; then
+  BG_BLACK=""
+  BG_RED=""
+  BG_GREEN=""
+  BG_BROWN=""
+  BG_BLUE=""
+  BG_MAGENTA=""
+  BG_CYAN=""
+  BG_LIGHT_GRAY=""
+
+  BLACK=""
+  DARK_GRAY=""
+  RED=""
+  LIGHT_RED=""
+  GREEN=""
+  LIGHT_GREEN=""
+  BROWN=""
+  YELLOW=""
+  BLUE=""
+  LIGHT_BLUE=""
+  MAGENTA=""
+  LIGHT_MAGENTA=""
+  CYAN=""
+  LIGHT_CYAN=""
+  LIGHT_GRAY=""
+  WHITE=""
+  NO_COLOR=""
+  NOC=""
+
+  fgc() { :; }
+  bgc() { :; }
+  clr() { :; }
+  noc() { :; }
+  alias rst='noc'
+
+  # Skip the color definitions below, jump to helper functions
+else
+
 BG_BLACK="\[\033[0;40m\]"
 BG_RED="\[\033[0;41m\]"
 BG_GREEN="\[\033[0;42m\]"
@@ -38,6 +78,8 @@ bgc() { echo -ne "\[\033[48;5;$1m\]"; }
 clr() { echo -ne "$(fgc $1)$(bgc $2)"; }
 noc() { echo -ne "\[\033[0m\]"; }
 alias rst='noc'
+
+fi # end NO_COLOR check
 
 # The following are from Wayne Sequin's RVM
 # http://beginrescueend.com

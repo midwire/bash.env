@@ -1,3 +1,37 @@
+# Structured logging with configurable levels
+# Set dot_env_log_level to: error, warn, info, debug (default: warn)
+dot_env_log() {
+  local level="$1"
+  shift
+  local msg="$*"
+
+  local level_num=0
+  case "$level" in
+    error) level_num=0 ;;
+    warn)  level_num=1 ;;
+    info)  level_num=2 ;;
+    debug) level_num=3 ;;
+    *)     msg="$level $msg"; level="info"; level_num=2 ;;
+  esac
+
+  local threshold=1
+  case "${dot_env_log_level:-warn}" in
+    error) threshold=0 ;;
+    warn)  threshold=1 ;;
+    info)  threshold=2 ;;
+    debug) threshold=3 ;;
+  esac
+
+  if [[ "$level_num" -le "$threshold" ]]; then
+    case "$level" in
+      error) echo_error "[bash.env:$level] $msg" ;;
+      warn)  echo_warn "[bash.env:$level] $msg" ;;
+      info)  echo_info "[bash.env:$level] $msg" ;;
+      debug) echo_info "[bash.env:$level] $msg" ;;
+    esac
+  fi
+}
+
 function ask {
   while true; do
     if [ "${2:-}" = "Y" ]; then
@@ -179,6 +213,70 @@ confighost.env() {
   echo_info "When you are finished run 'propagate_env_to_host $host'."
   ls -1AtF "$DIR"
 }
+
+# Completion for the bash.env command
+_bash_env_completions() {
+  local cur prev commands
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  commands="help add_bash_env_to add_ssh_key_to check_path_dups colortest config config_host load_bash_env_on_alias load_bash_env_on_login update vars enable disable search preview doctor set_theme profile reload"
+
+  case "$prev" in
+    enable)
+      # Complete with available (disabled) plugins
+      local available=""
+      for dir in "$dot_env_path"/plugins/*/; do
+        local name
+        name=$(basename "$dir")
+        [[ -f "$dir/${name}.plugin.sh" ]] && available="$available $name"
+      done
+      COMPREPLY=($(compgen -W "$available" -- "$cur"))
+      return
+      ;;
+    disable)
+      # Complete with currently enabled plugins
+      local enabled="${plugins:-}"
+      if [[ -r "$HOME/.bash.env.conf" ]]; then
+        enabled=$(grep -E '^plugins=' "$HOME/.bash.env.conf" | tail -1 | sed 's/^plugins=//' | tr -d '"' | tr -d "'")
+      fi
+      COMPREPLY=($(compgen -W "$enabled" -- "$cur"))
+      return
+      ;;
+    preview|set_theme)
+      # Complete with available themes
+      local themes=""
+      for dir in "$dot_env_path"/themes/*/; do
+        local name
+        name=$(basename "$dir")
+        [[ -f "$dir/theme.sh" ]] && themes="$themes $name"
+      done
+      COMPREPLY=($(compgen -W "$themes" -- "$cur"))
+      return
+      ;;
+    profile)
+      COMPREPLY=($(compgen -W "save load list delete" -- "$cur"))
+      return
+      ;;
+    load|delete)
+      # Complete with saved profile names (if previous word was profile subcommand)
+      if [[ "${COMP_WORDS[COMP_CWORD-2]}" == "profile" ]]; then
+        local profiles=""
+        for f in "$dot_env_path"/profiles/*.conf; do
+          [[ -f "$f" ]] && profiles="$profiles $(basename "$f" .conf)"
+        done
+        COMPREPLY=($(compgen -W "$profiles" -- "$cur"))
+        return
+      fi
+      ;;
+  esac
+
+  # Default: complete with top-level commands
+  if [[ "$COMP_CWORD" -eq 1 ]]; then
+    COMPREPLY=($(compgen -W "$commands" -- "$cur"))
+  fi
+}
+complete -F _bash_env_completions bash.env
 
 reset_theme() {
   export theme="$ORIGINAL_THEME"

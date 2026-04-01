@@ -32,6 +32,8 @@ if [[ "${RBENV_LAZY:-1}" == "1" ]]; then
     # Initialize rbenv using the binary path (not function)
     eval "$("$_RBENV_BIN" init -)"
     unset _RBENV_BIN
+    # rbenv init adds shims to PATH; deduplicate via pathmunge
+    pathmunge ~/.rbenv/shims before
   }
 
   # Wrapper functions - each unsets itself FIRST to prevent recursion
@@ -100,7 +102,8 @@ if [[ "${RBENV_LAZY:-1}" == "1" ]]; then
 
 else
   # Immediate loading
-  pathmunge ~/.rbenv/shims before
   eval "$("$_RBENV_BIN" init -)"
   unset _RBENV_BIN
+  # rbenv init adds shims to PATH; deduplicate via pathmunge
+  pathmunge ~/.rbenv/shims before
 fi

@@ -1,6 +1,6 @@
 # Bash.env
 
-**Version: 1.1.2**
+**Version: 1.2.0**
 
 **Bash.env** is a cascading Bash environment system.  It provides Bash shell-prompt themes, handy functions, aliases, and tools for the Bash power user.
 
@@ -24,9 +24,18 @@ Not all development environments are the same. **Bash.env** lets you customize y
 	- [Themes](#themes)
 	- [Plugins](#plugins)
 		- [Lazy Loading](#lazy-loading)
+	- [CLI Commands](#cli-commands)
+		- [Plugin Management](#plugin-management)
+		- [Search and Discovery](#search-and-discovery)
+		- [Theme Preview](#theme-preview)
+		- [Diagnostics](#diagnostics)
+		- [Profiles](#profiles)
+	- [Configuration File](#configuration-file)
 	- [Other Useful Functions](#other-useful-functions)
 		- [Add your SSH key to a remote host](#add-your-ssh-key-to-a-remote-host)
 		- [Propagate your copy of Bash.env to other hosts](#propagate-your-copy-of-bashenv-to-other-hosts)
+	- [Testing](#testing)
+	- [NO_COLOR Support](#no_color-support)
 	- [Make it better](#make-it-better)
 
 <!-- /TOC -->
@@ -38,6 +47,10 @@ Not all development environments are the same. **Bash.env** lets you customize y
 * Themeable - comes with several themes to beautify your shell prompt, and you can write your own.
 * Extensible - comes with many plugins to enhance your environments and enrich your command-line experience whether remote or local, and it is easy to write your own!
 * Cascades 3-levels of shell customization in order [Global, OS, Host]. Configure specifics for all environments at the Global level. Configure all Linux, OSX and Solaris environments at the OS level. Set specific and detailed customizations at the Host level.
+* CLI management - enable/disable plugins, search components, preview themes, and run diagnostics without editing config files.
+* Profile system - save and restore sets of plugin/theme configurations.
+* Dynamic completions - automatically sources completions from installed tools.
+* Structured logging with configurable levels.
 
 ## Overview
 
@@ -95,10 +108,10 @@ To have **Bash.env** load with an alias, execute:
 
 ### Example .bashrc
 
-    # Choose your plugins
+    # Choose your plugins (or manage with: bash.env enable/disable)
     plugins="completion history git nvm rbenv"
 
-    # Choose a Bash.env theme
+    # Choose a Bash.env theme (or manage with: bash.env set_theme)
     theme=transwarp
 
     # Set home host, so that when we login to a remote box our theme can change
@@ -107,6 +120,12 @@ To have **Bash.env** load with an alias, execute:
 
     # Set this to zero to avoid the verbosity on starting a new shell instance
     dot_env_verbose=1
+
+    # Optional: Set log level (error, warn, info, debug). Default: warn
+    # dot_env_log_level=info
+
+    # Optional: Set command duration threshold in seconds. Default: 5
+    # COMMAND_DURATION_THRESHOLD=3
 
     # Optional: Disable lazy loading for version managers (they load immediately)
     # NVM_LAZY=0
@@ -157,38 +176,73 @@ Now you can source those changes `. $HOME/.env/bash.env.sh`.  Next time you star
 
 ## Themes
 
-**Bash.env** themes are located in `$dot_env_path/themes/`.  To use a theme set `theme='THEME_NAME'`. e.g.,
+**Bash.env** themes are located in `$dot_env_path/themes/`.  To set a theme:
 
-    # In $HOME/.bashrc
+    # Option 1: In $HOME/.bashrc
     theme='transwarp'
 
+    # Option 2: Using the CLI
+    bash.env set_theme transwarp
+
 A variant of the `transwarp` theme is default and will be loaded if no theme is specified.
+
+To preview available themes:
+
+    bash.env preview          # Preview all themes
+    bash.env preview kitchen_sink  # Preview a specific theme
+
+To temporarily try a theme in the current session:
+
+    try_theme kitchen_sink    # Switch to a theme
+    reset_theme               # Revert to original
 
 Please send me a pull request if you create your own themes.
 
 ## Plugins
 
-**Bash.env** comes with many plugins to enhance your shell experience. Enable plugins by adding them to the `plugins` variable in your `.bashrc` before sourcing **Bash.env**:
+**Bash.env** comes with many plugins to enhance your shell experience. Enable plugins by adding them to the `plugins` variable in your `.bashrc` before sourcing **Bash.env**, or use the CLI:
 
+    # Option 1: In .bashrc
     plugins="completion history git nvm rbenv pyenv fzf"
+
+    # Option 2: Using the CLI
+    bash.env enable fzf
+    bash.env disable pyenv
 
 Available plugins include:
 
 | Plugin | Description |
 |--------|-------------|
-| `completion` | Bash completion support |
-| `history` | Enhanced history settings |
-| `git` | Git aliases and completions |
-| `nvm` | Node Version Manager |
-| `rbenv` | Ruby version manager |
-| `pyenv` | Python version manager |
-| `chruby` | Lightweight Ruby version manager |
-| `fzf` | Fuzzy finder integration |
+| `autojump` | Directory navigation shortcuts |
+| `awscli` | AWS CLI integration |
+| `chruby` | Lightweight Ruby version manager (lazy-loadable) |
+| `colored_man_pages` | Colorized man page output |
+| `command_duration` | Display execution time for long-running commands |
+| `completion` | Bash completion support with dynamic tool detection |
+| `direnv` | Automatic .envrc loading with direnv |
 | `docker` | Docker aliases |
+| `editor` | Editor configuration |
+| `extract` | Universal archive extraction |
+| `fzf` | Fuzzy finder integration |
+| `git` | Git aliases and completions |
+| `golang` | Go language support |
+| `history` | Enhanced history settings |
 | `homebrew` | Homebrew setup (macOS) |
+| `java` | Java development environment |
+| `lunarvim` | LunarVim editor integration |
+| `nodejs` | Node.js development tools |
+| `nvm` | Node Version Manager (lazy-loadable) |
+| `pyenv` | Python version manager (lazy-loadable) |
+| `python` | Python development tools |
+| `rbenv` | Ruby version manager (lazy-loadable) |
+| `ruby` | Ruby language support |
+| `rust` | Rust language support |
 | `ssh` | SSH agent management |
+| `sudo` | Press Esc+Esc to prepend sudo to current command |
+| `tmux` | Terminal multiplexer |
+| `zoxide` | Smarter directory navigation (z command) |
 
-See the `plugins/` directory for all available plugins.
+See the `plugins/` directory for all available plugins, or run `bash.env search` to list them with enabled/disabled status.
 
 ### Lazy Loading
 
@@ -224,6 +278,90 @@ If you need the version manager to initialize immediately (e.g., for scripts tha
     plugins="nvm rbenv"
     [[ -r "$HOME/.env/bash.env.sh" ]] && . "$HOME/.env/bash.env.sh"
 
+### Command Duration
+
+The `command_duration` plugin tracks and displays execution time for long-running commands. Enable it and use `ps1_command_duration` in your theme's PS1:
+
+    bash.env enable command_duration
+
+Configure the threshold (default: 5 seconds):
+
+    COMMAND_DURATION_THRESHOLD=3   # Show duration for commands taking 3+ seconds
+
+### Dynamic Completions
+
+The `completion` plugin automatically detects installed tools and sources their built-in completions. Supported tools include: docker, kubectl, helm, terraform, npm, pip, cargo, rustup, gh, AWS CLI, gcloud, minikube, and kind.
+
+No configuration needed — just enable the `completion` plugin and completions are sourced for any installed tools.
+
+## CLI Commands
+
+Run `bash.env help` to see all available commands. Key commands:
+
+### Plugin Management
+
+    bash.env enable <plugin>     # Enable a plugin
+    bash.env disable <plugin>    # Disable a plugin
+    bash.env reload              # Reload environment to apply changes
+
+### Search and Discovery
+
+    bash.env search              # List all plugins and themes with status
+    bash.env search git          # Filter by keyword
+
+### Theme Preview
+
+    bash.env preview             # Preview all themes
+    bash.env preview <theme>     # Preview a specific theme
+    bash.env set_theme <theme>   # Set the active theme
+
+### Diagnostics
+
+    bash.env doctor              # Show system info and health checks
+
+Reports OS, bash version, enabled plugins, current theme, PATH duplicates, missing plugins, and other potential issues.
+
+### Profiles
+
+Save and restore sets of plugin/theme configurations:
+
+    bash.env profile save work     # Save current config as "work"
+    bash.env profile save minimal  # Save a different config as "minimal"
+    bash.env profile load work     # Restore the "work" config
+    bash.env profile list          # List saved profiles
+    bash.env profile delete old    # Delete a profile
+
+## Configuration File
+
+When you use CLI commands like `bash.env enable`, `bash.env disable`, or `bash.env set_theme`, your choices are stored in `~/.bash.env.conf`. This file is optional — if it doesn't exist, `plugins` and `theme` values from `.bashrc` are used as before.
+
+When both `.bashrc` and `~/.bash.env.conf` define `plugins` or `theme`, the config file takes precedence.
+
+**What goes where:**
+
+| Setting | Where |
+|---------|-------|
+| `plugins`, `theme` | `~/.bash.env.conf` (managed by CLI) or `.bashrc` (manual) |
+| `dot_env_verbose`, `dot_env_home_host` | `.bashrc` |
+| `dot_env_log_level` | `.bashrc` |
+| Lazy loading toggles (`NVM_LAZY`, etc.) | `.bashrc` |
+| `COMMAND_DURATION_THRESHOLD` | `.bashrc` |
+| `ENABLE_AUTO_UPDATE` | `.bashrc` |
+
+## Logging
+
+**Bash.env** includes structured logging with configurable levels:
+
+    dot_env_log_level=info   # Set in .bashrc (error, warn, info, debug)
+
+Use in plugins or custom scripts:
+
+    dot_env_log info "Loading custom config"
+    dot_env_log error "Failed to initialize"
+    dot_env_log debug "Variable value: $foo"
+
+Default level is `warn` — only errors and warnings are shown.
+
 ## Other Useful Functions
 
 ### Add your SSH key to a remote host
@@ -233,7 +371,7 @@ If you need the version manager to initialize immediately (e.g., for scripts tha
 ... which will append your public `~/.ssh/id_dsa.pub` key to the host's authorized_keys file and allow you to login without a password.
 
     bash.env add_ssh_key_to [user@]HOSTNAME [PUBLIC_KEYFILE_PATH]
-    
+
 ... as above, using the specified public key.
 
 ### Propagate your copy of Bash.env to other hosts
@@ -255,6 +393,27 @@ If you want to customize the remote host environment even further:
 * Then `bash.env add_bash_env_to HOSTNAME`
 
 To determine the correct `HOSTNAME` to use for your remote environment make sure you first login to that environment and type `echo $HOSTNAME`.
+
+## Testing
+
+**Bash.env** includes a test suite using [Bats](https://github.com/bats-core/bats-core) and linting via [ShellCheck](https://github.com/koalaman/shellcheck):
+
+    rake test    # Run the Bats test suite
+    rake lint    # Run ShellCheck on all shell scripts
+
+Install the tools:
+
+    # Bats
+    # See: https://github.com/bats-core/bats-core#installation
+
+    # ShellCheck
+    # See: https://github.com/koalaman/shellcheck#installing
+
+## NO_COLOR Support
+
+**Bash.env** respects the [NO_COLOR](https://no-color.org/) convention. When the `NO_COLOR` environment variable is exported, all color output in themes is suppressed:
+
+    export NO_COLOR=1    # Disable colors
 
 ## Make it better
 

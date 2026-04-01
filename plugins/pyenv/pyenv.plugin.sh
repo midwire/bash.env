@@ -36,6 +36,8 @@ if [[ "${PYENV_LAZY:-1}" == "1" ]]; then
       eval "$("$_PYENV_BIN" virtualenv-init -)"
     fi
     unset _PYENV_BIN
+    # pyenv init adds shims to PATH; deduplicate via pathmunge
+    pathmunge "$PYENV_ROOT/shims" before
   }
 
   # Wrapper functions - each unsets itself FIRST to prevent recursion
@@ -102,4 +104,6 @@ else
     eval "$("$_PYENV_BIN" virtualenv-init -)"
   fi
   unset _PYENV_BIN
+  # pyenv init adds shims to PATH; deduplicate via pathmunge
+  pathmunge "$PYENV_ROOT/shims" before
 fi

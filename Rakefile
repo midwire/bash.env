@@ -81,6 +81,28 @@ task :release do
   puts "Released #{tag} on GitHub."
 end
 
+desc "Run ShellCheck on all shell scripts"
+task :lint do
+  files = Dir.glob("#{PROJECT_ROOT}/**/*.sh") + Dir.glob("#{PROJECT_ROOT}/**/*.plugin.sh")
+  files.reject! { |f| f.include?('/custom/') }
+  if system("command -v shellcheck >/dev/null 2>&1")
+    files.each do |f|
+      system("shellcheck -e SC1090,SC1091,SC2034,SC2154 -S warning #{f}")
+    end
+  else
+    abort "shellcheck not found. Install it: https://github.com/koalaman/shellcheck#installing"
+  end
+end
+
+desc "Run Bats test suite"
+task :test do
+  if system("command -v bats >/dev/null 2>&1")
+    system("bats #{PROJECT_ROOT}/test/") || abort("Tests failed")
+  else
+    abort "bats not found. Install it: https://github.com/bats-core/bats-core#installation"
+  end
+end
+
 desc "Open the github site in your browser"
 task :github do
   system("open https://github.com/midwire/.env")

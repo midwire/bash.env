@@ -1,3 +1,47 @@
+*1.2.0* (April 01, 2026)
+
+It was time to modernize bash.env. After looking at what Bash-it, Oh My Bash,
+and other frameworks offer, I decided to close the feature gaps while keeping
+what makes bash.env unique — the cascading load system, lazy loading, and lean
+design. This release brings bash.env up to par with the big frameworks without
+the bloat.
+
+CLI Management:
+* Added `bash.env enable/disable <plugin>` to manage plugins without editing .bashrc
+* Added `bash.env search [term]` to discover plugins and themes with status
+* Added `bash.env preview [theme]` with simulated real-world prompt rendering
+* Added `bash.env doctor` for diagnostics and health checks
+* Added `bash.env set_theme <theme>` to change themes via CLI
+* Added `bash.env reload` to reload the environment
+* Added `bash.env profile save|load|list|delete <name>` for config snapshots
+* Added tab completions for all bash.env subcommands with context-aware suggestions
+
+Configuration:
+* Added ~/.bash.env.conf for managed plugin/theme state (optional, overrides .bashrc)
+
+New Plugins:
+* `command_duration` - Display execution time for long-running commands (configurable threshold)
+* `extract` - Universal archive extraction (tar, zip, 7z, rar, xz, zst, etc.)
+* `colored_man_pages` - Colorized man page output via LESS_TERMCAP
+* `sudo` - Press Esc+Esc to prepend sudo to current command
+* `direnv` - Auto-hook direnv if installed
+* `zoxide` - Auto-init zoxide (smarter cd) if installed
+
+Completions:
+* Added lazy-loaded dynamic completions for: docker, kubectl, helm, terraform,
+  npm, pip, cargo, rustup, gh, minikube, kind, AWS CLI, and gcloud
+* Zero startup cost — completions load on first tab-complete per tool
+
+Standards & Quality:
+* Added NO_COLOR support (https://no-color.org/) in themes
+* Added structured logging via `dot_env_log()` with error/warn/info/debug levels
+* Added Bats test suite with tests for plugins, themes, functions, and CLI
+* Added `rake test` and `rake lint` (ShellCheck) tasks
+
+Bug Fixes:
+* Fixed PATH duplication in rbenv and pyenv plugins caused by init adding shims
+  to PATH before pathmunge could deduplicate
+
 *1.1.2* (January 05, 2026)
 
 *   1. Store paths before function definitions - Binary/script paths are stored in variables (_PYENV_BIN, _NVM_SCRIPT, etc.) before any wrapper functions are defined

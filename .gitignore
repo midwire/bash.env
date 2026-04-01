@@ -4,3 +4,4 @@ project.tmproj
 plugins/elocate/elocatedb
 .bundle/config
 docs/superpowers/
+.claude/settings.local.json

@@ -32,6 +32,11 @@ if [[ "$SHLVL" == "1" && "$dot_env_verbose" == "1" ]]; then
 fi
 . $dot_env_path/global/global.sh
 
+# Source managed config file if it exists (overrides plugins/theme from .bashrc)
+if [[ -r "$HOME/.bash.env.conf" ]]; then
+  . "$HOME/.bash.env.conf"
+fi
+
 # Source plugins which may be defined in ~/.bashrc, an OS, or Host specific file
 . $dot_env_path/plugins/plugins.sh
 
