@@ -45,6 +45,42 @@ task :bump_major do
   Rake::Task["changes"].invoke
 end
 
+desc "Create a GitHub release for the current version"
+task :release do
+  version = read_version.join('.')
+  tag = "v#{version}"
+
+  # Ensure we're on a clean working tree
+  unless system("git diff --quiet HEAD")
+    abort "ERROR: Working tree is dirty. Commit or stash changes before releasing."
+  end
+
+  # Create and push the tag if it doesn't exist
+  if system("git rev-parse #{tag} >/dev/null 2>&1")
+    puts "Tag #{tag} already exists."
+  else
+    system("git tag -a #{tag} -m 'Release #{tag}'") || abort("Failed to create tag")
+    system("git push origin #{tag}") || abort("Failed to push tag")
+  end
+
+  # Extract the latest changelog entry for release notes
+  changelog = File.read("#{PROJECT_ROOT}/CHANGELOG").to_s
+  # Grab everything from the current version header to the next version header
+  notes = changelog[/^\*#{Regexp.escape(version)}\*.*?(?=^\*\d+\.\d+\.\d+\*|\z)/m].to_s.strip
+
+  # Create the GitHub release
+  if notes.empty?
+    system("gh release create #{tag} --title '#{tag}' --generate-notes") || abort("Failed to create release")
+  else
+    IO.popen(["gh", "release", "create", tag, "--title", tag, "--notes-file", "-"], "w") do |io|
+      io.write(notes)
+    end
+    abort("Failed to create release") unless $?.success?
+  end
+
+  puts "Released #{tag} on GitHub."
+end
+
 desc "Open the github site in your browser"
 task :github do
   system("open https://github.com/midwire/.env")
